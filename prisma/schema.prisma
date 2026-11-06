@@ -1,0 +1,709 @@
+// CultureFlow — Prisma schema
+// Entities model an event discovery + ticketing flow plus a community
+// layer (profiles, follows, comments). Payment records align with
+// Stripe's payment-intent lifecycle.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -------------------- Roles & Users --------------------
+
+enum Role {
+  ATTENDEE
+  ORGANIZER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+model User {
+  id            String     @id @default(cuid())
+  email         String     @unique
+  emailVerified DateTime?
+  passwordHash  String?
+  name          String?
+  image         String?
+  bio           String?
+  city          String?
+  country       String?
+  website       String?
+  role          Role       @default(ATTENDEE)
+  status        UserStatus @default(ACTIVE)
+  // Optional — which South Sudanese tribe the user identifies with.
+  // Drives the "My tribe only" visibility filter when organizers pick it.
+  tribe         String?
+
+  // Onboarding: picked interests (EventCategory keys) and completion stamp.
+  // `onboardedAt` is null until the user finishes the welcome wizard; when
+  // null, middleware/home pushes them to /welcome.
+  interests   String[]  @default([])
+  onboardedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  accounts          Account[]
+  sessions          Session[]
+  events            Event[]            @relation("EventOrganizer")
+  orders            Order[]
+  tickets           Ticket[]
+  comments          Comment[]
+  following         Follow[]           @relation("Follower")
+  followers         Follow[]           @relation("Following")
+  likes             Like[]
+  moderationLogs    ModerationLog[]
+  refundsRequested  RefundRequest[]    @relation("RefundRequester")
+  refundsResolved   RefundRequest[]    @relation("RefundResolver")
+  transfersSent     TicketTransfer[]   @relation("TransferFrom")
+  transfersReceived TicketTransfer[]   @relation("TransferTo")
+  organizerMessages OrganizerMessage[] @relation("OrganizerMessages")
+  connectedAccounts ConnectedAccount[]
+
+  @@index([role])
+  @@index([status])
+}
+
+// -------------------- NextAuth core tables --------------------
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// -------------------- Community: follows --------------------
+
+model Follow {
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+  follower    User     @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@id([followerId, followingId])
+  @@index([followingId])
+}
+
+// -------------------- Community: likes --------------------
+// A user saving an event to their personal "Liked" list. One row per
+// (user, event) pair — the composite primary key enforces uniqueness so
+// we can toggle with a single upsert/delete.
+model Like {
+  userId    String
+  eventId   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@id([userId, eventId])
+  @@index([eventId])
+  @@index([userId, createdAt])
+}
+
+// -------------------- Events --------------------
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  PAST
+  CANCELLED
+}
+
+enum EventType {
+  IN_PERSON
+  ONLINE
+  HYBRID
+}
+
+/// Who an event is visible to within the South Sudanese community.
+///   ALL_SOUTH_SUDANESE — discoverable by every user (default)
+///   SELECTED_TRIBES    — only users whose `tribe` is in Event.visibleTribes
+///   OWN_TRIBE          — only users whose `tribe` matches the organizer's
+enum TribeVisibility {
+  ALL_SOUTH_SUDANESE
+  SELECTED_TRIBES
+  OWN_TRIBE
+}
+
+enum EventCategory {
+  CULTURAL
+  MUSIC
+  SPORTS
+  EDUCATION
+  FAITH
+  NETWORKING
+  WEDDING
+  COMMUNITY
+  BUSINESS
+  FUNDRAISER
+  FAMILY
+  OTHER
+}
+
+model Event {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  title       String
+  summary     String        @db.Text
+  description String        @db.Text
+  category    EventCategory @default(COMMUNITY)
+  type        EventType     @default(IN_PERSON)
+  status      EventStatus   @default(DRAFT)
+  featured    Boolean       @default(false)
+
+  // Timing
+  startsAt DateTime
+  endsAt   DateTime
+  timezone String   @default("UTC")
+
+  // Place
+  venueName    String?
+  venueAddress String?
+  city         String?
+  country      String?
+  onlineUrl    String?
+
+  // Media
+  bannerUrl   String?
+  galleryUrls String[] @default([])
+
+  // Capacity & limits
+  capacity     Int?
+  perUserLimit Int  @default(10)
+
+  // Relations
+  organizerId String
+  // Restrict — events can't be orphaned; soft-delete the organizer
+  // (UserStatus.DELETED) instead of removing them while events exist.
+  organizer   User            @relation("EventOrganizer", fields: [organizerId], references: [id], onDelete: Restrict)
+  ticketTiers TicketTier[]
+  orders      Order[]
+  tickets     Ticket[]
+  comments    Comment[]
+  waitlist    WaitlistEntry[]
+  likes       Like[]
+  promoCodes  PromoCode[]
+  viewCount   Int             @default(0)
+
+  // Optional organizer-authored info surfaced on the event page.
+  refundPolicy String?  @db.Text
+  highlights   String[] @default([])
+
+  // Tribe visibility — default is open to everyone.
+  tribeVisibility TribeVisibility @default(ALL_SOUTH_SUDANESE)
+  visibleTribes   String[]        @default([])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([category])
+  @@index([city])
+  @@index([startsAt])
+  @@index([organizerId])
+}
+
+// -------------------- Tickets & Tiers --------------------
+
+model TicketTier {
+  id           String        @id @default(cuid())
+  eventId      String
+  event        Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  name         String
+  description  String?
+  priceCents   Int           @default(0) // 0 = free
+  currency     String        @default("USD")
+  quantity     Int // total allowed for this tier
+  sold         Int           @default(0)
+  // Sales window — null = no constraint. Used for early-bird auto-close
+  // and "starts at midnight Friday" reveals. Enforced at checkout time
+  // against `now()`; tiers outside the window return "not on sale yet"
+  // / "sale ended" instead of being silently grabbed.
+  salesStartAt DateTime?
+  salesEndAt   DateTime?
+  // Per-tier order limits — finer-grained than Event.perUserLimit.
+  minPerOrder  Int?
+  maxPerOrder  Int?
+  tickets      Ticket[]
+  reservations Reservation[]
+
+  @@index([eventId])
+}
+
+enum TicketStatus {
+  ISSUED
+  CHECKED_IN
+  CANCELLED
+  REFUNDED
+}
+
+model Ticket {
+  id            String       @id @default(cuid())
+  code          String       @unique // human-readable 6-char check-in code
+  qrData        String // opaque token encoded in QR
+  status        TicketStatus @default(ISSUED)
+  attendeeName  String
+  attendeeEmail String
+  eventId       String
+  event         Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  tierId        String
+  tier          TicketTier   @relation(fields: [tierId], references: [id])
+  orderId       String
+  order         Order        @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  userId        String?
+  // If a user is hard-deleted, leave the ticket as a standalone record
+  // so check-in history and order revenue stay intact.
+  user          User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  checkedInAt   DateTime?
+  createdAt     DateTime     @default(now())
+
+  refundRequest RefundRequest?
+  transfers     TicketTransfer[]
+
+  @@index([eventId])
+  @@index([userId])
+  @@index([orderId])
+}
+
+// -------------------- Orders & Payments --------------------
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+  REFUNDED
+  FAILED
+}
+
+model Order {
+  id                 String      @id @default(cuid())
+  userId             String
+  // Restrict — orders anchor revenue and refund history; they must
+  // survive the buyer being soft-deleted (UserStatus.DELETED).
+  user               User        @relation(fields: [userId], references: [id], onDelete: Restrict)
+  eventId            String
+  event              Event       @relation(fields: [eventId], references: [id])
+  status             OrderStatus @default(PENDING)
+  // Money breakdown — every component stored in minor units, currency
+  // travels with the integer. `subtotal - discount + processingFee = total`.
+  // `platformFee` and `organizerNet` are snapshotted from the platform-fee
+  // policy at order time so historical revenue reporting doesn't drift if
+  // the policy later changes.
+  subtotalCents      Int         @default(0)
+  discountCents      Int         @default(0)
+  processingFeeCents Int         @default(0)
+  totalCents         Int         @default(0)
+  platformFeeCents   Int         @default(0)
+  organizerNetCents  Int         @default(0)
+  currency           String      @default("USD")
+  // Optional promo code applied to this order.
+  promoCodeId        String?
+  promoCode          PromoCode?  @relation(fields: [promoCodeId], references: [id], onDelete: SetNull)
+  tickets            Ticket[]
+  payment            Payment?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([eventId])
+  @@index([status])
+  @@index([promoCodeId])
+}
+
+enum PaymentStatus {
+  REQUIRES_ACTION
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+// Payment provider rails we can route an order through. Add a row here
+// when a new provider is wired up in `src/lib/payments/`.
+enum PaymentProvider {
+  STRIPE // cards, Apple Pay, Google Pay (worldwide via Stripe)
+  MPESA // Safaricom Daraja STK Push (KES, TZS via Vodacom)
+  MOMO // MTN Mobile Money Collections (UGX, RWF, SSP via MTN MoMo SS)
+  MGURUSH // m-Gurush — South Sudan (SSP)
+  DEMO // dev / demo mode — no real money moves
+}
+
+model Payment {
+  id                   String          @id @default(cuid())
+  orderId              String          @unique
+  order                Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  provider             PaymentProvider @default(STRIPE)
+  // Provider-side reference. For Stripe = checkout session id or PI id.
+  // For M-Pesa = MerchantRequestID. For MoMo = referenceId. For m-Gurush
+  // = transactionId returned by the gateway.
+  providerPaymentId    String?         @unique
+  providerClientSecret String?
+  // For mobile money — the phone number the STK push / collection request
+  // was sent to. Stored so we can show the buyer "we sent a prompt to +254…".
+  mobileMoneyMsisdn    String?
+  amountCents          Int
+  currency             String          @default("USD")
+  status               PaymentStatus   @default(REQUIRES_ACTION)
+  // Last-seen webhook payload from the provider. Useful for support
+  // ("the gateway said: …") and for debugging failed payments.
+  rawEvent             Json?
+  // For successful payments, the provider-side fee (interchange + provider
+  // commission). We don't always know this at capture time; M-Pesa returns
+  // it on the callback, Stripe needs a balance-transaction lookup.
+  providerFeeCents     Int?
+  refundedAt           DateTime?
+  refundedAmountCents  Int?
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  @@index([provider])
+  @@index([status])
+}
+
+// Processed Stripe webhook events. The unique primary key is Stripe's
+// own event id (evt_xxxx); inserting on receipt and catching the
+// unique-violation error gives us exact-once processing under
+// arbitrary retry / replay behaviour from Stripe's side.
+//
+// We don't keep the full payload — `Payment.rawEvent` already stores
+// the last-seen payload per order for debugging.
+model StripeEvent {
+  id         String   @id // evt_xxxx
+  type       String
+  receivedAt DateTime @default(now())
+
+  @@index([receivedAt])
+}
+
+// -------------------- Contact form --------------------
+//
+// Messages submitted through /contact. Persisted (even when no
+// transactional-email provider is wired) so support never loses a
+// message to a misconfigured SMTP. `topic` echoes the optional
+// querystring that framed the conversation.
+enum ContactTopic {
+  SUPPORT
+  PARTNERSHIPS
+  PRESS
+  TRUST
+  PREMIUM
+  ADS
+  PROMOS
+  EXTENSIONS
+  API
+  OTHER
+}
+
+model ContactMessage {
+  id        String       @id @default(cuid())
+  topic     ContactTopic @default(OTHER)
+  name      String
+  email     String
+  subject   String
+  body      String       @db.Text
+  userId    String? // if the sender is signed in
+  ipHash    String? // sha256(ip + secret) — audit without storing raw IP
+  createdAt DateTime     @default(now())
+
+  @@index([createdAt])
+  @@index([topic])
+  @@index([email])
+}
+
+// Direct-to-organizer messages — when an attendee clicks "Contact"
+// on an organizer's public profile. Kept in its own table (vs. the
+// site-level ContactMessage) so organizer inboxes can be exposed to
+// the organizer themselves without leaking site-support traffic.
+model OrganizerMessage {
+  id           String   @id @default(cuid())
+  organizerId  String
+  organizer    User     @relation("OrganizerMessages", fields: [organizerId], references: [id], onDelete: Cascade)
+  senderUserId String?
+  senderEmail  String
+  senderName   String
+  subject      String
+  body         String   @db.Text
+  ipHash       String?
+  createdAt    DateTime @default(now())
+
+  @@index([organizerId, createdAt])
+  @@index([senderEmail])
+}
+
+// -------------------- Comments / discussion --------------------
+
+enum CommentStatus {
+  VISIBLE
+  HIDDEN
+  DELETED
+}
+
+model Comment {
+  id        String        @id @default(cuid())
+  eventId   String
+  event     Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  body      String        @db.Text
+  status    CommentStatus @default(VISIBLE)
+  createdAt DateTime      @default(now())
+
+  @@index([eventId, createdAt])
+  @@index([userId])
+}
+
+// -------------------- Moderation --------------------
+
+model ModerationLog {
+  id        String   @id @default(cuid())
+  adminId   String
+  // Restrict — audit logs must never lose the actor they reference.
+  admin     User     @relation(fields: [adminId], references: [id], onDelete: Restrict)
+  action    String // e.g. "suspend_user", "hide_comment", "unlist_event"
+  targetId  String // id of affected entity
+  reason    String?
+  createdAt DateTime @default(now())
+
+  @@index([adminId])
+  @@index([createdAt])
+}
+
+// -------------------- Refund requests --------------------
+//
+// Attendee-initiated refund requests. Creating one doesn't move money —
+// it just flags the ticket for the organizer to review. The organizer
+// (or an admin) resolves it by updating `status`; on APPROVED we also
+// set the underlying Ticket.status to REFUNDED.
+
+enum RefundStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model RefundRequest {
+  id           String       @id @default(cuid())
+  ticketId     String       @unique
+  ticket       Ticket       @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User         @relation("RefundRequester", fields: [userId], references: [id], onDelete: Cascade)
+  reason       String       @db.Text
+  status       RefundStatus @default(PENDING)
+  resolvedAt   DateTime?
+  resolverId   String?
+  resolver     User?        @relation("RefundResolver", fields: [resolverId], references: [id], onDelete: SetNull)
+  decisionNote String?      @db.Text
+  createdAt    DateTime     @default(now())
+
+  @@index([userId])
+  @@index([status])
+}
+
+// -------------------- Ticket transfers --------------------
+//
+// Organizer-allowed reassignment of a ticket. We don't require the new
+// attendee to have an account — we rewrite `attendeeName`/`attendeeEmail`
+// on the Ticket and, if a User exists for that email, reassign `userId`.
+
+model TicketTransfer {
+  id         String   @id @default(cuid())
+  ticketId   String
+  ticket     Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  fromUserId String
+  fromUser   User     @relation("TransferFrom", fields: [fromUserId], references: [id], onDelete: Cascade)
+  toEmail    String
+  toName     String
+  toUserId   String?
+  toUser     User?    @relation("TransferTo", fields: [toUserId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+
+  @@index([ticketId])
+  @@index([fromUserId])
+}
+
+// -------------------- Waitlist --------------------
+
+model WaitlistEntry {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  email     String
+  name      String?
+  notified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, email])
+  @@index([eventId])
+  @@index([createdAt])
+}
+
+// -------------------- Reservations (TTL cart) --------------------
+//
+// Holds seats for a buyer while they're in the payment flow. Without
+// reservations, two buyers clicking "buy" on the last 5 seats can both
+// pass capacity validation, then one of them fails after the redirect.
+//
+// The reservation does NOT decrement TicketTier.sold; it's a parallel
+// counter that the availability check subtracts from quantity. Cleared
+// on success (we then increment sold and issue tickets) or on TTL expiry
+// (a periodic sweep deletes expired rows).
+//
+// Don't attach this to a User foreign key — anonymous browse-and-buy is
+// a stretch goal, and we want to be able to reserve before sign-in.
+model Reservation {
+  id        String     @id @default(cuid())
+  tierId    String
+  tier      TicketTier @relation(fields: [tierId], references: [id], onDelete: Cascade)
+  userId    String?
+  quantity  Int
+  expiresAt DateTime
+  // Optional link to the in-progress order. Set when the buyer initiates
+  // checkout; cleared (along with the row) when the order finalises.
+  orderId   String?    @unique
+  createdAt DateTime   @default(now())
+
+  @@index([tierId])
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+// -------------------- Promo codes --------------------
+
+enum DiscountType {
+  PERCENT // 0..100 of subtotal
+  FIXED_CENTS // a flat amount, in the same currency as the order
+}
+
+model PromoCode {
+  id            String       @id @default(cuid())
+  code          String       @unique // case-insensitive in code, stored upper
+  description   String?
+  discountType  DiscountType
+  // For PERCENT: an integer 1..100 (10 = 10% off).
+  // For FIXED_CENTS: a minor-units amount in the order's currency.
+  discountValue Int
+  // Optional scope. NULL eventId = code valid on any event.
+  // NULL tierId = code valid on any tier within the event.
+  eventId       String?
+  event         Event?       @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  tierId        String?
+  // Lifecycle
+  startsAt      DateTime?
+  endsAt        DateTime?
+  // null `maxUses` = unlimited.
+  maxUses       Int?
+  usedCount     Int          @default(0)
+  // Optional per-user cap (1 = "first-timer only"; null = unlimited per-user).
+  maxPerUser    Int?
+  active        Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  orders        Order[]
+
+  @@index([eventId])
+  @@index([active])
+}
+
+// -------------------- Connected accounts (organizer payouts) --------------------
+//
+// Maps a CultureFlow organizer to their on-rails merchant account so we can
+// route money to them (instead of pooling everything in the platform's own
+// account). One row per (user, provider) pair — an organizer can have a
+// Stripe Connect account AND an M-Pesa till AND a MoMo merchant code, and
+// the checkout router picks per-event based on currency / region.
+//
+// NEVER store the organizer's private API secret here in plain text. For
+// Stripe Connect we only ever hold the connected account ID (`acct_xxx`);
+// the organizer's actual access happens through OAuth / Stripe's hosted
+// onboarding. For mobile-money rails, the platform's API keys do the
+// authentication; this row just tells us "send funds to till XYZ".
+
+enum PayoutProvider {
+  STRIPE_CONNECT
+  MPESA_TILL // Safaricom Paybill / Till number
+  MOMO_MERCHANT // MTN MoMo merchant code
+  MGURUSH_MERCHANT // m-Gurush merchant code
+}
+
+model ConnectedAccount {
+  id          String         @id @default(cuid())
+  userId      String
+  provider    PayoutProvider
+  // Provider-side identifier (acct_xxxx for Stripe; the till/paybill/code
+  // for the mobile-money rails).
+  externalId  String
+  // For mobile-money rails we may also need a payee phone number (some
+  // providers expect the MSISDN, not just the till code).
+  payeeMsisdn String?
+  // Display fields the organizer can name their payout method by.
+  label       String?
+  // Set when the organizer completes provider-side onboarding (KYC for
+  // Stripe Connect, manual verification for the mobile rails). Until
+  // then, checkout for this provider returns an error.
+  verifiedAt  DateTime?
+  // Default = the rail to use when no per-event override is set.
+  isDefault   Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  User        User           @relation(fields: [userId], references: [id])
+
+  @@unique([userId, provider, externalId])
+  @@index([userId])
+  @@index([provider])
+}
+
+// -------------------- Provider webhook idempotency --------------------
+//
+// Generalises the existing `StripeEvent` table to every payment provider.
+// Insert-on-receipt with the provider's own event id; catch unique
+// violation = exactly-once handling under retry / replay.
+//
+// We keep `StripeEvent` around for back-compat with existing migrations.
+// New code writes to `ProviderEvent` instead.
+model ProviderEvent {
+  id         String          @id // provider event id (evt_xxx, MerchantRequestID, etc.)
+  provider   PaymentProvider
+  type       String
+  receivedAt DateTime        @default(now())
+
+  @@index([provider, receivedAt])
+}

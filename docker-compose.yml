@@ -1,0 +1,51 @@
+# Local development stack: Postgres + the Next.js app.
+# Run: docker compose up --build
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tribe
+      POSTGRES_PASSWORD: tribe
+      POSTGRES_DB: tribe
+    ports:
+      - "5432:5432"
+    volumes:
+      - tribe_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "tribe"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://tribe:tribe@db:5432/tribe
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-dev-secret-change-me-please-32-chars-minimum}
+      NEXTAUTH_URL: http://localhost:3000
+      APP_URL: http://localhost:3000
+      APP_NAME: South Sudanese Tribe
+      ADMIN_EMAIL: admin@tribe.example
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      ENABLE_PAID_EVENTS: "true"
+    ports:
+      - "3000:3000"
+    # /api/health runs a cheap SELECT 1. 30s grace so `prisma migrate
+    # deploy` finishes before the probe starts marking unhealthy.
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O- http://localhost:3000/api/health >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  tribe_db:

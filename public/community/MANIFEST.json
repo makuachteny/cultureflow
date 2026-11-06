@@ -1,0 +1,154 @@
+{
+  "cultural-dancers-flags": {
+    "id": "photo-1519750157634-b6d493a0f77c",
+    "role": "cultural night, dancers with flags",
+    "file": "/community/cultural-dancers-flags.jpg",
+    "swappedTo": "photo-1547721064-da6cfb341d50"
+  },
+  "cultural-performance": {
+    "id": "photo-1532629345422-7515f3d16bb6",
+    "role": "cultural performance / donation hands",
+    "file": "/community/cultural-performance.jpg",
+    "swappedTo": "photo-1565538810643-b5bdb714032a"
+  },
+  "cultural-celebration": {
+    "id": "photo-1501281668745-f7f57925c3b4",
+    "role": "outdoor celebration",
+    "file": "/community/cultural-celebration.jpg",
+    "swappedTo": "photo-1582979512210-99b6a53386f9"
+  },
+  "cultural-confetti": {
+    "id": "photo-1492684223066-81342ee5ff30",
+    "role": "celebration confetti / 'other' category",
+    "file": "/community/cultural-confetti.jpg"
+  },
+  "music-concert-crowd": {
+    "id": "photo-1470225620780-dba8ba36b745",
+    "role": "concert crowd",
+    "file": "/community/music-concert-crowd.jpg",
+    "swappedTo": "photo-1605000797499-95a51c5269ae"
+  },
+  "music-live-stage": {
+    "id": "photo-1501386761578-eac5c94b800a",
+    "role": "live music stage",
+    "file": "/community/music-live-stage.jpg",
+    "swappedTo": "photo-1525026198548-4baa812f1183"
+  },
+  "sports-football": {
+    "id": "photo-1517649763962-0c623066013b",
+    "role": "football match",
+    "file": "/community/sports-football.jpg"
+  },
+  "sports-pitch": {
+    "id": "photo-1459749411175-04bf5292ceea",
+    "role": "stadium pitch",
+    "file": "/community/sports-pitch.jpg"
+  },
+  "sports-tournament": {
+    "id": "photo-1431324155629-1a6deb1dec8d",
+    "role": "tournament action shot",
+    "file": "/community/sports-tournament.jpg",
+    "swappedTo": "photo-1569863959165-56dae551d4fc"
+  },
+  "education-books": {
+    "id": "photo-1503676260728-1c00da094a0b",
+    "role": "books / learning workshop",
+    "file": "/community/education-books.jpg",
+    "swappedTo": "photo-1529421308418-eab98863cee4"
+  },
+  "faith-sanctuary": {
+    "id": "photo-1507692049790-de58290a4334",
+    "role": "sanctuary light",
+    "file": "/community/faith-sanctuary.jpg",
+    "swappedTo": "photo-1544717305-2782549b5136"
+  },
+  "faith-congregation": {
+    "id": "photo-1511795409834-ef04bbd61622",
+    "role": "congregation gathering",
+    "file": "/community/faith-congregation.jpg",
+    "swappedTo": "photo-1517048676732-d65bc937f952"
+  },
+  "networking-hands": {
+    "id": "photo-1556761175-5973dc0f32e7",
+    "role": "networking handshake",
+    "file": "/community/networking-hands.jpg",
+    "swappedTo": "photo-1542038784456-1ea8e935640e"
+  },
+  "community-outdoors": {
+    "id": "photo-1529156069898-49953e39b3ac",
+    "role": "community group outdoors",
+    "file": "/community/community-outdoors.jpg",
+    "swappedTo": "photo-1542838132-92c53300491e"
+  },
+  "wedding-celebration": {
+    "id": "photo-1519741497674-611481863552",
+    "role": "wedding scene",
+    "file": "/community/wedding-celebration.jpg",
+    "swappedTo": "photo-1520367445093-50dc08a59d9d"
+  },
+  "business-speaker": {
+    "id": "photo-1556761175-b413da4baf72",
+    "role": "conference speaker",
+    "file": "/community/business-speaker.jpg",
+    "swappedTo": "photo-1591115765373-5207764f72e7"
+  },
+  "business-mixer": {
+    "id": "photo-1515169067868-5387ec356754",
+    "role": "business mixer",
+    "file": "/community/business-mixer.jpg",
+    "swappedTo": "photo-1518709268805-4e9042af9f23"
+  },
+  "family-together": {
+    "id": "photo-1511895426328-dc8714191300",
+    "role": "family together",
+    "file": "/community/family-together.jpg",
+    "swappedTo": "photo-1517457373958-b7bdd4587205"
+  },
+  "diaspora-hero-1": {
+    "id": "photo-1518684079-3c830dcef090",
+    "role": "diaspora hero scene",
+    "file": "/community/diaspora-hero-1.jpg",
+    "swappedTo": "photo-1505236858219-8359eb29e329"
+  },
+  "diaspora-hero-2": {
+    "id": "photo-1469854523086-cc02fe5d8800",
+    "role": "diaspora hero scene",
+    "file": "/community/diaspora-hero-2.jpg",
+    "swappedTo": "photo-1516483638261-f4dbaf036963"
+  },
+  "theme-banner-1": {
+    "id": "photo-1570168007204-dfb528c6958f",
+    "role": "browse-theme banner",
+    "file": "/community/theme-banner-1.jpg"
+  },
+  "theme-banner-2": {
+    "id": "photo-1531058020387-3be344556be6",
+    "role": "browse-theme banner",
+    "file": "/community/theme-banner-2.jpg"
+  },
+  "aux-1496442226666": {
+    "id": "photo-1496442226666-8d4d0e62e6e9",
+    "role": "auxiliary marketing image",
+    "file": "/community/aux-1496442226666.jpg"
+  },
+  "aux-1506973035872": {
+    "id": "photo-1506973035872-a4ec16b8e8d9",
+    "role": "auxiliary marketing image",
+    "file": "/community/aux-1506973035872.jpg"
+  },
+  "aux-1513635269975": {
+    "id": "photo-1513635269975-59663e0ac1ad",
+    "role": "auxiliary marketing image",
+    "file": "/community/aux-1513635269975.jpg"
+  },
+  "aux-1517090504586": {
+    "id": "photo-1517090504586-fde19ea6066f",
+    "role": "auxiliary marketing image",
+    "file": "/community/aux-1517090504586.jpg"
+  },
+  "events-new-hero": {
+    "id": "photo-1533174072545-7a4b6ad7a6c3",
+    "role": "create-event page hero",
+    "file": "/community/events-new-hero.jpg"
+  }
+}
