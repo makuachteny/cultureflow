@@ -3,11 +3,11 @@
   "crons": [
     {
       "path": "/api/cron/sweep-reservations",
-      "schedule": "*/5 * * * *"
+      "schedule": "0 3 * * *"
     },
     {
       "path": "/api/cron/expire-events",
-      "schedule": "0 * * * *"
+      "schedule": "0 4 * * *"
     }
   ]
 }
