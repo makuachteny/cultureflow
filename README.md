@@ -27,7 +27,7 @@ Sign in with any of the seeded accounts, for example **`alek@cultureflow.example
 
 ## Screenshots
 
-All screenshots are from a local dev build running against the seed data (`npm run db:seed`).
+Screenshots are from the [live demo](https://cultureflow-demo.vercel.app) running on the seed data.
 
 ### Discover
 
