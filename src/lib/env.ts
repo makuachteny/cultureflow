@@ -32,12 +32,20 @@ function flag(name: string): boolean {
 }
 
 const NODE_ENV = process.env.NODE_ENV ?? "development";
+
+/**
+ * DEMO_DB=pglite runs the app on an embedded, in-process Postgres
+ * (PGlite) loaded from a seeded snapshot — no hosted database needed.
+ * Writes live only as long as the serverless instance. Demo use only.
+ */
+const DEMO_DB = (process.env.DEMO_DB ?? "").toLowerCase();
 const IS_PROD  = NODE_ENV === "production";
 
 /** Build-time and runtime environment, with validation. */
 export const env = {
   // Core — required everywhere.
-  DATABASE_URL:    required("DATABASE_URL"),
+  DEMO_DB,
+  DATABASE_URL:    DEMO_DB === "pglite" ? optional("DATABASE_URL") : required("DATABASE_URL"),
   NEXTAUTH_SECRET: required("NEXTAUTH_SECRET"),
   NEXTAUTH_URL:    optional("NEXTAUTH_URL", "http://localhost:3000"),
   APP_URL:         optional("APP_URL",      "http://localhost:3000"),

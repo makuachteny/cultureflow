@@ -23,7 +23,10 @@ type EventCategory = "CULTURAL" | "MUSIC" | "SPORTS" | "EDUCATION" | "FAITH" | "
 type EventType     = "IN_PERSON" | "ONLINE" | "HYBRID";
 type EventStatus   = "DRAFT" | "PUBLISHED" | "PAST" | "CANCELLED";
 
-const prisma = new PrismaClient();
+// scripts/build-demo-db.ts injects a PGlite-backed client here so the
+// same seed produces the bundled demo snapshot.
+const injected = (globalThis as { __seedPrisma?: PrismaClient }).__seedPrisma;
+const prisma = injected ?? new PrismaClient();
 
 function slugify(s: string) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80);
@@ -897,6 +900,10 @@ async function main() {
   console.log(`  ${em("ayen").padEnd(32)} / password123   (ATTENDEE  — London)`);
 }
 
-main()
-  .catch((e) => { console.error(e); process.exit(1); })
-  .finally(async () => { await prisma.$disconnect(); });
+export const seeded = main();
+
+if (!injected) {
+  seeded
+    .catch((e) => { console.error(e); process.exit(1); })
+    .finally(async () => { await prisma.$disconnect(); });
+}

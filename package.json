@@ -6,7 +6,7 @@
     "predev": "node scripts/build-brand-svgs.mjs",
     "dev": "next dev",
     "prebuild": "node scripts/build-brand-svgs.mjs",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && tsx scripts/build-demo-db.ts --if-demo && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
@@ -20,14 +20,17 @@
     "test:watch": "vitest",
     "brand:build": "node scripts/build-brand-svgs.mjs",
     "brand:watch": "node scripts/watch-brand.mjs",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "demo:db": "tsx scripts/build-demo-db.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
+    "@electric-sql/pglite": "^0.2.17",
     "@prisma/client": "^5.22.0",
     "bcryptjs": "^2.4.3",
     "next": "14.2.35",
     "next-auth": "5.0.0-beta.22",
+    "pglite-prisma-adapter": "^0.3.0",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

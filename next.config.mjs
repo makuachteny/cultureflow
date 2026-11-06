@@ -88,7 +88,20 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 365
   },
   experimental: {
-    serverActions: { allowedOrigins }
+    serverActions: { allowedOrigins },
+    // DEMO_DB=pglite: src/lib/demo-db.ts loads PGlite + its Prisma
+    // adapter with a runtime require (invisible to the file tracer), so
+    // ship them — plus the seeded snapshot — with every function.
+    outputFileTracingIncludes: {
+      "/**": [
+        "./prisma/demo/demo-db.tar.gz",
+        "./node_modules/@electric-sql/pglite/package.json",
+        "./node_modules/@electric-sql/pglite/dist/*.{cjs,js,wasm,data}",
+        "./node_modules/pglite-prisma-adapter/**",
+        "./node_modules/@prisma/driver-adapter-utils/**",
+        "./node_modules/@prisma/debug/**"
+      ]
+    }
   },
   async headers() {
     return [

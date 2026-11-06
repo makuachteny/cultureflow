@@ -4,7 +4,10 @@
 // Stripe's payment-intent lifecycle.
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  // driverAdapters lets the demo deploy run on an embedded PGlite
+  // database (see src/lib/demo-db.ts) instead of a hosted Postgres.
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {

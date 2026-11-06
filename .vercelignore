@@ -1,0 +1,12 @@
+# Never upload local secrets or machine-specific files to Vercel.
+.env
+.env.*
+!.env.example
+.backups
+.claude
+.next
+node_modules
+coverage
+tsconfig.tsbuildinfo
+public/uploads
+prisma/demo

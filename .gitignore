@@ -43,3 +43,6 @@ next-env.d.ts
 .vscode
 .backups/
 .vercel
+
+# generated demo database snapshot (npm run demo:db)
+/prisma/demo/
