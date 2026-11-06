@@ -15,6 +15,12 @@ The events and community platform for South Sudanese — discover, host, and cel
 
 This repository contains the full web application: Next.js 14 (App Router) + Prisma + Postgres, with NextAuth authentication, Stripe payments (test mode by default), and a community layer (profiles, follows, likes, event comments, admin moderation).
 
+### 🔗 Live demo: **[cultureflow-demo.vercel.app](https://cultureflow-demo.vercel.app)**
+
+Sign in with any of the seeded accounts, for example **`alek@cultureflow.example` / `password123`** (organizer) or **`admin@cultureflow.example` / `admin1234`** (admin). The full list is under [Sample logins](#sample-logins-from-the-seed-script).
+
+> The demo runs in `DEMO_DB=pglite` mode (see [Demo mode](#demo-mode--no-database-required)): an embedded, pre-seeded database with no external Postgres. You can browse, sign in, create events and register for free events, but **changes reset periodically**. Payments are disabled.
+
 ![CultureFlow home page](docs/screenshots/home.png)
 
 ---
@@ -373,6 +379,28 @@ In the Stripe dashboard → Developers → Webhooks → **Add endpoint**:
 ### Step 5 — Promote your admin
 
 Sign up on the live site using the email you set as `ADMIN_EMAIL`. That user automatically receives `ADMIN` role.
+
+## Demo mode — no database required
+
+For demos you can skip Postgres entirely. Set `DEMO_DB=pglite` and the app runs on [PGlite](https://pglite.dev) (Postgres compiled to WASM) inside the server process:
+
+- `npm run build` (with `DEMO_DB=pglite`) runs `scripts/build-demo-db.ts`, which applies the Prisma migrations to an in-memory PGlite, runs `prisma/seed.ts` against it, and writes the snapshot to `prisma/demo/demo-db.tar.gz` (gitignored, regenerated each build). Run it by hand with `npm run demo:db`.
+- At runtime `src/lib/db.ts` boots each server instance from that snapshot.
+- **Writes are per-instance and vanish on cold start.** Never use this for real data.
+
+This is how the [live demo](https://cultureflow-demo.vercel.app) is deployed. It uses these Vercel production env vars:
+
+| Variable | Value |
+|---|---|
+| `DEMO_DB` | `pglite` |
+| `DATABASE_URL` | any placeholder, e.g. `postgres://demo:demo@localhost:5432/demo` |
+| `NEXTAUTH_SECRET` / `CRON_SECRET` | random (`openssl rand -base64 32`) |
+| `NEXTAUTH_URL`, `APP_URL` | `https://cultureflow-demo.vercel.app` |
+| `ENABLE_PAID_EVENTS`, `ENABLE_SOCIAL_LOGIN`, `DEMO_CHECKOUT` | `false` |
+
+Deploy with `vercel deploy --prod`. `.vercelignore` keeps local `.env` files out of the upload. Seeded event dates are relative to build time, so redeploy now and then to keep the calendar current.
+
+To move to a real database later, attach Neon/Supabase, set `DATABASE_URL`, remove `DEMO_DB`, and follow the Vercel steps above.
 
 ## Deployment — Docker (alt path)
 
