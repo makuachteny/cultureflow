@@ -57,8 +57,8 @@ export default function EmptyState({
 
 function Illustration({ kind }: { kind: NonNullable<Props["illustration"]> }) {
   const ringCls =
-    "relative h-20 w-20 rounded-md grid place-items-center shadow-sm " +
-    "bg-gradient-to-br from-cream-100 to-white";
+    "relative h-20 w-20 grid place-items-center shadow-pop " +
+    "bg-gold border-2 border-ink";
 
   if (kind === "drum") {
     return (

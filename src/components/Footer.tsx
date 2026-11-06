@@ -12,17 +12,18 @@ import { BRAND_HOME_LABEL, BRAND_NAME, copyrightLine } from "@/lib/brand";
  */
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t border-[color:var(--border-hairline)] bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 md:py-7 grid gap-x-6 gap-y-5 grid-cols-2 md:grid-cols-5 text-[13px]">
+    <footer className="bg-ink text-white">
+      <div aria-hidden className="beads beads-lg" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-12 grid gap-x-6 gap-y-5 grid-cols-2 md:grid-cols-5 text-[13px]">
         <div className="col-span-2 md:col-span-1">
           <Link
             href="/"
             aria-label={BRAND_HOME_LABEL}
-            className="inline-block font-display text-[18px] font-extrabold tracking-tight text-nile-900 leading-none hover:text-nile transition-colors"
+            className="inline-block font-display text-[24px] font-black text-gold leading-none hover:text-white transition-colors"
           >
             {BRAND_NAME}
           </Link>
-          <p className="mt-1.5 hidden md:block text-ink/70 max-w-xs text-[12.5px] leading-snug">
+          <p className="mt-1.5 hidden md:block text-white/75 max-w-xs text-[13px] leading-snug">
             Events for South Sudanese, at home and across the diaspora.
           </p>
         </div>
@@ -30,42 +31,42 @@ export default function Footer() {
         <FooterCol title="Cities">
           {FEATURED_CITIES.slice(0, 4).map((c) => (
             <li key={c.slug}>
-              <Link href={`/events/city/${c.slug}`} className="hover:text-nile">{c.label}</Link>
+              <Link href={`/events/city/${c.slug}`} className="hover:text-gold">{c.label}</Link>
             </li>
           ))}
-          <li><Link href="/browse" className="hover:text-nile font-semibold">All events →</Link></li>
+          <li><Link href="/browse" className="hover:text-gold font-semibold">All events →</Link></li>
         </FooterCol>
 
         <FooterCol title="Categories">
           {CATEGORIES.slice(0, 4).map((c) => (
             <li key={c.slug}>
-              <Link href={`/events/category/${c.slug}`} className="hover:text-nile">{c.label}</Link>
+              <Link href={`/events/category/${c.slug}`} className="hover:text-gold">{c.label}</Link>
             </li>
           ))}
         </FooterCol>
 
         <FooterCol title="Platform">
-          <li><Link href="/how-it-works" className="hover:text-nile">How it works</Link></li>
-          <li><Link href="/for-organizers" className="hover:text-nile">For organizers</Link></li>
-          <li><Link href="/pricing" className="hover:text-nile">Pricing</Link></li>
-          <li><Link href="/events/new" className="hover:text-nile">Create event</Link></li>
+          <li><Link href="/how-it-works" className="hover:text-gold">How it works</Link></li>
+          <li><Link href="/for-organizers" className="hover:text-gold">For organizers</Link></li>
+          <li><Link href="/pricing" className="hover:text-gold">Pricing</Link></li>
+          <li><Link href="/events/new" className="hover:text-gold">Create event</Link></li>
         </FooterCol>
 
         <FooterCol title="Support">
-          <li><Link href="/help" className="hover:text-nile">Help Center</Link></li>
-          <li><Link href="/contact" className="hover:text-nile">Contact us</Link></li>
-          <li><Link href="/about" className="hover:text-nile">About</Link></li>
+          <li><Link href="/help" className="hover:text-gold">Help Center</Link></li>
+          <li><Link href="/contact" className="hover:text-gold">Contact us</Link></li>
+          <li><Link href="/about" className="hover:text-gold">About</Link></li>
         </FooterCol>
       </div>
 
-      <div className="border-t border-[color:var(--border-hairline)] py-2.5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 text-[11px] text-ink/60">
+      <div className="border-t-2 border-white/20 py-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 text-[12px] text-white/65">
           <div>{copyrightLine()}</div>
           <nav className="flex flex-wrap gap-x-4 gap-y-1">
-            <Link href="/legal/terms" className="hover:text-nile">Terms</Link>
-            <Link href="/legal/privacy" className="hover:text-nile">Privacy</Link>
-            <Link href="/legal/refunds" className="hover:text-nile">Refunds</Link>
-            <Link href="/credits" className="hover:text-nile">Credits</Link>
+            <Link href="/legal/terms" className="hover:text-gold">Terms</Link>
+            <Link href="/legal/privacy" className="hover:text-gold">Privacy</Link>
+            <Link href="/legal/refunds" className="hover:text-gold">Refunds</Link>
+            <Link href="/credits" className="hover:text-gold">Credits</Link>
           </nav>
         </div>
       </div>
@@ -76,8 +77,8 @@ export default function Footer() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h4 className="font-semibold text-nile text-[12px] uppercase tracking-[0.08em]">{title}</h4>
-      <ul className="mt-1.5 space-y-1 text-[13px] text-ink/80">{children}</ul>
+      <h4 className="inline-block bg-gold text-ink px-1.5 py-0.5 text-[12px] font-bold">{title}</h4>
+      <ul className="mt-3 space-y-1.5 text-[13.5px] text-white/85">{children}</ul>
     </div>
   );
 }

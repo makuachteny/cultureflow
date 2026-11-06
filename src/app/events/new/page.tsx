@@ -79,7 +79,7 @@ export default function CreateEventLandingPage() {
             {/* Photo — rounded, gold-ringed. `min-h` gives it real estate on
                 mobile; on ≥md, `items-stretch` on the grid makes it match
                 the content column's height exactly. */}
-            <div className="relative min-h-[320px] md:min-h-0 rounded-2xl overflow-hidden ring-2 ring-gold/30 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.55)]">
+            <div className="relative min-h-[320px] md:min-h-0 rounded-2xl overflow-hidden ring-2 ring-gold/30 shadow-[10px_10px_0_0_#000]">
               <Image
                 src="/community/events-new-hero.jpg"
                 alt="A community gathered in celebration"

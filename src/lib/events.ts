@@ -281,12 +281,12 @@ function addDays(d: Date, days: number): Date {
  */
 export function badgeClasses(tone: AvailabilityTone): string {
   switch (tone) {
-    case "hot":       return "bg-[#FCE7E5] text-hibiscus";
-    case "warn":      return "bg-[#FFF1CC] text-gold-700";
-    case "info":      return "bg-[#E6EFFB] text-nile-700";
-    case "editorial": return "bg-gold-50 text-gold-700";
-    case "stop":      return "bg-[#EAE9EB] text-ink-600";
-    default:          return "bg-cream-100 text-ink-700";
+    case "hot":       return "bg-hibiscus text-white";
+    case "warn":      return "bg-gold text-ink";
+    case "info":      return "bg-nile text-white";
+    case "editorial": return "bg-acacia text-white";
+    case "stop":      return "bg-ink-300 text-ink";
+    default:          return "bg-white text-ink";
   }
 }
 

@@ -19,18 +19,14 @@ export default function SectionHeader({ eyebrow, title, subtitle, action }: Prop
     <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
       <div className="max-w-2xl">
         {eyebrow && (
-          <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-gold-700">
-            {/* Small gold rule + ornament before the eyebrow — a single
-                editorial flourish that anchors the section without
-                touching the headline weight. */}
-            <span className="h-px w-8 bg-gold rounded-full" aria-hidden />
-            <span>{eyebrow}</span>
+          <div className="inline-flex items-center bg-ink text-gold px-2 py-0.5 text-[12px] font-bold">
+            {eyebrow}
           </div>
         )}
         <h2
           className={
             (eyebrow ? "mt-3 " : "") +
-            "font-display text-[26px] sm:text-[32px] md:text-[36px] font-extrabold text-nile-900 leading-[1.05] tracking-tight"
+            "font-display text-[28px] sm:text-[34px] md:text-[40px] font-black text-ink leading-[1.0]"
           }
         >
           {title}
@@ -44,9 +40,9 @@ export default function SectionHeader({ eyebrow, title, subtitle, action }: Prop
       {action && (
         <Link
           href={action.href}
-          className="group inline-flex items-center gap-1.5 text-[13px] font-semibold text-nile hover:text-nile-700 motion-safe:transition-colors"
+          className="group inline-flex items-center gap-1.5 border-2 border-ink bg-white px-3 py-1.5 text-[13px] font-bold text-ink shadow-sm hover:bg-gold motion-safe:transition-colors"
         >
-          <span className="border-b-[1.5px] border-transparent group-hover:border-nile-700 motion-safe:transition-colors pb-0.5">
+          <span>
             {action.label}
           </span>
           <svg

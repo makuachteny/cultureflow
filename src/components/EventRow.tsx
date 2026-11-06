@@ -79,7 +79,7 @@ export default function EventRow({ event }: { event: Row }) {
           />
         ) : (
           <div className="bg-event-placeholder absolute inset-0 flex items-center justify-center">
-            <Image src="/logo-mark.svg" alt="" width={70} height={48} className="opacity-90 drop-shadow" />
+            <Image src="/logo-mark.svg" alt="" width={70} height={48} className="opacity-90" />
           </div>
         )}
       </div>

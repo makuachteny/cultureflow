@@ -79,7 +79,7 @@ export default function ForOrganizersPage() {
 
             {/* Phone mockup — rounded cream card with photo inside a device frame */}
             <div className="relative mx-auto w-full max-w-[380px] aspect-[9/16] rounded-md p-3"
-              style={{ background: "linear-gradient(135deg, #F5B800 0%, #2E5CB8 100%)" }}>
+              style={{ background: "var(--yellow)", border: "2px solid #000" }}>
               <div className="relative h-full w-full rounded-md bg-white overflow-hidden border-4 border-ink-900 shadow-lift">
                 {/* Notch */}
                 <div className="absolute left-1/2 -translate-x-1/2 top-1.5 h-4 w-20 rounded-full bg-ink-900 z-[2]" />
@@ -184,16 +184,8 @@ export default function ForOrganizersPage() {
       </section>
 
       {/* ──────────── Final dark CTA ──────────── */}
-      <section className="bg-nile-800 text-white relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(800px 400px at 90% -10%, rgba(245,184,0,0.16), transparent 60%)," +
-              "radial-gradient(600px 320px at -10% 110%, rgba(46,92,184,0.22), transparent 60%)"
-          }}
-        />
+      <section className="bg-hibiscus text-white relative overflow-hidden">
+        <div aria-hidden className="beads absolute inset-x-0 top-0" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 text-center">
           <h2 className="font-display font-bold text-[28px] sm:text-[34px] tracking-tight">
             Start hosting — it&apos;s free.

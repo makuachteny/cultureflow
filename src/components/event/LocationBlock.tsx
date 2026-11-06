@@ -151,12 +151,11 @@ export default function LocationBlock({ venueName, venueAddress, city, country, 
           ) : (
             <>
               {/* Stylized preview to show there's a map without loading an iframe */}
-              <div aria-hidden className="absolute inset-0 opacity-50" style={{
+              <div aria-hidden className="absolute inset-0" style={{
+                backgroundColor: "#C9D8F7",
                 backgroundImage:
-                  "radial-gradient(600px 300px at 20% 30%, #DBE6FA, transparent 60%)," +
-                  "radial-gradient(400px 200px at 80% 70%, #FFEFD1, transparent 60%)," +
-                  "linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%)",
-                backgroundColor: "#EEF2F6"
+                  "repeating-linear-gradient(0deg, transparent 0 46px, #9DB8EF 46px 48px)," +
+                  "repeating-linear-gradient(90deg, transparent 0 46px, #9DB8EF 46px 48px)"
               }} />
               <button
                 type="button"

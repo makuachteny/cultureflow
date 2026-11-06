@@ -35,13 +35,13 @@ type Tone = "nile" | "gold" | "acacia" | "hibiscus";
 
 const GRADIENT: Record<Tone, string> = {
   // Brand-aligned organiser pitch — same gradient the home page uses.
-  nile:     "var(--gradient-organizer-pitch)",
+  nile:     "var(--blue)",
   // Warm sunset for revenue-themed pages (Finance, Reports).
-  gold:     "linear-gradient(135deg,#7E5A0E 0%,#B8770C 45%,#1B3A85 100%)",
+  gold:     "var(--black)",
   // Cool fresh green for growth-themed pages (Marketing).
-  acacia:   "linear-gradient(135deg,#0E5E40 0%,#1FA974 50%,#1B3A85 100%)",
+  acacia:   "var(--green)",
   // Warm coral for irreversible / high-stakes (Refunds, Payouts).
-  hibiscus: "linear-gradient(135deg,#7E1E1E 0%,#E44C4C 45%,#1B3A85 100%)"
+  hibiscus: "var(--red)"
 };
 
 export default function DashboardHero({

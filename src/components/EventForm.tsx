@@ -390,7 +390,7 @@ export default function EventForm({ eventId, initial, preset }: Props = {}) {
                 aria-selected={bannerMode === m}
                 onClick={() => setBannerMode(m)}
                 className={
-                  "px-3 py-1 text-sm font-semibold rounded-[5px] transition " +
+                  "px-3 py-1 text-sm font-semibold rounded-none transition " +
                   (bannerMode === m
                     ? "bg-nile text-white"
                     : "text-ink-600 hover:text-ink-900")

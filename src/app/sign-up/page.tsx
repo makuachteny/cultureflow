@@ -80,17 +80,12 @@ function SignUpInner() {
   }`;
 
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative isolate min-h-screen w-full">
       {/* ─── Soft brand backdrop — matches sign-in ─── */}
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 flag-bands"
         aria-hidden
-        style={{
-          background:
-            "radial-gradient(900px 600px at 12% 12%, rgba(245,184,0,0.10), transparent 60%)," +
-            "radial-gradient(900px 600px at 90% 90%, rgba(27,58,133,0.10), transparent 60%)," +
-            "var(--color-bg)"
-        }}
+        
       />
 
       {/* ─── Top bar — back affordance + brand-home, always visible ─── */}
@@ -100,7 +95,7 @@ function SignUpInner() {
 
       {/* ─── Centered card ─── */}
       <div className="flex min-h-screen items-center justify-center px-4 py-10 sm:py-14">
-        <div className="w-full max-w-[480px] rounded-md bg-white px-7 pb-9 pt-10 shadow-[0_18px_48px_-12px_rgba(14,31,74,0.18)] sm:px-12 sm:pt-12">
+        <div className="w-full max-w-[480px] bg-white border-[3px] border-ink px-7 pb-9 pt-10 shadow-[8px_8px_0_0_#000] sm:px-12 sm:pt-12">
           {/* Brand lockup */}
           <Link
             href="/"

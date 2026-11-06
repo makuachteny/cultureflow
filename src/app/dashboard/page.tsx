@@ -156,8 +156,8 @@ export default async function OrganizerHome() {
           the organizer-pitch section on the marketing site so the signed-
           in home feels like the same product, not a different app. */}
       <section
-        className="relative overflow-hidden rounded-2xl text-white shadow-sm"
-        style={{ background: "var(--gradient-organizer-pitch)" }}
+        className="relative overflow-hidden text-white border-2 border-ink shadow-card"
+        style={{ background: "var(--blue)" }}
       >
         <div className="relative z-10 grid gap-5 sm:gap-8 p-5 sm:p-8 lg:p-10 xl:grid-cols-[1fr,auto] xl:items-end">
           <div className="min-w-0">
@@ -441,8 +441,8 @@ export default async function OrganizerHome() {
 
         <aside className="space-y-6">
           <div
-            className="relative overflow-hidden rounded-2xl p-6 text-nile-900"
-            style={{ background: "linear-gradient(135deg, #FFF6D6 0%, #FFE493 60%, #FFD36E 100%)" }}
+            className="relative overflow-hidden p-6 text-ink border-2 border-ink shadow-card"
+            style={{ background: "var(--yellow)" }}
           >
             <span className="inline-flex items-center gap-1.5 rounded-full bg-nile-900/90 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-gold-400">
               <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
@@ -497,7 +497,7 @@ export default async function OrganizerHome() {
             eyebrow="Pricing"
             title="Price a ticket that converts"
             blurb="Tiers, fee split, and anchors — the basics you can apply today."
-            gradient="linear-gradient(135deg, #EEF4FF 0%, #DBE6FA 100%)"
+            gradient="#C9D8F7"
             accent="text-nile"
           />
           <ResourceTile
@@ -505,7 +505,7 @@ export default async function OrganizerHome() {
             eyebrow="Marketing"
             title="Fill seats, not feeds"
             blurb="Emails, WhatsApp and community-group tactics that actually move tickets."
-            gradient="linear-gradient(135deg, #FFF9E5 0%, #FFF0B8 100%)"
+            gradient="#FFF4AD"
             accent="text-gold-800"
           />
           <ResourceTile
@@ -513,7 +513,7 @@ export default async function OrganizerHome() {
             eyebrow="Day-of"
             title="Run a smooth check-in"
             blurb="QR scanning, queue control, and keeping the crew calm at the door."
-            gradient="linear-gradient(135deg, #E4F8EF 0%, #C6EEDB 100%)"
+            gradient="#C8EBD3"
             accent="text-acacia-700"
           />
         </div>
@@ -537,24 +537,25 @@ function StatTile({
    *  data surface (e.g. Events tile → /dashboard/events). */
   href?: string;
 }) {
+  // Solid flag-colour tiles — the KPI row reads as four bead colours.
   const toneMap = {
-    nile:     { bg: "bg-nile-50",      ring: "ring-nile-100",     icon: "bg-nile text-white",        accent: "text-nile-900" },
-    gold:     { bg: "bg-[#FFF6D6]",    ring: "ring-[#FFE493]",    icon: "bg-gold text-ink-900",      accent: "text-ink-900" },
-    acacia:   { bg: "bg-[#E4F8EF]",    ring: "ring-[#C6EEDB]",    icon: "bg-acacia-500 text-white",  accent: "text-acacia-700" },
-    hibiscus: { bg: "bg-[#FFE9E9]",    ring: "ring-[#FFCDCD]",    icon: "bg-hibiscus text-white",    accent: "text-hibiscus" }
+    nile:     { bg: "bg-nile text-white",     icon: "bg-white text-nile",     sub: "text-white/85" },
+    gold:     { bg: "bg-gold text-ink",       icon: "bg-ink text-gold",       sub: "text-ink/75" },
+    acacia:   { bg: "bg-acacia text-white",   icon: "bg-white text-acacia",   sub: "text-white/85" },
+    hibiscus: { bg: "bg-hibiscus text-white", icon: "bg-white text-hibiscus", sub: "text-white/85" }
   }[tone];
 
-  const cls = `relative rounded-xl sm:rounded-2xl ${toneMap.bg} ring-1 ring-inset ${toneMap.ring} p-3.5 sm:p-5 overflow-hidden ${
-    href ? "block motion-safe:transition-shadow hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nile/40" : ""
+  const cls = `relative ${toneMap.bg} border-2 border-ink shadow-pop p-3.5 sm:p-5 overflow-hidden ${
+    href ? "block motion-safe:transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-card" : ""
   }`;
   const inner = (
     <div className="flex items-start justify-between gap-2.5 sm:gap-3">
       <div className="min-w-0">
-        <div className="text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-ink-600">{label}</div>
-        <div className={`mt-1 sm:mt-1.5 font-display text-[22px] sm:text-[30px] font-extrabold tracking-tight font-tabular leading-tight ${toneMap.accent}`}>
+        <div className={`text-[12px] sm:text-[13px] font-bold ${toneMap.sub}`}>{label}</div>
+        <div className="mt-1 sm:mt-1.5 font-display text-[24px] sm:text-[34px] font-black font-tabular leading-tight">
           {value}
         </div>
-        <div className="mt-0.5 text-[11.5px] sm:text-[12.5px] text-ink-600 truncate">{hint}</div>
+        <div className={`mt-0.5 text-[11.5px] sm:text-[12.5px] truncate ${toneMap.sub}`}>{hint}</div>
       </div>
       <span className={`flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-lg sm:rounded-xl ${toneMap.icon}`}>
         <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -695,7 +696,7 @@ function ResourceTile({
   return (
     <Link
       href={href}
-      className="group block overflow-hidden rounded-2xl p-6 transition-transform hover:-translate-y-0.5 hover:shadow-card"
+      className="group block overflow-hidden p-6 border-2 border-ink shadow-pop transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-card"
       style={{ background: gradient }}
     >
       <div className={`text-[11px] font-bold uppercase tracking-[0.14em] ${accent}`}>{eyebrow}</div>

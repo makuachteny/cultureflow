@@ -611,7 +611,7 @@ export default async function EventDetailPage({ params }: Props) {
            Shares the price-label helper with the cards so copy stays
            in sync. */}
       <div
-        className="lg:hidden fixed bottom-0 inset-x-0 z-20 bg-white shadow-[0_-6px_24px_-8px_rgba(20,44,102,0.15)] px-4 py-3 flex items-center gap-3"
+        className="lg:hidden fixed bottom-0 inset-x-0 z-20 bg-white shadow-[0_-3px_0_0_#000] px-4 py-3 flex items-center gap-3"
         style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
       >
         <div className="flex-1 min-w-0">

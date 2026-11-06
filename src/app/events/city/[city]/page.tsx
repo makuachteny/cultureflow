@@ -120,13 +120,11 @@ export default async function CityPage({ params }: Props) {
         )}
         {/* Dark scrim — heavier on the left so the copy reads cleanly,
             fades toward transparent on the right so the photo breathes. */}
+        <div aria-hidden className="absolute inset-0 bg-nile/90 md:hidden" />
         <div
           aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(100deg, rgba(14,31,74,0.85) 0%, rgba(14,31,74,0.65) 45%, rgba(14,31,74,0.20) 100%)"
-          }}
+          className="absolute inset-0 hidden md:block"
+          style={{ background: "linear-gradient(100deg, #0F47AF 0 54%, #FCDD09 54% 56.5%, transparent 56.5%)" }}
         />
 
         <div className="relative h-full px-6 sm:px-10 lg:px-14 py-10 lg:py-14 flex flex-col justify-center max-w-[640px] text-white">

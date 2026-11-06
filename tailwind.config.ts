@@ -1,136 +1,147 @@
 import type { Config } from "tailwindcss";
 
+/*
+ * CultureFlow design system — "Flag & beadwork".
+ *
+ * Every colour is a flat field lifted from the South Sudanese flag
+ * (black / red / green bands, blue hoist triangle, gold star, white
+ * fimbriation) and the bead corsets those colours echo. No gradients,
+ * no blur, no rounded corners:
+ *   • borderRadius is overridden (not extended) to 0 at every step, so
+ *     every `rounded-*` class across the app renders square.
+ *   • boxShadow steps are hard offset "print" shadows with zero blur.
+ *
+ * Token NAMES are kept from the previous palette (nile, gold, acacia,
+ * hibiscus, ink, cream…) so ~150 components re-skin without edits:
+ *   nile     → flag blue      gold    → star yellow
+ *   acacia   → flag green     hibiscus/clay → flag red
+ *   ink      → true black + neutral greys
+ */
+const BLACK = "#000000";
+
 const config: Config = {
   content: ["./src/**/*.{ts,tsx,js,jsx,mdx}"],
   theme: {
+    borderRadius: {
+      none: "0",
+      sm: "0",
+      DEFAULT: "0",
+      md: "0",
+      lg: "0",
+      xl: "0",
+      "2xl": "0",
+      "3xl": "0",
+      full: "0"
+    },
     extend: {
       colors: {
-        // Brighter "Daybreak" palette — warmer, higher-contrast, more energetic.
-        // Primary navy is softened; a coral/sunset accent does the heavy lifting.
+        // Flag blue — the hoist triangle.
         nile: {
-          DEFAULT: "#2E5CB8",  // brighter, more saturated blue
-          50:  "#EEF4FF",
-          100: "#DBE6FA",
-          200: "#B9CDF2",
-          300: "#8BAEE8",
-          400: "#5A88DA",
-          500: "#2E5CB8",
-          600: "#2449A0",
-          700: "#1B3A85",
-          800: "#142C66",
-          900: "#0E1F4A"
+          DEFAULT: "#0F47AF",
+          50: "#E7EEFC",
+          100: "#C9D8F7",
+          200: "#9DB8EF",
+          300: "#6A93E4",
+          400: "#3A6ED6",
+          500: "#0F47AF",
+          600: "#0C3A90",
+          700: "#0A2F75",
+          800: "#07235A",
+          900: "#04173D"
         },
+        // Star yellow. 700/800 are dark ochres for text on light surfaces
+        // (#6E5A00 ≈ 7:1 on white) — never put yellow text on white.
         gold: {
-          DEFAULT: "#F5B800",  // vivid, brighter gold
-          50:  "#FFF9E5",
-          100: "#FFF0B8",
-          400: "#FFCE3A",
-          500: "#F5B800",
-          600: "#D9930F",      // savanna amber — the brand mark colour
-          // gold-700 — accessible amber for eyebrows / kicker text on
-          // light surfaces. #8B6500 measures 5.4:1 on white (passes AA),
-          // while keeping the warm brand temperature. Use this anywhere
-          // gold text sits on bg-white / bg-cream / bg-parchment.
-          700: "#8B6500",
-          800: "#604700"
+          DEFAULT: "#FCDD09",
+          50: "#FFFBE0",
+          100: "#FFF4AD",
+          400: "#FDE54A",
+          500: "#FCDD09",
+          600: "#E5C700",
+          700: "#6E5A00",
+          800: "#4D3F00"
         },
-        // `mark` is a single-shade alias for the brand mark colour
-        // (savanna amber). Use `bg-mark` / `text-mark` / `ring-mark` when
-        // you want to reach for "the colour the horns logo uses" without
-        // having to remember it lives at gold-600.
-        mark: {
-          DEFAULT: "#D9930F"
-        },
-        // `sunset` used to be a coral-orange accent; it was removed from
-        // the palette per brand direction. Classes across the codebase
-        // (bg-sunset-50, text-sunset-600, ring-sunset/30, etc.) still
-        // resolve — they now render as Nile blue shades, so there's no
-        // visual "orange" left anywhere without having to touch 70+
-        // component files.
+        mark: { DEFAULT: "#FCDD09" },
+        // Legacy alias — renders as flag blue.
         sunset: {
-          DEFAULT: "#2E5CB8",  // nile-500
-          50:  "#EEF4FF",      // nile-50
-          100: "#DBE6FA",      // nile-100
-          400: "#5A88DA",      // nile-400
-          500: "#2E5CB8",      // nile-500
-          600: "#2449A0"       // nile-600
+          DEFAULT: "#0F47AF",
+          50: "#E7EEFC",
+          100: "#C9D8F7",
+          400: "#3A6ED6",
+          500: "#0F47AF",
+          600: "#0C3A90"
         },
+        // Flag green.
         acacia: {
-          DEFAULT: "#1FA974",  // punchier green
-          50:  "#E4F8EF",
-          500: "#1FA974",
-          600: "#168C5E",
-          /* AA-clean on light surfaces (≥ 6:1 on white) — used for
-             small text accents ("Saved ✓", status pills) that sit on
-             tinted backgrounds. */
-          700: "#0F7048"
+          DEFAULT: "#078930",
+          50: "#E3F5E9",
+          500: "#078930",
+          600: "#066E27",
+          700: "#05571F"
         },
-        hibiscus: { DEFAULT: "#E44C4C" },
-        clay: { DEFAULT: "#E08A3C" },
-        // App background — pulled way back toward pure white; only a
-        // whisper of warmth remains so it doesn't look clinical.
-        parchment: { DEFAULT: "#FCFCFA" },
+        // Flag red.
+        hibiscus: {
+          DEFAULT: "#DA121A",
+          50: "#FDE7E8",
+          100: "#FAC5C7",
+          500: "#DA121A",
+          600: "#B30E15",
+          700: "#8C0B10"
+        },
+        clay: { DEFAULT: "#DA121A" },
+        parchment: { DEFAULT: "#FFFFFF" },
+        // Pale star-yellow paper for alternating sections.
         cream: {
-          DEFAULT: "#FAFAF7",
-          50:  "#FDFDFC",
-          100: "#FAFAF7",
-          200: "#F3F3EF"
+          DEFAULT: "#FFF6D1",
+          50: "#FFFCEE",
+          100: "#FFF6D1",
+          200: "#FFEDA3"
         },
-        // Ink scale — purple-inflected family that pairs with the
-        // Nile + savanna-amber brand. Six rungs (300–900) span hairline
-        // decoration to AAA display copy on a #FCFCFA / cream background.
-        // Contrast ratios vs. #FCFCFA (approx):
-        //   DEFAULT #1E0A3C → 15.8:1  (AAA)
-        //   ink-800 #2A1F54 → 12.4:1  (AAA)
-        //   ink-700 #39364F →  9.6:1  (AAA) — body text
-        //   ink-600 #585163 →  6.5:1  (AAA) — muted body
-        //   ink-500 #6F7287 →  4.9:1  (AA normal, AAA large)
-        //   ink-400 #A9A8B3 →  2.8:1  (decoration / placeholder only)
-        //   ink-300 #C7C6CE →  1.9:1  (hairline decoration)
         ink: {
-          DEFAULT: "#1E0A3C",
-          900: "#1E0A3C",
-          800: "#2A1F54",
-          700: "#39364F",
-          600: "#585163",
-          500: "#6F7287",
-          400: "#A9A8B3",
-          300: "#C7C6CE",
-          // Back-compat aliases used elsewhere (value-identical to 700/500).
-          70:  "#39364F",
-          60:  "#585163"
+          DEFAULT: BLACK,
+          900: BLACK,
+          800: "#161616",
+          700: "#262626",
+          600: "#404040",
+          500: "#5C5C5C",
+          400: "#8F8F8F",
+          300: "#C4C4C4",
+          70: "#262626",
+          60: "#404040"
         }
       },
       fontFamily: {
-        // Inter is the entire type system. All three keys point at the
-        // same CSS variable (`--font-sans`), which is bound to the
-        // `next/font/google` Inter loader in `app/layout.tsx`. The system
-        // fallback chain matches `--font-sans` in globals.css. Hierarchy
-        // comes from weight + size, never family — keep it that way.
-        sans:    ["var(--font-sans)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
-        display: ["var(--font-sans)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
-        mono:    ["var(--font-sans)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"]
+        // Archivo (variable width) for everything — see app/layout.tsx.
+        // Headlines widen via `font-stretch` in globals.css.
+        sans: ["var(--font-sans)", "Arial", "Helvetica", "sans-serif"],
+        display: ["var(--font-sans)", "Arial", "Helvetica", "sans-serif"],
+        mono: ["var(--font-sans)", "Arial", "Helvetica", "sans-serif"]
       },
       boxShadow: {
-        card: "0 1px 2px rgba(20,44,102,0.05), 0 8px 24px rgba(20,44,102,0.08)",
-        // `pop` was tinted coral when the brand had an orange accent —
-        // now nile-tinted to match the rest of the elevation ladder.
-        pop:  "0 4px 12px rgba(46,92,184,0.22)"
+        // Hard offset shadows — zero blur, solid black.
+        sm: `2px 2px 0 0 ${BLACK}`,
+        DEFAULT: `3px 3px 0 0 ${BLACK}`,
+        md: `4px 4px 0 0 ${BLACK}`,
+        lg: `6px 6px 0 0 ${BLACK}`,
+        xl: `8px 8px 0 0 ${BLACK}`,
+        "2xl": `10px 10px 0 0 ${BLACK}`,
+        card: `6px 6px 0 0 ${BLACK}`,
+        pop: `4px 4px 0 0 ${BLACK}`,
+        // Coloured offsets for category-keyed cards.
+        "hard-red": `6px 6px 0 0 #DA121A`,
+        "hard-green": `6px 6px 0 0 #078930`,
+        "hard-blue": `6px 6px 0 0 #0F47AF`,
+        "hard-yellow": `6px 6px 0 0 #FCDD09`
       },
       maxWidth: {
-        // Page container — 88 rem (1408 px). With `gap-6` between four
-        // cards in a row, each card lands at ≈334 px on a 1920-px wide
-        // viewport, which is the visual rhythm we tuned the EventCard
-        // typography against.
         "7xl": "88rem"
       },
       backgroundImage: {
-        // Brand sunrise — gold → nile, no coral midpoint. (Was a 3-stop
-        // gold→coral→nile when the brand still had an orange accent.)
+        // The flag's horizontal bands with white fimbriation — hard
+        // colour stops only, so it reads as stripes, never a blend.
         "hero-sunrise":
-          "linear-gradient(135deg, #F5B800 0%, #FFCE3A 30%, #5A88DA 70%, #2E5CB8 100%)",
-        "nile-gradient":
-          "linear-gradient(135deg, #2E5CB8 0%, #142C66 100%)"
+          "linear-gradient(180deg, #000 0 31%, #fff 31% 34%, #DA121A 34% 66%, #fff 66% 69%, #078930 69% 100%)",
+        "nile-gradient": "linear-gradient(#0F47AF, #0F47AF)"
       }
     }
   },

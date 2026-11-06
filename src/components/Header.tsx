@@ -28,41 +28,19 @@ export default async function Header() {
   const user = session?.user;
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[color:var(--border-hairline)] bg-[color:var(--color-bg)]">
+    <header className="sticky top-0 z-30 bg-white">
       <div className="relative h-[72px]">
-        {/* ───── Brand lockup (≥ md) ─────
-            Pinned to the viewport edge with `left-1 sm:left-2 lg:left-3`. */}
-        <Link
-          href="/"
-          className="absolute left-1 sm:left-2 lg:left-3 top-0 h-full hidden md:flex items-center z-10"
-          aria-label={BRAND_HOME_LABEL}
-        >
-          <Logo variant="horizontal" size={40} href={null} />
-        </Link>
-
-        {/* ───── Hybrid content row ─────
-            Mobile / tablet: native `px-4 sm:px-6` ladder — same padding
-            the page sections use (`mx-auto max-w-7xl px-4 sm:px-6
-            lg:px-8`), so brand and the right-side nav align pixel-for-
-            pixel with the hero card and the welcome strip below.
-            Desktop (lg): the LEFT padding stays calc-based so the search
-            pill starts at WELCOME's x-position, but the RIGHT padding
-            collapses to a small chrome-edge pad (`lg:pr-6`, 24 px from
-            viewport-right) so the nav extends past the content column
-            and uses the available right-side real-estate. */}
-        <div className="flex h-full items-center gap-3 md:gap-4
-                        px-4 sm:px-6
-                        lg:pl-[max(2rem,calc((100vw-88rem)/2+2rem))]
-                        lg:pr-6 xl:pr-8">
-          {/* Mobile in-flow brand — visible below md (where the absolute
-              brand is hidden). On mobile we render the mark only (no
-              wordmark) so the search pill keeps room to breathe at 320 px. */}
+        {/* One flex row: brand → search → nav. The brand is in-flow (it
+            used to be absolutely positioned against the viewport edge,
+            which overlapped the search field at 1024–1500 px widths). */}
+        <div className="flex h-full items-center gap-3 md:gap-5 px-4 sm:px-6 xl:px-8">
           <Link
             href="/"
-            className="md:hidden flex shrink-0 items-center"
+            className="flex shrink-0 items-center"
             aria-label={BRAND_HOME_LABEL}
           >
-            <Logo variant="mark" size={32} href={null} />
+            <span className="md:hidden"><Logo variant="mark" size={32} href={null} /></span>
+            <span className="hidden md:inline-flex"><Logo variant="horizontal" size={40} href={null} /></span>
           </Link>
 
           {/* ───── Search pill ─────
@@ -74,7 +52,7 @@ export default async function Header() {
               slightly on hover/focus — no glow ring. */}
           <form
             action="/browse"
-            className="flex flex-1 min-w-0 items-center rounded-full border border-[color:var(--border-hairline)] bg-white pl-1.5 pr-1.5 h-11 md:h-12 hover:border-[color:var(--border-strong)] focus-within:border-[color:var(--border-strong)] transition-colors"
+            className="flex flex-1 min-w-0 max-w-[880px] items-center border-2 border-ink bg-white pl-1 pr-1 h-11 md:h-12 focus-within:shadow-[4px_4px_0_0_#0F47AF] transition-shadow"
           >
           <label className="flex h-full flex-1 items-center gap-2 px-3 md:px-4 min-w-0 cursor-text">
             <svg
@@ -94,7 +72,7 @@ export default async function Header() {
 
           {/* Divider + city input — md:+ only. */}
           <span
-            className="hidden md:block self-center h-6 w-px bg-[color:var(--border-strong)]"
+            className="hidden md:block self-stretch my-1.5 w-[2px] bg-ink"
             aria-hidden
           />
 
@@ -114,7 +92,7 @@ export default async function Header() {
             </Suspense>
           </label>
           <button
-            className="flex h-9 w-9 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-nile text-white hover:bg-nile-600 transition-colors"
+            className="flex h-9 w-9 md:h-10 md:w-10 shrink-0 items-center justify-center bg-hibiscus text-white hover:bg-ink transition-colors"
             type="submit"
             aria-label="Search"
           >
@@ -132,19 +110,19 @@ export default async function Header() {
         <nav className="shrink-0 flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-8">
           <Link
             href="/pricing"
-            className="hidden md:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:text-nile transition-colors whitespace-nowrap"
+            className="hidden md:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:underline decoration-[3px] decoration-hibiscus underline-offset-[6px] whitespace-nowrap"
           >
             Pricing
           </Link>
           <Link
             href="/browse"
-            className="hidden lg:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:text-nile transition-colors whitespace-nowrap"
+            className="hidden lg:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:underline decoration-[3px] decoration-hibiscus underline-offset-[6px] whitespace-nowrap"
           >
             Find Events
           </Link>
           <Link
             href="/events/new"
-            className="hidden lg:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:text-nile transition-colors whitespace-nowrap"
+            className="hidden lg:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:underline decoration-[3px] decoration-hibiscus underline-offset-[6px] whitespace-nowrap"
           >
             Create Events
           </Link>
@@ -155,7 +133,7 @@ export default async function Header() {
             <>
               <Link
                 href="/tickets"
-                className="hidden md:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:text-nile transition-colors whitespace-nowrap"
+                className="hidden md:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:underline decoration-[3px] decoration-hibiscus underline-offset-[6px] whitespace-nowrap"
               >
                 Find my tickets
               </Link>
@@ -196,7 +174,7 @@ export default async function Header() {
             <>
               <Link
                 href="/tickets"
-                className="hidden sm:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:text-nile transition-colors whitespace-nowrap"
+                className="hidden sm:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:underline decoration-[3px] decoration-hibiscus underline-offset-[6px] whitespace-nowrap"
               >
                 Find my tickets
               </Link>
@@ -207,7 +185,7 @@ export default async function Header() {
                   and the header row never wraps. */}
               <Link
                 href="/sign-in"
-                className="hidden md:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:text-nile transition-colors whitespace-nowrap"
+                className="hidden md:inline-flex items-center h-10 text-[14px] font-semibold text-ink-900 hover:underline decoration-[3px] decoration-hibiscus underline-offset-[6px] whitespace-nowrap"
               >
                 Sign in
               </Link>
@@ -228,6 +206,7 @@ export default async function Header() {
         </nav>
         </div>
       </div>
+      <div aria-hidden className="beads" />
     </header>
   );
 }

@@ -49,12 +49,31 @@ function renderHeadingWithAccent(h: string, accent: string): React.ReactNode {
   let i = 0;
   while ((m = re.exec(h)) !== null) {
     if (m.index > lastIndex) parts.push(<span key={`t${i}`}>{h.slice(lastIndex, m.index)}</span>);
-    parts.push(<span key={`a${i}`} style={{ color: accent }}>{m[1]}</span>);
+    // Accent = a solid stamped block in the theme colour with
+    // black/white text picked for contrast (never coloured text, which
+    // vanished for yellow-on-white themes).
+    parts.push(
+      <span
+        key={`a${i}`}
+        className="px-[0.12em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
+        style={{ background: accent, color: inkOn(accent) }}
+      >
+        {m[1]}
+      </span>
+    );
     lastIndex = re.lastIndex;
     i += 1;
   }
   if (lastIndex < h.length) parts.push(<span key={`e`}>{h.slice(lastIndex)}</span>);
   return <>{parts}</>;
+}
+
+/** Black or white, whichever reads better on a flat hex background. */
+function inkOn(hex: string): string {
+  const h = hex.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map((o) => parseInt(h.slice(o, o + 2), 16) / 255);
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return lum > 0.5 ? "#000000" : "#FFFFFF";
 }
 
 function PatternLayer({ kind, accent, fg }: { kind: BrowseTheme["pattern"]; accent: string; fg: string }) {
@@ -89,7 +108,7 @@ function PatternLayer({ kind, accent, fg }: { kind: BrowseTheme["pattern"]; acce
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `linear-gradient(110deg, transparent 0%, transparent 45%, ${hexA(accent, 0.9)} 45%, ${hexA(accent, 0.9)} 52%, transparent 52%)`
+          background: `linear-gradient(110deg, transparent 0%, transparent 45%, ${accent} 45%, ${accent} 52%, transparent 52%)`
         }}
       />
     );
@@ -100,7 +119,7 @@ function PatternLayer({ kind, accent, fg }: { kind: BrowseTheme["pattern"]; acce
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `radial-gradient(600px 300px at 20% 30%, ${hexA(accent, 0.25)}, transparent 70%), radial-gradient(500px 300px at 80% 80%, ${hexA(fg, 0.08)}, transparent 70%)`
+          background: `radial-gradient(${hexA(fg, 0.10)} 2px, transparent 2px) 0 0 / 22px 22px, linear-gradient(110deg, transparent 0 62%, ${accent} 62% 64%, transparent 64%)`
         }}
       />
     );
@@ -138,7 +157,7 @@ type VariantProps = {
 function Editorial({ theme, heading }: VariantProps) {
   return (
     <section
-      className="relative overflow-hidden rounded-2xl shadow-sm"
+      className="relative overflow-hidden border-2 border-black shadow-[8px_8px_0_0_#000]"
       style={{ background: theme.palette.bg, color: theme.palette.fg }}
     >
       <PatternLayer kind={theme.pattern} accent={theme.palette.accent} fg={theme.palette.fg} />
@@ -172,7 +191,7 @@ function Editorial({ theme, heading }: VariantProps) {
 function Kinetic({ theme, heading }: VariantProps) {
   return (
     <section
-      className="relative overflow-hidden rounded-2xl shadow-sm"
+      className="relative overflow-hidden border-2 border-black shadow-[8px_8px_0_0_#000]"
       style={{ background: theme.palette.bg, color: theme.palette.fg }}
     >
       <div
@@ -216,13 +235,13 @@ function Kinetic({ theme, heading }: VariantProps) {
 function Warm({ theme, heading }: VariantProps) {
   return (
     <section
-      className="relative overflow-hidden rounded-2xl shadow-sm"
+      className="relative overflow-hidden border-2 border-black shadow-[8px_8px_0_0_#000]"
       style={{ background: theme.palette.bg, color: theme.palette.fg }}
     >
       {/* Decorative blobs */}
       <div
         aria-hidden
-        className="absolute -top-20 right-10 w-[340px] h-[340px] rounded-full blur-[2px] opacity-80"
+        className="absolute -top-20 right-10 w-[340px] h-[340px] rounded-full opacity-80"
         style={{ background: theme.palette.accent }}
       />
       <div
@@ -254,14 +273,14 @@ function Warm({ theme, heading }: VariantProps) {
         {theme.image && (
           <div className="hidden lg:block relative h-[340px]">
             <div
-              className="absolute w-[240px] h-[300px] rounded-md shadow-2xl"
+              className="absolute w-[240px] h-[300px] border-[3px] border-black shadow-[8px_8px_0_0_#000]"
               style={{
                 top: 0, left: 0, transform: "rotate(-4deg)",
                 backgroundImage: `url(${theme.image})`, backgroundSize: "cover", backgroundPosition: "center"
               }}
             />
             <div
-              className="absolute w-[220px] h-[270px] rounded-md shadow-2xl"
+              className="absolute w-[220px] h-[270px] border-[3px] border-black shadow-[8px_8px_0_0_#000]"
               style={{
                 top: 30, left: 220, transform: "rotate(3deg)",
                 backgroundImage: `url(${theme.image})`, backgroundSize: "cover", backgroundPosition: "left"
@@ -278,7 +297,7 @@ function Neon({ theme, heading }: VariantProps) {
   const bars = 22;
   return (
     <section
-      className="relative overflow-hidden rounded-2xl shadow-sm"
+      className="relative overflow-hidden border-2 border-black shadow-[8px_8px_0_0_#000]"
       style={{ background: theme.palette.bg, color: theme.palette.fg }}
     >
       {/* Grid pattern */}
@@ -316,10 +335,10 @@ function Neon({ theme, heading }: VariantProps) {
           {Array.from({ length: bars }).map((_, i) => (
             <span
               key={`bar-${i}`}
-              className="w-[4px] rounded-[2px]"
+              className="w-[4px]"
               style={{
                 height: `${10 + ((i * 37) % 85)}%`,
-                background: `linear-gradient(180deg, ${theme.palette.accent}, ${theme.palette.accent2})`,
+                background: i % 2 ? theme.palette.accent : theme.palette.accent2,
                 animation: `themed-wave 1.2s ease-in-out ${i * 0.06}s infinite`
               }}
             />
@@ -339,7 +358,7 @@ function Neon({ theme, heading }: VariantProps) {
 function Monumental({ theme, heading }: VariantProps) {
   return (
     <section
-      className="relative overflow-hidden rounded-2xl shadow-sm"
+      className="relative overflow-hidden border-2 border-black shadow-[8px_8px_0_0_#000]"
       style={{ background: theme.palette.bg, color: theme.palette.fg }}
     >
       <div
@@ -355,7 +374,7 @@ function Monumental({ theme, heading }: VariantProps) {
         aria-hidden
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(100deg, ${hexA(theme.palette.bg, 0.88)} 0%, ${hexA(theme.palette.bg, 0.60)} 55%, ${hexA(theme.palette.bg, 0.25)} 100%)`
+          background: `linear-gradient(100deg, ${hexA(theme.palette.bg, 0.92)} 0 58%, ${theme.palette.accent} 58% 60.5%, transparent 60.5%)`
         }}
       />
       <PatternLayer kind={theme.pattern} accent={theme.palette.accent} fg={theme.palette.fg} />
@@ -379,7 +398,7 @@ function Monumental({ theme, heading }: VariantProps) {
 function Academic({ theme, heading }: VariantProps) {
   return (
     <section
-      className="relative rounded-2xl shadow-sm overflow-hidden"
+      className="relative border-2 border-black shadow-[8px_8px_0_0_#000] overflow-hidden"
       style={{ background: theme.palette.bg, color: theme.palette.fg }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0">

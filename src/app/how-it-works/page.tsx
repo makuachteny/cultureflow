@@ -129,16 +129,8 @@ export default function HowItWorksPage() {
       </section>
 
       {/* ─────── Final CTA ─────── */}
-      <section className="bg-nile-800 text-white relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(800px 400px at 90% -10%, rgba(245,184,0,0.16), transparent 60%)," +
-              "radial-gradient(600px 320px at -10% 110%, rgba(46,92,184,0.22), transparent 60%)"
-          }}
-        />
+      <section className="bg-hibiscus text-white relative overflow-hidden">
+        <div aria-hidden className="beads absolute inset-x-0 top-0" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 text-center">
           <h2 className="font-display font-bold text-[26px] sm:text-[32px] tracking-tight">
             Ready to join the tribe?

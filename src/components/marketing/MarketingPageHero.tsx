@@ -27,9 +27,9 @@ type Props = {
 };
 
 const TONES: Record<NonNullable<Props["tone"]>, string> = {
-  warm: "linear-gradient(120deg, #FFF0B8 0%, #FFCE3A 35%, #8BAEE8 70%, #2E5CB8 100%)",
-  nile: "linear-gradient(120deg, #DBE6FA 0%, #B9CDF2 40%, #5A88DA 80%, #2E5CB8 100%)",
-  gold: "linear-gradient(120deg, #FFF9E5 0%, #FFCE3A 40%, #F5B800 75%, #D99F00 100%)"
+  warm: "var(--red)",
+  nile: "var(--blue)",
+  gold: "var(--yellow)"
 };
 
 export default function MarketingPageHero({
@@ -42,14 +42,16 @@ export default function MarketingPageHero({
   tone = "warm"
 }: Props) {
   return (
-    <div className="relative" style={{ background: TONES[tone] }}>
+    <div className="relative border-b-2 border-ink" style={{ background: TONES[tone] }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
-        <Breadcrumbs items={crumbs} />
+        <div className="inline-block bg-white border-2 border-ink px-2.5 py-1">
+          <Breadcrumbs items={crumbs} />
+        </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-10 sm:pb-14">
         <div className={
-          "rounded-2xl bg-cream-100 overflow-hidden grid items-stretch " +
+          "bg-white border-[3px] border-ink shadow-[10px_10px_0_0_#000] overflow-hidden grid items-stretch " +
           // 5/7 split on desktop — copy gets the larger left half (5)
           // and the photo carries the right side (7). At 4:3 aspect that
           // gives the image a comfortable landscape proportion that's
@@ -57,7 +59,7 @@ export default function MarketingPageHero({
           (imageSrc ? "md:grid-cols-[5fr_7fr]" : "")
         }>
           <div className="p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
-            <h1 className="font-display font-extrabold text-[30px] sm:text-[40px] md:text-[48px] uppercase leading-[1.02] tracking-[-0.02em] text-ink-900">
+            <h1 className="font-display font-black text-[30px] sm:text-[40px] md:text-[52px] leading-[0.98] text-ink font-wide">
               {title}
             </h1>
             {subtitle && (
@@ -71,12 +73,7 @@ export default function MarketingPageHero({
                   <Link
                     key={c.href}
                     href={c.href}
-                    className={
-                      "inline-flex items-center justify-center rounded-full h-11 px-5 text-[14px] font-semibold transition-colors " +
-                      (c.variant === "ghost"
-                        ? "bg-ink-900/5 text-ink-900 hover:bg-ink-900/10"
-                        : "bg-ink-900 text-white hover:bg-ink-800")
-                    }
+                    className={"btn btn-lg " + (c.variant === "ghost" ? "btn-gold" : "btn-ink")}
                   >
                     {c.label}
                   </Link>
@@ -88,7 +85,7 @@ export default function MarketingPageHero({
             // Aspect: 16:10 on mobile (banner-y). On md:+ the image
             // fills its grid cell (auto-aspect) with a min-height so the
             // photo never collapses when the copy column is short.
-            <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[320px] lg:min-h-[380px]">
+            <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[320px] lg:min-h-[380px] border-t-[3px] md:border-t-0 md:border-l-[3px] border-ink">
               <Image
                 src={imageSrc}
                 alt={imageAlt}

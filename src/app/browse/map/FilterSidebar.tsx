@@ -254,7 +254,7 @@ function Indicator({ on, variant }: { on: boolean; variant: "check" | "radio" })
     <span
       aria-hidden
       className={
-        "inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[4px] border-[1.5px] " +
+        "inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-none border-[1.5px] " +
         (on ? "border-nile bg-nile text-white" : "border-[color:var(--border-strong)] bg-white")
       }
     >

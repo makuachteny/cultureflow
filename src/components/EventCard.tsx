@@ -55,6 +55,15 @@ type Event = {
   ticketTiers: Tier[];
 };
 
+/** Hard shadow tones for cards (sm:+ only), keyed by category. Full
+ *  class strings so Tailwind's JIT picks them up. */
+const CARD_SHADOWS = [
+  "sm:shadow-hard-red",
+  "sm:shadow-hard-blue",
+  "sm:shadow-hard-green",
+  "sm:shadow-hard-yellow"
+];
+
 export default function EventCard({
   event,
   liked
@@ -80,13 +89,21 @@ export default function EventCard({
   const catSlug = event.category.toLowerCase();
 
   const statusClasses = status ? badgeClasses(status.tone) : "";
+  // Each category gets a flag colour for the card's hard shadow, so a
+  // grid of cards reads as a colourful bead pattern rather than a wall
+  // of identical tiles.
+  const shadowTone = CARD_SHADOWS[
+    [...catSlug].reduce((n, ch) => n + ch.charCodeAt(0), 0) % CARD_SHADOWS.length
+  ];
 
   return (
     <Link
       href={`/events/${event.slug}`}
       className={
-        "group block rounded-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-nile/30 " +
-        "active:opacity-90 sm:active:opacity-100 flex sm:block items-stretch gap-3 sm:gap-0"
+        "group flex sm:flex-col items-stretch gap-3 sm:gap-0 sm:h-full sm:bg-white sm:border-2 sm:border-ink " +
+        shadowTone + " " +
+        "motion-safe:sm:transition-transform motion-safe:sm:duration-150 sm:hover:-translate-x-1 sm:hover:-translate-y-1 " +
+        "active:opacity-90 sm:active:opacity-100"
       }
     >
       {/* ── Image ──
@@ -100,12 +117,8 @@ export default function EventCard({
       <div
         className={
           "relative w-[96px] h-[96px] sm:w-auto sm:h-auto shrink-0 sm:shrink " +
-          "sm:aspect-[16/10] overflow-hidden rounded-lg sm:rounded-xl " +
-          "bg-nile-50 ring-1 ring-black/5 " +
-          "motion-safe:sm:transition-[transform,box-shadow,ring-color] motion-safe:sm:duration-[400ms] " +
-          "motion-safe:sm:ease-out " +
-          "motion-safe:sm:group-hover:-translate-y-1 " +
-          "sm:group-hover:ring-nile/30 sm:group-hover:shadow-card"
+          "sm:aspect-[16/10] overflow-hidden bg-nile-50 " +
+          "border-2 border-ink sm:border-0 sm:border-b-2"
         }
       >
         {event.bannerUrl ? (
@@ -114,11 +127,11 @@ export default function EventCard({
             alt=""
             fill
             sizes="(max-width: 640px) 96px, (max-width: 1024px) 50vw, 320px"
-            className="object-cover motion-safe:transition-transform motion-safe:duration-[600ms] motion-safe:ease-out sm:group-hover:scale-[1.04]"
+            className="object-cover"
           />
         ) : (
           <div className="bg-event-placeholder absolute inset-0 flex items-center justify-center">
-            <span className="text-white/95 drop-shadow">
+            <span className="text-white">
               <span className="sm:hidden"><CategoryGlyph slug={catSlug} size={32} /></span>
               <span className="hidden sm:inline"><CategoryGlyph slug={catSlug} size={56} /></span>
             </span>
@@ -142,17 +155,16 @@ export default function EventCard({
        *    their own ~16-px line so the card is exactly the height of
        *    the thumb. Tighter than the previous space-y-2.
        *  sm:+ : same rhythm at `space-y-1.5`. */}
-      <div className="min-w-0 flex-1 sm:mt-3.5 sm:px-0.5 flex flex-col sm:block space-y-0.5 sm:space-y-1.5">
+      <div className="min-w-0 flex-1 sm:p-4 flex flex-col sm:block space-y-0.5 sm:space-y-1.5">
         {/* Title — display-font extra-bold on `sm:+`, `leading-[1.2]`
             so two clamped lines read as one block. Hover shifts to
             nile-700 with a smooth 400 ms transition that matches the
             image's hover motion duration. */}
         <h3
           className={
-            "text-[14px] sm:text-[16.5px] font-bold sm:font-extrabold " +
-            "sm:font-display leading-[1.25] sm:leading-[1.2] tracking-tight sm:tracking-[-0.01em] " +
-            "text-ink-900 line-clamp-1 sm:line-clamp-2 motion-safe:transition-colors " +
-            "motion-safe:duration-[400ms] motion-safe:ease-out group-hover:text-nile-700"
+            "text-[14px] sm:text-[17px] font-bold sm:font-black " +
+            "sm:font-display leading-[1.25] sm:leading-[1.15] " +
+            "text-ink line-clamp-1 sm:line-clamp-2 group-hover:underline decoration-2 underline-offset-2"
           }
         >
           {event.title}
@@ -164,7 +176,7 @@ export default function EventCard({
         {status && (
           <span
             className={
-              "hidden sm:inline-flex self-start items-center rounded-md px-2 py-0.5 " +
+              "hidden sm:inline-flex self-start items-center border-[1.5px] border-ink px-2 py-0.5 " +
               "text-[11px] font-semibold " + statusClasses
             }
             title={`${status.label} — based on current ticket sales.`}
@@ -195,8 +207,10 @@ export default function EventCard({
         </div>
 
         {/* Price — bold tabular figure on its own line. */}
-        <div className="pt-0.5 sm:pt-1 text-[13px] sm:text-[14px] font-bold font-tabular leading-tight tracking-tight text-ink-900">
-          {price}
+        <div className="pt-0.5 sm:pt-2">
+          <span className="text-[13px] sm:text-[14px] font-bold font-tabular leading-tight text-ink sm:inline-block sm:bg-gold sm:border-2 sm:border-ink sm:px-2 sm:py-0.5">
+            {price}
+          </span>
         </div>
       </div>
     </Link>

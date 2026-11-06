@@ -172,7 +172,7 @@ function Tier({
     <div className={
       "relative flex flex-col rounded-2xl bg-white p-6 sm:p-8 ring-1 " +
       (accent
-        ? "ring-gold/60 shadow-[0_18px_48px_-18px_rgba(245,184,0,0.35)]"
+        ? "ring-gold/60 shadow-[8px_8px_0_0_#FCDD09]"
         : "ring-[color:var(--border-hairline)]")
     }>
       {accent && (

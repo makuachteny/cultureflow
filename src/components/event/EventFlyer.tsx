@@ -35,17 +35,17 @@ const PALETTES: Record<Variant, { panelBg: string; panelText: string; titleText:
   // Warm: gold-into-coral panel — sunrise tone for poster shareables.
   // Title sits in deep ink over the warm wash.
   warm: {
-    panelBg:    "linear-gradient(135deg, #FFB562 0%, #F5853F 60%, #E26A2A 100%)",
-    panelText:  "#1E0A3C",
-    titleText:  "#1E0A3C",
-    corner:     "#1E0A3C"
+    panelBg:    "#FCDD09",
+    panelText:  "#000000",
+    titleText:  "#000000",
+    corner:     "#000000"
   },
   // Cool: cream-into-acacia panel that mirrors the second reference.
   cool: {
-    panelBg:    "linear-gradient(135deg, #E9F2D0 0%, #C7E5B5 60%, #9DD3A2 100%)",
-    panelText:  "#0E1F4A",
-    titleText:  "#0E1F4A",
-    corner:     "#0E1F4A"
+    panelBg:    "#078930",
+    panelText:  "#FFFFFF",
+    titleText:  "#FFFFFF",
+    corner:     "#FCDD09"
   }
 };
 

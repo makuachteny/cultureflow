@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,17 +11,14 @@ import { safeJsonLd } from "@/lib/jsonld";
 const APP_URL = process.env.APP_URL ?? "http://localhost:3000";
 
 /**
- * Inter — the entire type system. Single-font discipline (like Linear,
- * Vercel, Replit, Cash App) keeps the platform feeling clean and organized.
- * We load the full weight range so `font-bold`, `font-semibold`, and
- * display headings all render to real, designed weights — no browser-
- * synthesized fake-bold. Bound to both `--font-sans` and `--font-display`
- * so existing `font-display`-classed headings keep working; the contrast
- * between body and headings comes from weight + size, not family.
+ * Archivo — the entire type system. A grotesque with a variable width
+ * axis: body copy sits at normal width, headlines stretch wide and heavy
+ * (see `font-stretch` rules in globals.css) for a hand-painted
+ * event-poster feel. One family; hierarchy comes from width + weight.
  */
-const inter = Inter({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  axes: ["wdth"],
   display: "swap",
   variable: "--font-sans"
 });
@@ -111,7 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // replaces the old `headers().get("x-pathname")` approach which was
   // unreliable across soft-nav transitions.
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={archivo.variable}>
       <body className="min-h-screen flex flex-col bg-parchment font-sans">
         {/* Site-wide Organization + WebSite JSON-LD — improves brand
             knowledge-graph presence and enables the sitelinks searchbox

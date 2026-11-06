@@ -177,16 +177,8 @@ export default function PricingPage() {
       </section>
 
       {/* ─────── Final dark CTA ─────── */}
-      <section className="bg-nile-800 text-white relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(800px 400px at 90% -10%, rgba(245,184,0,0.16), transparent 60%)," +
-              "radial-gradient(600px 320px at -10% 110%, rgba(46,92,184,0.22), transparent 60%)"
-          }}
-        />
+      <section className="bg-hibiscus text-white relative overflow-hidden">
+        <div aria-hidden className="beads absolute inset-x-0 top-0" />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-14 sm:py-16 text-center">
           <h2 className="font-display font-extrabold text-[28px] sm:text-[36px] tracking-tight leading-[1.05]">
             Ready to host?
@@ -213,7 +205,7 @@ function Tier({ name, price, cadence, tagline, features, highlight }: {
     <div className={
       "relative flex flex-col rounded-2xl bg-white p-7 sm:p-8 motion-safe:transition-shadow " +
       (highlight
-        ? "ring-2 ring-nile shadow-[0_18px_48px_-18px_rgba(46,92,184,0.35)] sm:scale-[1.02]"
+        ? "ring-2 ring-nile shadow-[8px_8px_0_0_#0F47AF] sm:scale-[1.02]"
         : "ring-1 ring-[color:var(--border-hairline)] hover:shadow-card")
     }>
       {highlight && (

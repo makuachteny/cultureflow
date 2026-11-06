@@ -67,11 +67,7 @@ export default function EventOverview({
         {isCollapsed && (
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(252,252,250,0) 0%, rgba(252,252,250,0.85) 55%, rgba(252,252,250,1) 100%)"
-            }}
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-parchment border-t-2 border-dashed border-ink-300"
           />
         )}
       </div>

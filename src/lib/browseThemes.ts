@@ -76,8 +76,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "cultural",
     variant: "warm",
     palette: {
-      bg: "#FFF8EC", fg: "#1E0A3C", accent: "#F5B800",
-      accent2: "#E44C4C", muted: "#7A5E20", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#000000", accent: "#FCDD09",
+      accent2: "#DA121A", muted: "#7A5E20", surface: "#FFFFFF"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -93,8 +93,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "music",
     variant: "warm",
     palette: {
-      bg: "#142C66", fg: "#FFFFFF", accent: "#F5B800",
-      accent2: "#FFCE3A", muted: "#B9CDF2", surface: "#1B3A85"
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
@@ -110,8 +110,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "sports",
     variant: "warm",
     palette: {
-      bg: "#1B3A85", fg: "#FFFFFF", accent: "#F5B800",
-      accent2: "#FFCE3A", muted: "#C7D7F2", surface: "#2449A0"
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
     },
     fonts: { heading: F.archivo, body: F.inter },
     copy: {
@@ -127,8 +127,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "education",
     variant: "warm",
     palette: {
-      bg: "#F5F1E8", fg: "#181612", accent: "#2E5CB8",
-      accent2: "#8C2D2D", muted: "#5A574E", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#000000", accent: "#0F47AF",
+      accent2: "#DA121A", muted: "#5A574E", surface: "#FFFFFF"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -144,8 +144,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "faith",
     variant: "warm",
     palette: {
-      bg: "#FBF6EC", fg: "#1F3A3D", accent: "#C4A26B",
-      accent2: "#8C2D2D", muted: "#5A7376", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#078930", accent: "#C4A26B",
+      accent2: "#DA121A", muted: "#5A7376", surface: "#FFFFFF"
     },
     fonts: { heading: F.serif2, body: F.inter },
     copy: {
@@ -161,8 +161,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "networking",
     variant: "warm",
     palette: {
-      bg: "#1B3A85", fg: "#FFFFFF", accent: "#F5B800",
-      accent2: "#FFCE3A", muted: "#C7D7F2", surface: "#2449A0"
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
     },
     fonts: { heading: F.display, body: F.inter },
     copy: {
@@ -178,7 +178,7 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "wedding",
     variant: "warm",
     palette: {
-      bg: "#FBF3F5", fg: "#3D1A2A", accent: "#E44C4C",
+      bg: "#FFFFFF", fg: "#000000", accent: "#DA121A",
       accent2: "#C4A26B", muted: "#8A5E6E", surface: "#FFFFFF"
     },
     fonts: { heading: F.serif, body: F.inter },
@@ -195,8 +195,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "community",
     variant: "warm",
     palette: {
-      bg: "#FEF6ED", fg: "#2A1A10", accent: "#F5B800",
-      accent2: "#1FA974", muted: "#6B4A36", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#000000", accent: "#FCDD09",
+      accent2: "#078930", muted: "#DA121A", surface: "#FFFFFF"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -212,8 +212,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "business",
     variant: "warm",
     palette: {
-      bg: "#1B3A85", fg: "#FFFFFF", accent: "#F5B800",
-      accent2: "#FFCE3A", muted: "#C7D7F2", surface: "#2449A0"
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
     },
     fonts: { heading: F.archivo, body: F.inter },
     copy: {
@@ -229,8 +229,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "fundraiser",
     variant: "warm",
     palette: {
-      bg: "#FDF9F3", fg: "#1F3A3D", accent: "#2E5CB8",
-      accent2: "#F5B800", muted: "#5A7376", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#078930", accent: "#0F47AF",
+      accent2: "#FCDD09", muted: "#5A7376", surface: "#FFFFFF"
     },
     fonts: { heading: F.serif2, body: F.inter },
     copy: {
@@ -246,8 +246,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "family",
     variant: "warm",
     palette: {
-      bg: "#FFF8E1", fg: "#2D1B56", accent: "#EF476F",
-      accent2: "#FFD166", muted: "#4A3577", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#000000", accent: "#DA121A",
+      accent2: "#FCDD09", muted: "#000000", surface: "#FFFFFF"
     },
     fonts: { heading: F.script, body: F.inter },
     copy: {
@@ -263,8 +263,8 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     key: "other",
     variant: "warm",
     palette: {
-      bg: "#FCFCFA", fg: "#1E0A3C", accent: "#2E5CB8",
-      accent2: "#F5B800", muted: "#6F7287", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#000000", accent: "#0F47AF",
+      accent2: "#FCDD09", muted: "#6F7287", surface: "#FFFFFF"
     },
     fonts: { heading: F.display, body: F.inter },
     copy: {
@@ -287,8 +287,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "juba",
     variant: "monumental",
     palette: {
-      bg: "#1B3A85", fg: "#FFFFFF", accent: "#F5B800",
-      accent2: "#FFCE3A", muted: "#C7D7F2", surface: "#2449A0"
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
@@ -303,8 +303,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "wau",
     variant: "monumental",
     palette: {
-      bg: "#2F5A5E", fg: "#FEF6ED", accent: "#FFCE3A",
-      accent2: "#2FD98C", muted: "#BCD0CA", surface: "#3F7077"
+      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#078930", muted: "#C9D8F7", surface: "#3F7077"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -319,8 +319,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "khartoum",
     variant: "monumental",
     palette: {
-      bg: "#5A3A22", fg: "#FEF6ED", accent: "#FFCE3A",
-      accent2: "#E44C4C", muted: "#E4C8A8", surface: "#6F4A2C"
+      bg: "#DA121A", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#DA121A", muted: "#E4C8A8", surface: "#DA121A"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -335,8 +335,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "nairobi",
     variant: "monumental",
     palette: {
-      bg: "#2F5A5E", fg: "#FEF6ED", accent: "#FFCE3A",
-      accent2: "#2FD98C", muted: "#BCD0CA", surface: "#3F7077"
+      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#078930", muted: "#C9D8F7", surface: "#3F7077"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -351,8 +351,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "kampala",
     variant: "monumental",
     palette: {
-      bg: "#5A2F22", fg: "#FEF6ED", accent: "#FFCE3A",
-      accent2: "#E44C4C", muted: "#E4C8A8", surface: "#6F3F2C"
+      bg: "#DA121A", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#DA121A", muted: "#E4C8A8", surface: "#DA121A"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -367,8 +367,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "cairo",
     variant: "monumental",
     palette: {
-      bg: "#3B2470", fg: "#FFFFFF", accent: "#FFCE3A",
-      accent2: "#F5B800", muted: "#C7A8FF", surface: "#4C2F8C"
+      bg: "#000000", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#FCDD09", surface: "#000000"
     },
     fonts: { heading: F.serif, body: F.inter },
     copy: {
@@ -383,8 +383,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "london",
     variant: "monumental",
     palette: {
-      bg: "#F4F4F4", fg: "#111111", accent: "#C1372E",
-      accent2: "#2D3A8C", muted: "#666666", surface: "#FFFFFF"
+      bg: "#FFFFFF", fg: "#000000", accent: "#DA121A",
+      accent2: "#0F47AF", muted: "#666666", surface: "#FFFFFF"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
@@ -399,8 +399,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "toronto",
     variant: "monumental",
     palette: {
-      bg: "#1F4E60", fg: "#F0EBE1", accent: "#FFCE3A",
-      accent2: "#4A9EBE", muted: "#BCD3DB", surface: "#2A6578"
+      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#0F47AF", muted: "#C9D8F7", surface: "#078930"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
@@ -415,8 +415,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "calgary",
     variant: "monumental",
     palette: {
-      bg: "#1B3A85", fg: "#FFFFFF", accent: "#F5B800",
-      accent2: "#FFCE3A", muted: "#C7D7F2", surface: "#2449A0"
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
@@ -431,8 +431,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "melbourne",
     variant: "monumental",
     palette: {
-      bg: "#0B5A72", fg: "#FFFFFF", accent: "#FFCE3A",
-      accent2: "#00D1C1", muted: "#A8D0DC", surface: "#1A7390"
+      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#078930"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
@@ -447,8 +447,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "sydney",
     variant: "monumental",
     palette: {
-      bg: "#0B5A72", fg: "#FFFFFF", accent: "#FFCE3A",
-      accent2: "#00D1C1", muted: "#A8D0DC", surface: "#1A7390"
+      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#078930"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
@@ -463,8 +463,8 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     key: "omaha",
     variant: "monumental",
     palette: {
-      bg: "#1B3A85", fg: "#FFFFFF", accent: "#FFCE3A",
-      accent2: "#F5B800", muted: "#C7D7F2", surface: "#2449A0"
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {

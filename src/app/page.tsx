@@ -191,14 +191,11 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
            Same greeting copy on both views — the right-side chrome is
            what differentiates signed-in (personalized action cards w/
            counts) from signed-out (sign-in / join CTAs). */}
-      <section className="bg-cream-100 border-b-2 border-gold/60 w-full">
+      <section className="bg-white border-b-2 border-ink w-full">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-6 sm:pb-7 flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
           {/* Greeting — no logo disc; just eyebrow + headline */}
           <div className="min-w-0">
-            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-gold-700">
-              Welcome
-            </div>
-            <h2 className="mt-1 font-display text-[22px] sm:text-[26px] font-extrabold text-nile-900 leading-[1.1] tracking-[-0.01em]">
+            <h2 className="font-display text-[24px] sm:text-[30px] font-black text-ink leading-[1.05]">
               Find your next gathering
             </h2>
           </div>
@@ -318,9 +315,9 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
               action="/api/subscribe"
               method="post"
               className={
-                "flex w-full sm:w-auto items-center h-11 rounded-full bg-white pl-4 pr-1 " +
-                "ring-1 ring-inset ring-ink-900/15 focus-within:ring-nile " +
-                "transition-[box-shadow,ring-color] duration-150"
+                "flex w-full sm:w-auto items-center h-11 bg-white pl-4 pr-1 " +
+                "border-2 border-ink focus-within:shadow-[4px_4px_0_0_#0F47AF] " +
+                "transition-shadow duration-150"
               }
             >
               <label htmlFor="hp-subscribe-email" className="sr-only">
@@ -357,7 +354,7 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
               />
               <button
                 type="submit"
-                className="inline-flex items-center h-9 px-4 sm:px-4.5 ml-1 rounded-full bg-nile-900 text-white text-[13.5px] font-semibold hover:bg-nile-800 transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center h-[34px] px-4 ml-1 bg-hibiscus text-white text-[13.5px] font-bold hover:bg-ink transition-colors whitespace-nowrap shrink-0"
               >
                 Subscribe
               </button>
@@ -435,27 +432,30 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
       )}
 
       {/* ───────── CITIES CHIPS — warm parchment band with a gold rule above ───────── */}
-      <section className="bg-parchment-warm relative">
-        <hr aria-hidden className="rule-editorial absolute top-0 inset-x-0" />
+      <section className="bg-cream-100 relative border-y-2 border-ink">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
           <SectionHeader
             eyebrow="Where"
             title="Where tribes gather"
             subtitle="From home to every corner of the map — follow the communities."
           />
-          <div className="flex flex-wrap gap-2">
-            {FEATURED_CITIES.map((c) => (
+          <div className="flex flex-wrap gap-3">
+            {FEATURED_CITIES.map((c, i) => (
               <Link
                 key={c.slug}
                 href={`/events/city/${c.slug}`}
-                className="pill-link group"
+                className={
+                  "group inline-flex items-center gap-2 border-2 border-ink px-3.5 py-2 text-[14px] font-bold shadow-pop " +
+                  "transition-transform hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#000] " +
+                  ["bg-hibiscus text-white", "bg-gold text-ink", "bg-nile text-white", "bg-acacia text-white", "bg-white text-ink"][i % 5]
+                }
                 aria-label={`Browse events in ${c.label}, ${c.country}`}
               >
-                <span className="font-semibold text-nile">{c.label}</span>
-                <span className="text-ink-500">· {c.country}</span>
+                <span>{c.label}</span>
+                <span className="font-medium opacity-80">{c.country}</span>
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-3.5 w-3.5 text-ink-500 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-nile"
+                  className="h-3.5 w-3.5"
                   fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
                   aria-hidden="true"
                 >
@@ -523,12 +523,13 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
 
       {/* ───────── ORGANIZER PITCH ───────── */}
       <section className="bg-organizer-pitch text-white">
+        <div aria-hidden className="beads beads-lg" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 grid gap-8 sm:gap-10 md:grid-cols-2 items-center">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+            <div className="inline-block bg-gold text-ink border-2 border-white px-2 py-0.5 text-[12px] font-bold">
               For organizers
             </div>
-            <h2 className="mt-2 font-display text-[28px] md:text-[36px] font-bold leading-[1.08] tracking-tight">
+            <h2 className="mt-3 font-display text-[30px] md:text-[42px] font-black leading-[1.02]">
               If you gather us,
               <br />we&rsquo;ll do the ticketing.
             </h2>
@@ -548,19 +549,16 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
               </Link>
             </div>
           </div>
-          <ul className="grid gap-2.5">
+          <ul className="grid gap-3 sm:grid-cols-2">
             {[
-              ["01", "Five-minute setup", "Publish on your phone. Draft, edit, launch when ready."],
-              ["02", "Cross-border checkout", "Cards, mobile money, and local rails. One page, every way your audience pays."],
-              ["03", "Fair fees", "2.9% + $0.50 on cards. 2.5% + $0.25 on mobile money. No monthly minimums."],
-              ["04", "Keep your community", "Followers, discussions, organizer calendar — built-in."]
-            ].map(([n, t, b]) => (
-              <li key={n} className="flex gap-3 rounded-xl bg-nile-800 p-4 border border-nile-700 transition-colors hover:border-gold/50">
-                <span className="font-display text-[20px] font-bold text-gold leading-none font-tabular">{n}</span>
-                <div>
-                  <div className="font-semibold text-white text-[14px]">{t}</div>
-                  <div className="mt-0.5 text-[13px] text-white/85 leading-relaxed">{b}</div>
-                </div>
+              ["Five-minute setup", "Publish on your phone. Draft, edit, launch when ready.", "bg-hibiscus text-white"],
+              ["Cross-border checkout", "Cards, mobile money, and local rails. One page, every way your audience pays.", "bg-gold text-ink"],
+              ["Fair fees", "2.9% + $0.50 on cards. 2.5% + $0.25 on mobile money. No monthly minimums.", "bg-nile text-white"],
+              ["Keep your community", "Followers, discussions, organizer calendar, built in.", "bg-acacia text-white"]
+            ].map(([t, b, tone]) => (
+              <li key={t} className={"p-5 border-2 border-white shadow-[5px_5px_0_0_#fff] " + tone}>
+                <div className="font-display font-black text-[17px] leading-tight font-semiwide">{t}</div>
+                <div className="mt-1.5 text-[13.5px] leading-relaxed opacity-90">{b}</div>
               </li>
             ))}
           </ul>
