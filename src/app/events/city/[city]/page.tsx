@@ -25,11 +25,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const monthYear = new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" });
   return {
     title: `Events in ${city.label} — ${monthYear}`,
-    description: `Browse upcoming South Sudanese events in ${city.label}, ${city.country}. Cultural nights, weddings, faith services, concerts, family gatherings — all in one place.`,
+    description: `Browse upcoming community events in ${city.label}, ${city.country}. Cultural festivals, weddings, faith services, concerts, family gatherings — all in one place.`,
     alternates: { canonical: `/events/city/${city.slug}` },
     openGraph: {
       title: `Events in ${city.label}`,
-      description: `What's happening for the South Sudanese community in ${city.label}.`,
+      description: `What's happening for every community in ${city.label}.`,
       type: "website"
     }
   };
@@ -135,8 +135,8 @@ export default async function CityPage({ params }: Props) {
             {city.label}
           </h1>
           <p className="mt-5 max-w-[480px] text-[14px] sm:text-[15px] leading-relaxed text-white/85">
-            What&rsquo;s happening for the South Sudanese community in {city.label} —
-            cultural nights, weddings, faith services, concerts, and tribal gatherings.
+            What&rsquo;s happening for every community in {city.label} —
+            cultural festivals, weddings, faith services, concerts, and family gatherings.
           </p>
           <div className="mt-6">
             <span className="inline-flex items-center gap-2 rounded-full bg-nile px-4 py-2 text-[13px] font-bold">
@@ -157,7 +157,7 @@ export default async function CityPage({ params }: Props) {
         <SectionHeader
           eyebrow="What's on"
           title={`Popular in ${city.label}`}
-          subtitle={`${events.length} upcoming ${events.length === 1 ? "event" : "events"} curated by the tribe.`}
+          subtitle={`${events.length} upcoming ${events.length === 1 ? "event" : "events"} curated by the community.`}
           action={{ label: "Explore more events", href: "/browse" }}
         />
         {events.length === 0 ? (

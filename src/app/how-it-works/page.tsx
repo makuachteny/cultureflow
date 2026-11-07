@@ -122,7 +122,7 @@ export default function HowItWorksPage() {
           </div>
           <div className="grid gap-3">
             <Comparison left="Low bandwidth" right="Broadband" leftBody="3G Android · mobile money · pay-at-door" rightBody="iPhone · Apple Pay · delivered ticket" />
-            <Comparison left="Home region"   right="Diaspora"  leftBody="Mobile wallet · SMS confirmation"         rightBody="Card · email + calendar invite" />
+            <Comparison left="Mobile-money markets" right="Card markets"  leftBody="Mobile wallet · SMS confirmation"         rightBody="Card · email + calendar invite" />
             <Comparison left="On the move"   right="Planning ahead" leftBody="QR screenshot · offline-safe"          rightBody="Google Pay · passbook ticket" />
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function HowItWorksPage() {
         <div aria-hidden className="beads absolute inset-x-0 top-0" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 text-center">
           <h2 className="font-display font-bold text-[26px] sm:text-[32px] tracking-tight">
-            Ready to join the tribe?
+            Ready to join the community?
           </h2>
           <p className="mt-2 text-white/85 max-w-xl mx-auto text-[14px]">
             Browse what&rsquo;s on, or host something yourself. Either way, we&rsquo;re glad you&rsquo;re here.

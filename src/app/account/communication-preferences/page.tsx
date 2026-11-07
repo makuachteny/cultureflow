@@ -14,7 +14,7 @@ import SavedPill from "../_parts/SavedPill";
 type Pref = { id: string; label: string; blurb: string; defaultOn: boolean };
 
 const PREFS: Pref[] = [
-  { id: "newsletter", label: "CultureFlow newsletter", blurb: "Monthly roundup of South Sudanese events across the diaspora.", defaultOn: true  },
+  { id: "newsletter", label: "CultureFlow newsletter", blurb: "Monthly roundup of community events near you and around the world.", defaultOn: true  },
   { id: "nearby",     label: "Events near you",     blurb: "When new events are listed in your city.",                   defaultOn: true  },
   { id: "followed",   label: "Followed organizers", blurb: "When an organizer you follow publishes a new event.",        defaultOn: true  },
   { id: "reminders",  label: "Event reminders",     blurb: "24 hours before and on the day of events you're attending.", defaultOn: true  },

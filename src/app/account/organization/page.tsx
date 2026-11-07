@@ -128,7 +128,7 @@ export default async function OrganizationPage({
             maxLength={1000}
             rows={5}
             className="textarea"
-            placeholder="Tell South Sudanese attendees what you organize and why."
+            placeholder="Tell attendees what you organize and why."
           />
         </Field>
 
@@ -139,7 +139,7 @@ export default async function OrganizationPage({
               defaultValue={user.city ?? ""}
               maxLength={80}
               className="input"
-              placeholder="Juba"
+              placeholder="Toronto"
             />
           </Field>
           <Field label="Country">
@@ -148,13 +148,13 @@ export default async function OrganizationPage({
               defaultValue={user.country ?? ""}
               maxLength={80}
               className="input"
-              placeholder="South Sudan"
+              placeholder="Canada"
             />
           </Field>
         </div>
 
         <Field
-          label="Tribe / community"
+          label="Community / heritage"
           hint="Optional. Shown on your public organizer page next to your name."
         >
           <input
@@ -163,7 +163,7 @@ export default async function OrganizationPage({
             list="tribe-suggestions"
             maxLength={40}
             className="input"
-            placeholder="Dinka"
+            placeholder="e.g. Filipino, Somali, Irish"
           />
           <datalist id="tribe-suggestions">
             {TRIBE_SUGGESTIONS.map((t) => (

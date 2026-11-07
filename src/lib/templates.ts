@@ -118,7 +118,7 @@ Children's program runs in parallel for ages 4–12.`,
     type: "IN_PERSON",
     preset: {
       title: "A Night of Our Cultures — [City]",
-      summary: "A showcase of dance, drum, and song from across our tribes.",
+      summary: "A showcase of dance, music, and song from across our community.",
       description:
 `A celebration of the cultures that make up our community.
 

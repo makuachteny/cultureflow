@@ -7,7 +7,7 @@ import { BRAND_NAME } from "@/lib/brand";
 export const metadata: Metadata = {
   title:       "Become a member",
   description:
-    "Join the CultureFlow membership: early access to events, member-only gatherings, and a closer connection to the South Sudanese community at home and across the diaspora."
+    "Join the CultureFlow membership: early access to events, member-only gatherings, and a closer connection to the communities you care about, wherever they gather."
 };
 
 /**
@@ -57,12 +57,12 @@ export default async function SubscriptionPage() {
               Pick your tier
             </div>
             <h2 className="mt-2 font-display text-[28px] sm:text-[36px] font-extrabold leading-[1.1] tracking-tight text-nile-900">
-              Two ways to be part of the tribe
+              Two ways to be part of the community
             </h2>
             <p className="mt-3 text-[15px] text-ink-700 leading-relaxed">
               Free is enough to discover events and buy tickets. Members get
               early access, monthly cultural gatherings, and a small but
-              meaningful set of perks across the diaspora.
+              meaningful set of perks in cities around the world.
             </p>
           </div>
 
@@ -76,7 +76,7 @@ export default async function SubscriptionPage() {
                 "Browse every public event",
                 "Buy tickets — card, M-Pesa, MoMo, m-Gurush",
                 "Save events with the heart icon",
-                "Follow organizers and tribes",
+                "Follow organizers and communities",
                 "Personalized For You feed"
               ]}
               cta={{ label: "Continue as Friend", href: signedIn ? "/" : "/sign-up", variant: "ghost" }}
@@ -132,8 +132,8 @@ export default async function SubscriptionPage() {
           </h2>
           <p className="mt-3 text-white/80 text-[14.5px] max-w-xl mx-auto leading-relaxed">
             Cancel anytime. Membership renews monthly and supports the
-            platform that gathers our communities at home and across
-            the diaspora.
+            platform that gathers communities of every culture,
+            everywhere.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link

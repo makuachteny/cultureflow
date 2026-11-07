@@ -366,13 +366,13 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
       {/* ───────── HERO ───────── */}
       <HomeHero
         eyebrow={BRAND_NAME}
-        title={<>Where your tribe<br />gathers</>}
+        title={<>Where your people<br />gather</>}
         subtitle="Find events for your people, or host events for your community — one ticket that works on both sides of the digital divide."
         ctas={[
           { label: "Browse events", shortLabel: "Browse",  href: "/browse",     variant: "solid" },
           { label: "Host an event", shortLabel: "Host",    href: "/events/new", variant: "ghost" }
         ]}
-        imageSrc="/community/cultural-confetti.jpg"
+        imageSrc="/community/events-new-hero.jpg"
         imageAlt="People gathered at a live event"
       />
 
@@ -436,7 +436,7 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
           <SectionHeader
             eyebrow="Where"
-            title="Where tribes gather"
+            title="Where communities gather"
             subtitle="From home to every corner of the map — follow the communities."
           />
           <div className="flex flex-wrap gap-3">
@@ -480,7 +480,7 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
               title={featuredFromCity ? `Featured in ${selectedCity}` : "Featured this week"}
               subtitle={featuredFromCity
                 ? undefined
-                : `Not many featured picks in ${selectedCity} yet — here's what's spotlit across the diaspora.`}
+                : `Not many featured picks in ${selectedCity} yet — here's what's spotlit around the world.`}
               action={{
                 label: "Explore more events",
                 href:  `/browse?city=${encodeURIComponent(selectedCity)}`
@@ -501,7 +501,7 @@ export default async function HomePage({ searchParams }: { searchParams?: SP }) 
             title={upcomingFromCity ? `Upcoming in ${selectedCity}` : "Upcoming events"}
             subtitle={upcomingFromCity
               ? undefined
-              : `Few upcoming events in ${selectedCity} right now — here's what's coming up across the diaspora.`}
+              : `Few upcoming events in ${selectedCity} right now — here's what's coming up around the world.`}
             action={{
               label: "Explore more events",
               href:  `/browse?city=${encodeURIComponent(selectedCity)}`

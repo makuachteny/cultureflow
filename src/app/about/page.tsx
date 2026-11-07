@@ -6,7 +6,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: `About ${BRAND_NAME}`,
-  description: `The team and mission behind ${BRAND_NAME} — a ticketing and community platform built for South Sudanese, at home and across the diaspora.`,
+  description: `The team and mission behind ${BRAND_NAME} — a ticketing and community platform for every culture and community, everywhere.`,
   alternates: { canonical: "/about" },
   openGraph: {
     title: `About ${BRAND_NAME}`,
@@ -26,16 +26,16 @@ export default function About() {
       </h1>
       <div className="mt-6 space-y-4 text-[16px] leading-[1.7] text-ink-700">
         <p>
-          {BRAND_NAME} is the digital home for the South Sudanese community —
-          a place to find, host, and share events that connect our people,
-          wherever in the world they gather. Tribes, clans, churches,
-          alumni networks, youth associations, families. If you call yourself
-          South Sudanese, this is for you.
+          {BRAND_NAME} is a home for every culture and community —
+          a place to find, host, and share the events that connect people,
+          wherever in the world they gather. Cultural associations, faith
+          groups, alumni networks, youth leagues, families, neighbourhoods.
+          If you have people worth gathering, this is for you.
         </p>
         <p>
           We believe tickets should be simple, payments should work everywhere
-          (Juba to Calgary), and our culture deserves infrastructure as warm as
-          the gatherings themselves.
+          (Lagos to London, Seoul to São Paulo), and every culture deserves
+          infrastructure as warm as its gatherings.
         </p>
       </div>
     </div>

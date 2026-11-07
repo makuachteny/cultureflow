@@ -13,11 +13,11 @@
 
 /** ISO 4217 currency code. Add to this union when you onboard a new market. */
 export type Currency =
-  | "USD"   // platform default + South Sudan diaspora (US)
-  | "GBP"   // UK diaspora
-  | "CAD"   // Canadian diaspora
-  | "AUD"   // Australian diaspora
-  | "EUR"   // European diaspora
+  | "USD"   // platform default (US)
+  | "GBP"   // United Kingdom
+  | "CAD"   // Canada
+  | "AUD"   // Australia
+  | "EUR"   // Eurozone
   | "KES"   // Kenya — M-Pesa
   | "UGX"   // Uganda — MTN MoMo, Airtel Money
   | "RWF"   // Rwanda — MTN MoMo

@@ -57,10 +57,10 @@ export const eventCreateSchema = z.object({
   bannerUrl: bannerUrlSchema,
   capacity: z.coerce.number().int().min(1).max(1_000_000).optional().nullable(),
   ticketTiers: z.array(ticketTierSchema).min(1).max(10),
-  // Tribe visibility controls — default "open to everyone"
+  // Community visibility controls — default "open to everyone"
   tribeVisibility: z
-    .enum(["ALL_SOUTH_SUDANESE", "SELECTED_TRIBES", "OWN_TRIBE"])
-    .default("ALL_SOUTH_SUDANESE"),
+    .enum(["EVERYONE", "SELECTED_TRIBES", "OWN_TRIBE"])
+    .default("EVERYONE"),
   visibleTribes: z.array(z.string().trim().min(1).max(40)).max(25).default([]),
   publish: z.boolean().default(false)
 }).refine((d) => d.endsAt > d.startsAt, {
@@ -69,7 +69,7 @@ export const eventCreateSchema = z.object({
 }).refine(
   (d) => d.tribeVisibility !== "SELECTED_TRIBES" || d.visibleTribes.length > 0,
   {
-    message: "Pick at least one tribe when visibility is 'Selected tribes'.",
+    message: "Pick at least one community when visibility is 'Selected communities'.",
     path: ["visibleTribes"]
   }
 );
@@ -99,8 +99,8 @@ export const eventUpdateSchema = z.object({
   capacity: z.coerce.number().int().min(1).max(1_000_000).optional().nullable(),
   ticketTiers: z.array(ticketTierUpdateSchema).min(1).max(10),
   tribeVisibility: z
-    .enum(["ALL_SOUTH_SUDANESE", "SELECTED_TRIBES", "OWN_TRIBE"])
-    .default("ALL_SOUTH_SUDANESE"),
+    .enum(["EVERYONE", "SELECTED_TRIBES", "OWN_TRIBE"])
+    .default("EVERYONE"),
   visibleTribes: z.array(z.string().trim().min(1).max(40)).max(25).default([]),
   publish: z.boolean().optional()
 }).refine((d) => d.endsAt > d.startsAt, {
@@ -109,7 +109,7 @@ export const eventUpdateSchema = z.object({
 }).refine(
   (d) => d.tribeVisibility !== "SELECTED_TRIBES" || d.visibleTribes.length > 0,
   {
-    message: "Pick at least one tribe when visibility is 'Selected tribes'.",
+    message: "Pick at least one community when visibility is 'Selected communities'.",
     path: ["visibleTribes"]
   }
 );

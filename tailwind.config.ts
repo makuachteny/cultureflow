@@ -1,12 +1,12 @@
 import type { Config } from "tailwindcss";
 
 /*
- * CultureFlow design system — "Flag & beadwork".
+ * CultureFlow design system — "Colour blocks & beadwork".
  *
- * Every colour is a flat field lifted from the South Sudanese flag
- * (black / red / green bands, blue hoist triangle, gold star, white
- * fimbriation) and the bead corsets those colours echo. No gradients,
- * no blur, no rounded corners:
+ * Six flat, saturated colours — black, red, green, blue, gold, white —
+ * the primaries that show up in festival dress, beadwork, textiles and
+ * hand-painted signs in communities everywhere. No gradients, no blur,
+ * no rounded corners:
  *   • borderRadius is overridden (not extended) to 0 at every step, so
  *     every `rounded-*` class across the app renders square.
  *   • boxShadow steps are hard offset "print" shadows with zero blur.
@@ -35,7 +35,7 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Flag blue — the hoist triangle.
+        // Blue.
         nile: {
           DEFAULT: "#0F47AF",
           50: "#E7EEFC",
@@ -49,7 +49,7 @@ const config: Config = {
           800: "#07235A",
           900: "#04173D"
         },
-        // Star yellow. 700/800 are dark ochres for text on light surfaces
+        // Gold. 700/800 are dark ochres for text on light surfaces
         // (#6E5A00 ≈ 7:1 on white) — never put yellow text on white.
         gold: {
           DEFAULT: "#FCDD09",
@@ -71,7 +71,7 @@ const config: Config = {
           500: "#0F47AF",
           600: "#0C3A90"
         },
-        // Flag green.
+        // Green.
         acacia: {
           DEFAULT: "#078930",
           50: "#E3F5E9",
@@ -79,7 +79,7 @@ const config: Config = {
           600: "#066E27",
           700: "#05571F"
         },
-        // Flag red.
+        // Red.
         hibiscus: {
           DEFAULT: "#DA121A",
           50: "#FDE7E8",
@@ -90,7 +90,7 @@ const config: Config = {
         },
         clay: { DEFAULT: "#DA121A" },
         parchment: { DEFAULT: "#FFFFFF" },
-        // Pale star-yellow paper for alternating sections.
+        // Pale gold paper for alternating sections.
         cream: {
           DEFAULT: "#FFF6D1",
           50: "#FFFCEE",
@@ -137,10 +137,10 @@ const config: Config = {
         "7xl": "88rem"
       },
       backgroundImage: {
-        // The flag's horizontal bands with white fimbriation — hard
-        // colour stops only, so it reads as stripes, never a blend.
+        // Uneven vertical colour blocks — hard stops only, so it reads
+        // as painted panels, never a blend.
         "hero-sunrise":
-          "linear-gradient(180deg, #000 0 31%, #fff 31% 34%, #DA121A 34% 66%, #fff 66% 69%, #078930 69% 100%)",
+          "linear-gradient(90deg, #DA121A 0 13%, #FCDD09 13% 24%, #0F47AF 24% 41%, #078930 41% 50%, #000 50% 63%, #DA121A 63% 72%, #FCDD09 72% 86%, #0F47AF 86% 100%)",
         "nile-gradient": "linear-gradient(#0F47AF, #0F47AF)"
       }
     }

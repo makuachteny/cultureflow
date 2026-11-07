@@ -29,7 +29,7 @@ export default function Privacy() {
 
       <h2>1. What we collect</h2>
       <ul>
-        <li><b>Account data</b> — name, email, password (hashed), and optionally city, country, tribe, and interests.</li>
+        <li><b>Account data</b> — name, email, password (hashed), and optionally city, country, community or heritage, and interests.</li>
         <li><b>Event data</b> — events you create, tickets you purchase, and anything you post publicly on the platform.</li>
         <li><b>Payment data</b> — processed by <a href="https://stripe.com/privacy">Stripe</a> (cards) or the relevant mobile-money provider. We store the last 4 digits, brand, and a Stripe reference — never the full card number.</li>
         <li><b>Device & usage</b> — IP address, browser, page visits, and error logs. We use these to keep the site up and prevent abuse.</li>

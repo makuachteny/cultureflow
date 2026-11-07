@@ -2,8 +2,8 @@
  * Stock photography for marketing pages, browse themes, event templates,
  * and seed data.
  *
- * GOAL: every photo on this list should depict South Sudanese (or
- * broader diaspora / African community) gatherings — weddings, cultural
+ * GOAL: every photo on this list should depict real community
+ * gatherings from many cultures — weddings, cultural
  * nights, church services, sports, family reunions, business mixers.
  *
  * EVERY image is now LOCAL — they live under /public/community/ and ship

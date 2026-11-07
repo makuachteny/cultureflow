@@ -6,9 +6,9 @@
   "name": "CultureFlow",
   "nameFirst": "Culture",
   "nameSecond": "Flow",
-  "tagline": "For South Sudanese, everywhere",
-  "shortTag": "Events for the South Sudanese community",
-  "description": "Discover and host events for South Sudanese — at home and across the diaspora. Tickets, discovery, and connection in one place for our tribes, clans, churches, and communities.",
+  "tagline": "For every culture, everywhere",
+  "shortTag": "Events for every culture and community",
+  "description": "Discover and host events for every culture and community — festivals, weddings, worship, music, food and gatherings near you and around the world. Tickets, discovery and connection in one place.",
   "emailDomain": "cultureflow.example",
   "statementDescriptor": "CULTUREFLOW",
   "colors": {
@@ -19,5 +19,5 @@
     "blue": "#0F47AF",
     "yellow": "#FCDD09"
   },
-  "_markNote": "Mark = a Nilotic long-horned cow: open lyre horns in flag blue, black head, the flag's gold star cradled between the horn tips. Name = CULTURE / FLOW in wide Archivo Black caps; FLOW takes the horn colour. Flat colour, sharp edges, no gradients. See docs/brand.md."
+  "_markNote": "Mark = a long-horned cow, an ancient symbol of gathering and shared wealth: open lyre horns in blue, black head, a gold sun cradled between the horn tips. Name = CULTURE / FLOW in wide Archivo Black caps; FLOW takes the horn colour. Flat colour, sharp edges, no gradients. See docs/brand.md."
 }

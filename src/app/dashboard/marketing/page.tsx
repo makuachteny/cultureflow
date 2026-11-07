@@ -82,7 +82,7 @@ export default async function MarketingPage({ searchParams }: { searchParams?: S
       <DashboardHero
         tone="acacia"
         eyebrow="Grow"
-        title="Reach your tribe,"
+        title="Reach your people,"
         accent="fill the room."
         lede="Promote your events on social, send a campaign to past attendees, drop the link in WhatsApp groups, and watch what's working."
         ctas={[

@@ -4,25 +4,25 @@
 
 ## The mark
 
-A Nilotic long-horned cow, the animal at the centre of Dinka and Nuer life, drawn from flat, sharp-edged shapes:
+A long-horned cow, drawn from flat, sharp-edged shapes. Across Africa, Asia, Europe and the Americas, cattle have stood for gathering, celebration and shared wealth. The brand began in South Sudanese cattle culture and now opens that idea to every community.
 
-- **Open lyre horns** in flag blue.
-- **The flag's gold star** cradled between the horn tips, as it sits on the blue hoist of the South Sudanese flag.
+- **Open lyre horns** in blue.
+- **A gold sun** cradled between the horn tips: a gathering under one sky.
 - **A long black face** with angled ears and a flared muzzle.
 
 The name is set as a two-line block, **CULTURE / FLOW**, in wide Archivo Black capitals. FLOW takes the horn colour so the words read as part of the mark.
 
-The identity uses flat colour only: no gradients, no blur, no rounded corners. The same rules apply in the app UI.
+The identity uses flat colour only: no gradients, no blur, no rounded corners. The same rules apply in the app UI. It deliberately uses no national flags or symbols, so no single culture owns it.
 
 ## Colours
 
 | | Name | Hex | Used for |
 |---|---|---|---|
 | ⬛ | Black | `#000000` | Head, CULTURE, headlines |
-| 🟦 | Flag blue | `#0F47AF` | Horns, FLOW, app icon tile |
-| 🟨 | Star yellow | `#FCDD09` | The star; FLOW on dark backgrounds |
-| 🟥 | Flag red | `#DA121A` | Accent |
-| 🟩 | Flag green | `#078930` | Accent |
+| 🟦 | Blue | `#0F47AF` | Horns, FLOW, app icon tile |
+| 🟨 | Gold | `#FCDD09` | The sun; FLOW on dark backgrounds |
+| 🟥 | Red | `#DA121A` | Accent |
+| 🟩 | Green | `#078930` | Accent |
 | ⬜ | White | `#FFFFFF` | Reversed logo, nostrils |
 
 ## Variants
@@ -77,10 +77,10 @@ npm run brand:png     # favicon.ico, apple-touch-icon, PWA icons, og-image.png
 
 ## Rules
 
-- **Clear space:** keep at least the width of one horn tip to the star empty around the logo.
+- **Clear space:** keep at least the height of the sun empty around the logo.
 - **Minimum size:** horizontal lockup 32 px tall; mark 16 px (use the app icon below 24 px).
-- **Backgrounds:** full colour on white or star yellow. On black or flag blue, use the `-white` versions.
-- **Don't:** recolour the horns outside the palette, add gradients, shadows or outlines, round the corners, or set the name in another typeface.
+- **Backgrounds:** full colour on white or gold. On black or blue, use the `-white` versions.
+- **Don't:** recolour the horns outside the palette, add gradients, shadows or outlines, round the corners, add flags or national symbols, or set the name in another typeface.
 
 ## In code
 

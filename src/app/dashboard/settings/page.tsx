@@ -239,14 +239,14 @@ function ProfilePanel({
         </Field>
         <div className="grid gap-5 sm:grid-cols-2">
           <Field label="City">
-            <input name="city" defaultValue={city} maxLength={80} className="input" placeholder="Juba" />
+            <input name="city" defaultValue={city} maxLength={80} className="input" placeholder="Toronto" />
           </Field>
           <Field label="Country">
-            <input name="country" defaultValue={country} maxLength={80} className="input" placeholder="South Sudan" />
+            <input name="country" defaultValue={country} maxLength={80} className="input" placeholder="Canada" />
           </Field>
         </div>
-        <Field label="Tribe" hint="Optional. Shown on your public page next to your name.">
-          <input name="tribe" defaultValue={tribe} maxLength={40} className="input" placeholder="Dinka, Nuer, Bari…" />
+        <Field label="Community or heritage" hint="Optional. Shown on your public page next to your name.">
+          <input name="tribe" defaultValue={tribe} maxLength={40} className="input" placeholder="Yoruba, Punjabi, Irish…" />
         </Field>
 
         <div className="flex items-center justify-end gap-4 pt-3">

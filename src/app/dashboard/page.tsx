@@ -386,7 +386,7 @@ export default async function OrganizerHome() {
             <ChecklistCard
               done={hasProfile}
               title="Set up your organizer profile"
-              blurb="Photo, bio, tribe — builds trust with attendees."
+              blurb="Photo, bio, community — builds trust with attendees."
               href="/dashboard/settings"
               cta={hasProfile ? "Edit profile" : "Complete"}
             />
@@ -454,7 +454,7 @@ export default async function OrganizerHome() {
               A complete profile ranks higher
             </h3>
             <p className="mt-2 text-[13.5px] leading-relaxed text-nile-900/80">
-              Add a photo, bio, and tribe so attendees can find and trust you. Profiles with all three see roughly 2× more event views.
+              Add a photo, bio, and community so attendees can find and trust you. Profiles with all three see roughly 2× more event views.
             </p>
             <Link
               href="/dashboard/settings"

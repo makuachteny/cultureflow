@@ -42,8 +42,9 @@ model User {
   website       String?
   role          Role       @default(ATTENDEE)
   status        UserStatus @default(ACTIVE)
-  // Optional — which South Sudanese tribe the user identifies with.
-  // Drives the "My tribe only" visibility filter when organizers pick it.
+  // Optional — the community / heritage the user identifies with
+  // (free text, e.g. "Yoruba", "Punjabi", "Dinka"). Drives the
+  // "My community only" visibility filter when organizers pick it.
   tribe         String?
 
   // Onboarding: picked interests (EventCategory keys) and completion stamp.
@@ -157,12 +158,12 @@ enum EventType {
   HYBRID
 }
 
-/// Who an event is visible to within the South Sudanese community.
-///   ALL_SOUTH_SUDANESE — discoverable by every user (default)
+/// Who an event is visible to.
+///   EVERYONE           — discoverable by every user (default)
 ///   SELECTED_TRIBES    — only users whose `tribe` is in Event.visibleTribes
 ///   OWN_TRIBE          — only users whose `tribe` matches the organizer's
 enum TribeVisibility {
-  ALL_SOUTH_SUDANESE
+  EVERYONE
   SELECTED_TRIBES
   OWN_TRIBE
 }
@@ -232,7 +233,7 @@ model Event {
   highlights   String[] @default([])
 
   // Tribe visibility — default is open to everyone.
-  tribeVisibility TribeVisibility @default(ALL_SOUTH_SUDANESE)
+  tribeVisibility TribeVisibility @default(EVERYONE)
   visibleTribes   String[]        @default([])
 
   createdAt DateTime @default(now())
@@ -366,7 +367,7 @@ enum PaymentProvider {
   STRIPE // cards, Apple Pay, Google Pay (worldwide via Stripe)
   MPESA // Safaricom Daraja STK Push (KES, TZS via Vodacom)
   MOMO // MTN Mobile Money Collections (UGX, RWF, SSP via MTN MoMo SS)
-  MGURUSH // m-Gurush — South Sudan (SSP)
+  MGURUSH // m-Gurush — mobile money in South Sudan (SSP)
   DEMO // dev / demo mode — no real money moves
 }
 

@@ -65,9 +65,9 @@ describe("eventCreateSchema", () => {
     });
     expect(r.success).toBe(true);
   });
-  it("defaults tribeVisibility to ALL_SOUTH_SUDANESE", () => {
+  it("defaults tribeVisibility to EVERYONE", () => {
     const r = eventCreateSchema.safeParse(base);
-    if (r.success) expect(r.data.tribeVisibility).toBe("ALL_SOUTH_SUDANESE");
+    if (r.success) expect(r.data.tribeVisibility).toBe("EVERYONE");
   });
   it("rejects invalid category", () => {
     const r = eventCreateSchema.safeParse({ ...base, category: "NOT_A_CATEGORY" });
@@ -135,7 +135,7 @@ describe("taxonomy", () => {
   });
   it("has 3 tribe-visibility options matching the Prisma enum", () => {
     const values = TRIBE_VISIBILITY_OPTIONS.map((o) => o.value).sort();
-    expect(values).toEqual(["ALL_SOUTH_SUDANESE", "OWN_TRIBE", "SELECTED_TRIBES"]);
+    expect(values).toEqual(["EVERYONE", "OWN_TRIBE", "SELECTED_TRIBES"]);
   });
   it("has featured cities with country set", () => {
     for (const c of FEATURED_CITIES) {

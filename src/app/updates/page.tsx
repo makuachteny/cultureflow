@@ -72,8 +72,8 @@ const ENTRIES: Array<{ date: string; title: string; body: string }> = [
   },
   {
     date: "January 2026",
-    title: "Public launch — South Sudan + diaspora",
+    title: "Public launch",
     body:
-      "Discovery, ticketing, organizer payouts, and a community layer (profiles, follows, likes, event comments) — all in one place for our tribes, clans, churches, and communities."
+      "Discovery, ticketing, organizer payouts, and a community layer (profiles, follows, likes, event comments) — all in one place for communities of every culture."
   }
 ];

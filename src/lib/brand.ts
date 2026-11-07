@@ -92,9 +92,9 @@ export type BrandLogoVariant = keyof typeof BRAND_LOGOS;
 
 /* ─── Derived helpers ─── */
 
-/** "© 2026 CultureFlow. Built for South Sudanese, wherever they are." */
+/** "© 2026 CultureFlow. Built for every culture, wherever it gathers." */
 export function copyrightLine(year: number = new Date().getFullYear()): string {
-  return `© ${year} ${BRAND_NAME}. Built for South Sudanese, wherever they are.`;
+  return `© ${year} ${BRAND_NAME}. Built for every culture, wherever it gathers.`;
 }
 
 /** ARIA label for the brand-home link used in Header / Footer / auth pages. */

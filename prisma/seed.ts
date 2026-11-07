@@ -83,98 +83,101 @@ async function main() {
   console.log("Seeding database…");
 
   // Users — all pre-onboarded so the logged-in home skips /welcome.
+  // A deliberately mixed cast: organizers and attendees from many
+  // cultures and cities, so the demo reads as a platform for anyone.
+  // `tribe` holds a free-text heritage / community label.
   // We create the admin (no reference needed elsewhere; side-effect only).
   await upsertUser({
-    email: em("admin"), name: "Deng Akol", password: "admin1234",
-    role: "ADMIN", city: "Minneapolis", country: "United States",
+    email: em("admin"), name: "Sam Rivera", password: "admin1234",
+    role: "ADMIN", city: "New York", country: "United States",
     bio: "Platform admin.",
-    tribe: "dinka", onboardedAt: new Date()
+    tribe: "Puerto Rican", onboardedAt: new Date()
   });
 
   const alek = await upsertUser({
     email: em("alek"), name: "Alek Deng", password: "password123",
-    role: "ORGANIZER", city: "Minneapolis", country: "United States",
-    bio: "Organizer of community events in the Twin Cities.",
-    tribe: "dinka", interests: ["CULTURAL", "MUSIC", "BUSINESS", "FUNDRAISER"],
+    role: "ORGANIZER", city: "New York", country: "United States",
+    bio: "New York organizer — cultural nights, cookouts, and neighbourhood forums.",
+    tribe: "Dinka", interests: ["CULTURAL", "MUSIC", "BUSINESS", "FUNDRAISER"],
     onboardedAt: new Date()
   });
 
   const mary = await upsertUser({
-    email: em("mary"), name: "Mary Nyandeng", password: "password123",
-    role: "ORGANIZER", city: "Juba", country: "South Sudan",
-    bio: "Community organizer — youth, music, culture.",
-    tribe: "nuer", interests: ["CULTURAL", "MUSIC", "FAMILY", "COMMUNITY"],
+    email: em("mary"), name: "Mary Okafor", password: "password123",
+    role: "ORGANIZER", city: "Lagos", country: "Nigeria",
+    bio: "Lagos organizer — live music, gospel nights, and founder events.",
+    tribe: "Igbo", interests: ["CULTURAL", "MUSIC", "FAMILY", "COMMUNITY"],
     onboardedAt: new Date()
   });
 
   const james = await upsertUser({
-    email: em("james"), name: "James Kur", password: "password123",
-    role: "ATTENDEE", city: "Calgary", country: "Canada",
-    bio: "Community member based in Calgary.",
-    tribe: "dinka", interests: ["SPORTS", "MUSIC", "COMMUNITY"],
+    email: em("james"), name: "James O'Connell", password: "password123",
+    role: "ATTENDEE", city: "Toronto", country: "Canada",
+    bio: "Community member based in Toronto.",
+    tribe: "Irish", interests: ["SPORTS", "MUSIC", "COMMUNITY"],
     onboardedAt: new Date()
   });
 
   const ayen = await upsertUser({
     email: em("ayen"), name: "Ayen Nhial", password: "password123",
     role: "ATTENDEE", city: "London", country: "United Kingdom",
-    tribe: "shilluk", interests: ["CULTURAL", "FUNDRAISER", "FAITH"],
+    tribe: "Shilluk", interests: ["CULTURAL", "FUNDRAISER", "FAITH"],
     onboardedAt: new Date()
   });
 
   // Additional organizers so the catalog isn't run by two people.
   const peter = await upsertUser({
-    email: em("peter"), name: "Peter Chol", password: "password123",
-    role: "ORGANIZER", city: "Nashville", country: "United States",
-    bio: "Nashville-based organizer. Basketball, worship, youth development.",
-    tribe: "dinka", interests: ["SPORTS", "FAITH", "COMMUNITY", "FAMILY"],
+    email: em("peter"), name: "Peter Kim", password: "password123",
+    role: "ORGANIZER", city: "Seoul", country: "South Korea",
+    bio: "Seoul and Toronto organizer — music showcases, language classes, Lunar New Year.",
+    tribe: "Korean", interests: ["SPORTS", "FAITH", "COMMUNITY", "FAMILY"],
     onboardedAt: new Date()
   });
 
   const grace = await upsertUser({
-    email: em("grace"), name: "Grace Ajah", password: "password123",
-    role: "ORGANIZER", city: "Omaha", country: "United States",
-    bio: "Omaha community educator. Language preservation, women's events.",
-    tribe: "nuer", interests: ["EDUCATION", "CULTURAL", "FAMILY", "FUNDRAISER"],
+    email: em("grace"), name: "Grace Mendoza", password: "password123",
+    role: "ORGANIZER", city: "Mexico City", country: "Mexico",
+    bio: "Educator and organizer — heritage-language classes, Día de los Muertos, youth sports.",
+    tribe: "Mexican", interests: ["EDUCATION", "CULTURAL", "FAMILY", "FUNDRAISER"],
     onboardedAt: new Date()
   });
 
   // Extra attendees for realistic follower counts.
   const daniel = await upsertUser({
-    email: em("daniel"), name: "Daniel Machar", password: "password123",
-    role: "ATTENDEE", city: "Minneapolis", country: "United States",
-    tribe: "dinka", interests: ["MUSIC", "SPORTS", "COMMUNITY"],
+    email: em("daniel"), name: "Daniel Silva", password: "password123",
+    role: "ATTENDEE", city: "São Paulo", country: "Brazil",
+    tribe: "Brazilian", interests: ["MUSIC", "SPORTS", "COMMUNITY"],
     onboardedAt: new Date()
   });
   const rebecca = await upsertUser({
-    email: em("rebecca"), name: "Rebecca Nyakueth", password: "password123",
-    role: "ATTENDEE", city: "Nashville", country: "United States",
-    tribe: "nuer", interests: ["FAITH", "FAMILY", "EDUCATION"],
+    email: em("rebecca"), name: "Rebecca Dubois", password: "password123",
+    role: "ATTENDEE", city: "Paris", country: "France",
+    tribe: "Haitian", interests: ["FAITH", "FAMILY", "EDUCATION"],
     onboardedAt: new Date()
   });
 
-  // East-Africa organizers — South Sudanese diaspora hubs in Kenya + Uganda.
+  // Organizers in Nairobi, Juba and Mumbai.
   const nyawal = await upsertUser({
-    email: em("nyawal"), name: "Nyawal Riek", password: "password123",
+    email: em("nyawal"), name: "Nyawira Kamau", password: "password123",
     role: "ORGANIZER", city: "Nairobi", country: "Kenya",
-    bio: "South Sudanese-Nairobi organizer. Cultural nights, women's gatherings, scholarship drives.",
-    tribe: "nuer", interests: ["CULTURAL", "FUNDRAISER", "FAMILY", "EDUCATION"],
+    bio: "Nairobi organizer — women in tech, Eid dinners, community gatherings.",
+    tribe: "Kikuyu", interests: ["CULTURAL", "FUNDRAISER", "FAMILY", "EDUCATION"],
     onboardedAt: new Date()
   });
 
   const lado = await upsertUser({
     email: em("lado"), name: "Lado Kenyi", password: "password123",
     role: "ORGANIZER", city: "Juba", country: "South Sudan",
-    bio: "Juba-based organizer. Bari cultural events, business mixers, faith gatherings on the Nile.",
-    tribe: "bari", interests: ["BUSINESS", "CULTURAL", "FAITH", "NETWORKING"],
+    bio: "Juba organizer — cultural nights and heritage events on the Nile.",
+    tribe: "Bari", interests: ["BUSINESS", "CULTURAL", "FAITH", "NETWORKING"],
     onboardedAt: new Date()
   });
 
   const taban = await upsertUser({
-    email: em("taban"), name: "Taban Lokule", password: "password123",
-    role: "ORGANIZER", city: "Kampala", country: "Uganda",
-    bio: "Kampala-based organizer for the South Sudanese diaspora. Faith events, community forums, cultural showcases.",
-    tribe: "kakwa", interests: ["FAITH", "COMMUNITY", "CULTURAL", "NETWORKING"],
+    email: em("taban"), name: "Tanvi Bhatt", password: "password123",
+    role: "ORGANIZER", city: "Mumbai", country: "India",
+    bio: "Mumbai organizer — weddings, Holi, and relief benefits.",
+    tribe: "Gujarati", interests: ["FAITH", "COMMUNITY", "CULTURAL", "NETWORKING"],
     onboardedAt: new Date()
   });
 
@@ -199,25 +202,28 @@ async function main() {
     });
   }
 
-  // Events
+  // Events — a multicultural catalog across the featured cities
+  // (New York, London, Toronto, Lagos, Nairobi, Mumbai, São Paulo,
+  // Mexico City, Paris, Seoul, Sydney, Juba) plus a few online events.
+  // Dates are relative to seed time.
   const events = [
     {
-      title: "South Sudanese Cultural Night",
-      summary: "An evening of music, dance, and stories celebrating our culture.",
+      title: "Diwali Festival of Lights",
+      summary: "Lamps, sweets, music and dance to celebrate Diwali together.",
       description:
-        "Join the Twin Cities community for our annual Cultural Night. Live performances, traditional food, storytelling from elders, and a youth showcase. Doors open at 5 PM. Dress code: cultural attire encouraged.",
-      organizerId: alek.id,
+        "Join London's biggest community Diwali night. Diya-lighting at sunset, a Bollywood and classical dance showcase, rangoli for the kids, and a street-food hall of sweets and chaat. Everyone welcome — traditional dress encouraged.",
+      organizerId: ayen.id,
       category: "CULTURAL" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Earle Brown Heritage Center",
-      venueAddress: "6155 Earle Brown Dr, Brooklyn Center, MN",
-      city: "Minneapolis",
-      country: "United States",
+      venueName: "Southbank Centre",
+      venueAddress: "Belvedere Rd, London SE1 8XX",
+      city: "London",
+      country: "United Kingdom",
       startsAt: dateIn(18),
       endsAt: dateIn(18, 23),
       bannerUrl: "/community/cultural-celebration.jpg",
       featured: true,
-      highlights: ["Cultural attire encouraged", "Traditional food included", "Kids' zone"],
+      highlights: ["Traditional dress encouraged", "Street-food hall", "Kids' rangoli corner"],
       refundPolicy: "Full refund up to 7 days before the event. No refunds after.",
       tiers: [
         { name: "General Admission", priceCents: 2500, quantity: 500 },
@@ -226,20 +232,20 @@ async function main() {
       ]
     },
     {
-      title: "Music Festival — Rising Voices",
-      summary: "A night of rising South Sudanese artists on a single stage.",
+      title: "Afrobeats Live — Lagos",
+      summary: "Ten rising Afrobeats and Afro-fusion artists on one stage.",
       description:
-        "Nyakuron Cultural Center hosts 10 rising artists across hip-hop, afrobeats, and traditional fusion. Food vendors on site. Mobile money accepted at the door.",
+        "Ten rising artists across Afrobeats, Amapiano and highlife fusion. Food vendors on site. Mobile money and cards accepted at the door.",
       organizerId: mary.id,
       category: "MUSIC" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Nyakuron Cultural Center",
-      venueAddress: "Nyakuron, Juba",
-      city: "Juba",
-      country: "South Sudan",
+      venueName: "Muri Okunola Park",
+      venueAddress: "Victoria Island, Lagos",
+      city: "Lagos",
+      country: "Nigeria",
       startsAt: dateIn(32, 19),
       endsAt: dateIn(32, 23),
-      bannerUrl: "/community/sports-pitch.jpg",
+      bannerUrl: "/community/music-live-stage.jpg",
       featured: true,
       highlights: ["10 rising artists", "Food vendors on site", "Mobile money accepted"],
       refundPolicy: "No refunds — tickets may be transferred from My tickets.",
@@ -249,14 +255,14 @@ async function main() {
       ]
     },
     {
-      title: "Diaspora Women in Business — Virtual Panel",
-      summary: "Four South Sudanese women entrepreneurs share their stories.",
+      title: "Women Founders Around the World — Virtual Panel",
+      summary: "Four women entrepreneurs from four continents share their stories.",
       description:
-        "An online panel featuring founders from Minneapolis, Calgary, London, and Melbourne. Q&A at the end. Free to attend — registration required.",
+        "An online panel featuring founders from Lagos, Mumbai, São Paulo and Seoul. Q&A at the end. Free to attend — registration required.",
       organizerId: alek.id,
       category: "BUSINESS" as EventCategory,
       type: "ONLINE" as EventType,
-      onlineUrl: "https://meet.example/tribe-women-business",
+      onlineUrl: "https://meet.example/women-founders-panel",
       city: "Online",
       country: "Global",
       startsAt: dateIn(12, 14),
@@ -265,16 +271,16 @@ async function main() {
       tiers: [{ name: "Free Registration", priceCents: 0, quantity: 1000 }]
     },
     {
-      title: "Calgary Youth Soccer Tournament",
-      summary: "A weekend tournament bringing together SS youth in Calgary.",
+      title: "Toronto Youth Soccer Tournament",
+      summary: "A weekend tournament bringing together youth teams from across the city.",
       description:
-        "Six teams, two divisions, one weekend. Volunteers welcome. Family-friendly event with food and community booths.",
+        "Six teams, two divisions, one weekend — teams from Toronto's many communities. Volunteers welcome. Family-friendly event with food and community booths.",
       organizerId: alek.id,
       category: "SPORTS" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "McMahon Stadium",
-      venueAddress: "1817 Crowchild Trail NW, Calgary, AB",
-      city: "Calgary",
+      venueName: "Lamport Stadium",
+      venueAddress: "1155 King St W, Toronto, ON",
+      city: "Toronto",
       country: "Canada",
       startsAt: dateIn(45, 9),
       endsAt: dateIn(46, 17),
@@ -283,7 +289,7 @@ async function main() {
     },
     {
       title: "Community Fundraiser — Scholarship Fund",
-      summary: "A gala dinner raising funds for 20 student scholarships.",
+      summary: "A gala dinner raising funds for 20 first-generation student scholarships.",
       description:
         "Black-tie optional. Silent auction, live music, and stories from previous scholarship recipients. Every ticket funds 10% of a scholarship.",
       organizerId: mary.id,
@@ -306,29 +312,23 @@ async function main() {
       ]
     },
 
-    /* ──────────────── US-diaspora catalog ────────────────
-       Modeled on real South Sudanese community event patterns: July 9
-       Independence Day celebrations, church conventions, language/cultural
-       preservation workshops, youth sports leagues, wedding receptions, and
-       flood/drought relief fundraisers. Dates are relative to seed time. */
-
     {
-      title: "Independence Day Picnic (July 9)",
-      summary: "Annual celebration of South Sudan's Independence Day at Minnehaha Park.",
+      title: "Juneteenth Community Cookout",
+      summary: "Harlem's Juneteenth celebration — food, music, history and family.",
       description:
-        "Join thousands of community members for our largest gathering of the year. Dinka, Nuer, Shilluk, and every tribe represented. Live drumming, flag ceremony at noon, food stalls, kids' zone, and dancing until sunset. Bring a chair — tables are first-come.",
+        "Our largest gathering of the year. Live jazz and gospel, a short history program at noon, Black-owned food trucks, a kids' zone, and dancing until sunset. Bring a chair — tables are first-come.",
       organizerId: alek.id,
       category: "CULTURAL" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Minnehaha Regional Park",
-      venueAddress: "4801 S Minnehaha Park Dr, Minneapolis, MN",
-      city: "Minneapolis",
+      venueName: "Marcus Garvey Park",
+      venueAddress: "18 Mt Morris Park W, New York, NY",
+      city: "New York",
       country: "United States",
       startsAt: dateIn(25, 11),
       endsAt: dateIn(25, 20),
       bannerUrl: "/community/events-new-hero.jpg",
       featured: true,
-      highlights: ["Flag ceremony at noon", "Live drumming & cultural dance", "Food stalls from every state"],
+      highlights: ["History program at noon", "Live jazz & gospel", "Black-owned food trucks"],
       refundPolicy: "Free entry. Food tickets are non-refundable.",
       tiers: [
         { name: "Entry (Free)",             priceCents: 0,    quantity: 3000 },
@@ -337,22 +337,22 @@ async function main() {
     },
 
     {
-      title: "Rising Voices: South Sudanese Music Showcase",
-      summary: "Six artists, one night. Afrobeats, gospel, and traditional fusion.",
+      title: "Seoul Indie Music Showcase",
+      summary: "Six artists, one night. K-indie, R&B and traditional gugak fusion.",
       description:
-        "Nashville's first dedicated showcase for South Sudanese artists in the USA. Curated by Peter Chol with support from the Tennessee African Diaspora Arts Council. Doors 6:30 PM, first set 7:30 PM. Open bar for 21+.",
+        "A showcase of independent Korean artists in Hongdae, curated by Peter Kim. Doors 6:30 PM, first set 7:30 PM. Open bar for 19+.",
       organizerId: peter.id,
       category: "MUSIC" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "3rd & Lindsley",
-      venueAddress: "818 3rd Ave S, Nashville, TN",
-      city: "Nashville",
-      country: "United States",
+      venueName: "Rolling Hall",
+      venueAddress: "Hongdae, Mapo-gu, Seoul",
+      city: "Seoul",
+      country: "South Korea",
       startsAt: dateIn(21, 18),
       endsAt: dateIn(21, 23),
-      bannerUrl: "/community/music-live-stage.jpg",
+      bannerUrl: "/community/music-concert-crowd.jpg",
       featured: true,
-      highlights: ["6 South Sudanese artists", "21+ event", "Dance floor open after 10 PM"],
+      highlights: ["6 independent artists", "19+ event", "Dance floor open after 10 PM"],
       refundPolicy: "Full refund up to 48 hours before the event.",
       tiers: [
         { name: "General Admission", priceCents: 2500, quantity: 350 },
@@ -361,21 +361,20 @@ async function main() {
     },
 
     {
-      title: "Mother Tongue Workshop: Dinka for Kids",
-      summary: "Six-week Saturday morning class for children ages 6–12.",
+      title: "Heritage Language Class: Spanish for Kids",
+      summary: "Six-week Saturday morning class for children ages 6–12, online.",
       description:
-        "Keep the language alive. A beginner-friendly Dinka reading, writing, and conversation workshop taught in rotating pairs — Grace Ajah (lead) with community elders. Includes workbook, weekly snacks, and a graduation certificate. Registration covers all six sessions.",
+        "Keep the language alive at home. A beginner-friendly Spanish reading, writing, and conversation class for heritage speakers, taught by Grace Mendoza with guest storytellers. Includes a workbook and a graduation certificate. Registration covers all six sessions.",
       organizerId: grace.id,
       category: "EDUCATION" as EventCategory,
-      type: "IN_PERSON" as EventType,
-      venueName: "Omaha Public Library — Millard Branch",
-      venueAddress: "13214 Westwood Ln, Omaha, NE",
-      city: "Omaha",
-      country: "United States",
+      type: "ONLINE" as EventType,
+      onlineUrl: "https://meet.example/spanish-for-kids",
+      city: "Online",
+      country: "Global",
       startsAt: dateIn(14, 10),
       endsAt: dateIn(14, 12),
       bannerUrl: "/community/education-books.jpg",
-      highlights: ["Ages 6–12", "6-week program", "Workbook + snacks included"],
+      highlights: ["Ages 6–12", "6-week program", "Workbook included"],
       refundPolicy: "Full refund if cancelled before the first session.",
       tiers: [
         { name: "Single Child",    priceCents: 4000, quantity: 25 },
@@ -385,21 +384,21 @@ async function main() {
     },
 
     {
-      title: "Wedding Reception — Mayen & Nyibol",
-      summary: "Traditional reception following the church ceremony at 2 PM.",
+      title: "Wedding Reception — Priya & Arjun",
+      summary: "Sangeet and reception following the morning ceremony.",
       description:
-        "Public reception open to the community. Traditional dance circle, dinner, and speeches. Dinka attire encouraged. Bring your own blessings — no gift registry.",
-      organizerId: alek.id,
+        "Public reception open to friends and the wider community. Sangeet performances, dinner, and a baraat-style dance floor. Traditional attire encouraged. Your blessings are the only gift we need.",
+      organizerId: taban.id,
       category: "WEDDING" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "The Depot Minneapolis",
-      venueAddress: "225 3rd Ave S, Minneapolis, MN",
-      city: "Minneapolis",
-      country: "United States",
+      venueName: "The Taj Mahal Palace — Crystal Room",
+      venueAddress: "Apollo Bandar, Colaba, Mumbai",
+      city: "Mumbai",
+      country: "India",
       startsAt: dateIn(38, 17),
       endsAt: dateIn(38, 23),
       bannerUrl: "/community/wedding-celebration.jpg",
-      highlights: ["Dinka attire encouraged", "Dinner included", "Open to community"],
+      highlights: ["Traditional attire encouraged", "Dinner included", "Open to community"],
       refundPolicy: "No refunds — transferable through the Tickets page.",
       tiers: [
         { name: "Adult",        priceCents: 5000, quantity: 250 },
@@ -408,20 +407,20 @@ async function main() {
     },
 
     {
-      title: "Youth Basketball League — Championship Weekend",
-      summary: "8 teams, two days of ball, one trophy. Free for spectators.",
+      title: "Youth Futsal League — Championship Weekend",
+      summary: "8 teams, two days of futsal, one trophy. Free for spectators.",
       description:
         "The culmination of our 12-week youth league. 12-and-under on Saturday, 17-and-under on Sunday. Concessions on site. All proceeds from the concessions fund next season's uniforms.",
       organizerId: grace.id,
       category: "SPORTS" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Kroc Center Omaha",
-      venueAddress: "2825 Y St, Omaha, NE",
-      city: "Omaha",
-      country: "United States",
+      venueName: "Ginásio do Ibirapuera",
+      venueAddress: "R. Manoel da Nóbrega, 1361, São Paulo",
+      city: "São Paulo",
+      country: "Brazil",
       startsAt: dateIn(40, 9),
       endsAt: dateIn(41, 18),
-      bannerUrl: "/community/diaspora-hero-1.jpg",
+      bannerUrl: "/community/sports-tournament.jpg",
       highlights: ["12U & 17U divisions", "Concessions on site", "Championship trophies"],
       tiers: [
         { name: "Spectator (Free)",    priceCents: 0,    quantity: 800 },
@@ -430,22 +429,22 @@ async function main() {
     },
 
     {
-      title: "South Sudanese Pentecostal Youth Convention",
-      summary: "Three days of worship, teaching, and fellowship for youth 16–30.",
+      title: "Interfaith Youth Convention",
+      summary: "Three days of dialogue, service, and fellowship for youth 16–30.",
       description:
-        "Our annual convention brings together South Sudanese Pentecostal churches from across the Midwest. Keynote by Rev. John Mabior. Workshops on identity, faith in the diaspora, and mental health. Lodging not included — partner hotels listed on confirmation.",
+        "Young people from Christian, Muslim, Jewish, Hindu, Sikh and Buddhist communities come together for workshops on identity, faith in a new country, and mental health — plus a day of shared community service. Lodging not included — partner hotels listed on confirmation.",
       organizerId: peter.id,
       category: "FAITH" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Omaha Marriott Regency",
-      venueAddress: "10220 Regency Cir, Omaha, NE",
-      city: "Omaha",
-      country: "United States",
+      venueName: "Metro Toronto Convention Centre",
+      venueAddress: "255 Front St W, Toronto, ON",
+      city: "Toronto",
+      country: "Canada",
       startsAt: dateIn(55, 18),
       endsAt: dateIn(57, 22),
       bannerUrl: "/community/faith-sanctuary.jpg",
       featured: true,
-      highlights: ["Keynote speakers", "Mental health workshops", "Worship nights"],
+      highlights: ["Speakers from six faiths", "Mental health workshops", "Community service day"],
       refundPolicy: "Full refund up to 30 days before. 50% up to 7 days before.",
       tiers: [
         { name: "Full Weekend Pass",     priceCents: 7500, quantity: 400 },
@@ -456,16 +455,16 @@ async function main() {
 
     {
       title: "Community Town Hall — Fall Update",
-      summary: "Quarterly update from the SS Community Council. Free, all welcome.",
+      summary: "Quarterly neighbourhood update. Free, all welcome.",
       description:
-        "Agenda: public safety updates, fall programming, housing & employment resources, and open Q&A. Spanish and Arabic interpreters on request — email at least 48 hours ahead.",
+        "Agenda: public safety updates, fall programming, housing & employment resources, and open Q&A. Spanish, Mandarin and Arabic interpreters on request — email at least 48 hours ahead.",
       organizerId: alek.id,
       category: "COMMUNITY" as EventCategory,
       type: "HYBRID" as EventType,
-      venueName: "Brian Coyle Community Center",
-      venueAddress: "420 15th Ave S, Minneapolis, MN",
-      onlineUrl: "https://meet.example/tribe-twin-cities-townhall",
-      city: "Minneapolis",
+      venueName: "Queens Public Library — Flushing",
+      venueAddress: "41-17 Main St, Flushing, NY",
+      onlineUrl: "https://meet.example/nyc-townhall",
+      city: "New York",
       country: "United States",
       startsAt: dateIn(8, 18),
       endsAt: dateIn(8, 20),
@@ -478,22 +477,22 @@ async function main() {
     },
 
     {
-      title: "Flood Relief — Unity State Fundraiser",
-      summary: "Emergency fundraiser for flood-displaced families in Unity State.",
+      title: "Monsoon Relief Benefit Dinner",
+      summary: "A benefit dinner for families displaced by this year's monsoon floods.",
       description:
-        "100% of ticket revenue goes directly to verified partner NGOs operating in Unity State. A short program of speakers, a live auction of community-donated items, and a shared meal. Match challenge: first $10,000 matched by the Diaspora Response Fund.",
-      organizerId: alek.id,
+        "100% of ticket revenue goes directly to verified partner NGOs running flood relief. A short program of speakers, a live auction of community-donated items, and a shared thali dinner. Match challenge: the first $10,000 is matched by a community foundation.",
+      organizerId: taban.id,
       category: "FUNDRAISER" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Sabathani Community Center",
-      venueAddress: "310 E 38th St, Minneapolis, MN",
-      city: "Minneapolis",
-      country: "United States",
+      venueName: "NCPA — Experimental Theatre Foyer",
+      venueAddress: "Nariman Point, Mumbai",
+      city: "Mumbai",
+      country: "India",
       startsAt: dateIn(16, 18),
       endsAt: dateIn(16, 22),
-      bannerUrl: "/community/cultural-performance.jpg",
+      bannerUrl: "/community/diaspora-hero-2.jpg",
       featured: true,
-      highlights: ["100% to flood-response NGOs", "Live auction", "Match challenge on first $10K"],
+      highlights: ["100% to flood-relief NGOs", "Live auction", "Match challenge on first $10K"],
       refundPolicy: "Non-refundable — all proceeds go to relief efforts.",
       tiers: [
         { name: "Community Ticket",  priceCents: 2500,  quantity: 300 },
@@ -506,13 +505,13 @@ async function main() {
       title: "Back-to-School Backpack Drive",
       summary: "Free backpacks + school supplies for K-12 students. Walk-ups welcome.",
       description:
-        "Families from the Nashville South Sudanese community can pick up a backpack loaded with age-appropriate school supplies. Registration helps us plan quantities, but walk-ups are welcome while supplies last. Volunteers needed — see the link in your confirmation.",
-      organizerId: peter.id,
+        "Families can pick up a backpack loaded with age-appropriate school supplies. Registration helps us plan quantities, but walk-ups are welcome while supplies last. Volunteers needed — see the link in your confirmation.",
+      organizerId: alek.id,
       category: "FAMILY" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Casey Jenkins Community Center",
-      venueAddress: "802 Hamilton Ave, Nashville, TN",
-      city: "Nashville",
+      venueName: "Bronx Community Center",
+      venueAddress: "1527 Jesup Ave, Bronx, NY",
+      city: "New York",
       country: "United States",
       startsAt: dateIn(11, 10),
       endsAt: dateIn(11, 14),
@@ -524,10 +523,10 @@ async function main() {
     },
 
     {
-      title: "Community Day — South Sudanese BBQ",
-      summary: "An all-afternoon BBQ in Bonnyrigg Park. Bring family, friends, all welcome.",
+      title: "Harmony Day Community BBQ",
+      summary: "An all-afternoon BBQ celebrating Sydney's many cultures. Everyone welcome.",
       description:
-        "Our end-of-winter gathering. Community-cooked BBQ, soccer in the afternoon, and music until the park closes. A small registration fee covers food; kids eat free.",
+        "Our Harmony Day gathering. Dishes from a dozen community kitchens, soccer in the afternoon, and music until the park closes. A small registration fee covers food; kids eat free.",
       organizerId: ayen.id,
       category: "COMMUNITY" as EventCategory,
       type: "IN_PERSON" as EventType,
@@ -547,19 +546,19 @@ async function main() {
 
     {
       title: "Tech Meetup — Women in Engineering",
-      summary: "Monthly meetup, this month spotlighting South Sudanese women engineers.",
+      summary: "Monthly meetup, this month spotlighting women engineers building in Africa.",
       description:
-        "A short talk + panel + open networking at the University of Juba. Open to students, working engineers, and anyone curious. Snacks and tea provided. Free — registration helps us plan.",
-      organizerId: mary.id,
+        "A short talk + panel + open networking at iHub. Open to students, working engineers, and anyone curious. Snacks and chai provided. Free — registration helps us plan.",
+      organizerId: nyawal.id,
       category: "NETWORKING" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "University of Juba — IT Building",
-      venueAddress: "University Rd, Juba",
-      city: "Juba",
-      country: "South Sudan",
+      venueName: "iHub Nairobi",
+      venueAddress: "Senteu Plaza, Lenana Rd, Nairobi",
+      city: "Nairobi",
+      country: "Kenya",
       startsAt: dateIn(19, 17),
       endsAt: dateIn(19, 20),
-      bannerUrl: "/community/business-mixer.jpg",
+      bannerUrl: "/community/networking-hands.jpg",
       highlights: ["Panel + open networking", "Students welcome", "Snacks provided"],
       tiers: [
         { name: "Free Registration", priceCents: 0, quantity: 150 }
@@ -567,20 +566,20 @@ async function main() {
     },
 
     {
-      title: "Global Prayer Night",
-      summary: "A monthly online prayer gathering for South Sudan and the diaspora.",
+      title: "Global Prayer & Meditation Night",
+      summary: "A monthly online gathering for prayer, meditation, and reflection — all traditions welcome.",
       description:
-        "One hour of guided prayer, led by pastors from Juba, Minneapolis, and London. Open to all denominations. Zoom link sent on registration. Recorded; sent to registrants the next day if you can't attend live.",
+        "One hour of guided prayer and meditation led by faith leaders from Lagos, Toronto, and Mumbai. Open to all traditions and to anyone simply seeking quiet. Link sent on registration. Recorded and sent to registrants the next day.",
       organizerId: mary.id,
       category: "FAITH" as EventCategory,
       type: "ONLINE" as EventType,
-      onlineUrl: "https://meet.example/tribe-global-prayer",
+      onlineUrl: "https://meet.example/global-prayer",
       city: "Online",
       country: "Global",
       startsAt: dateIn(5, 20),
       endsAt: dateIn(5, 21),
       bannerUrl: "/community/faith-sanctuary.jpg",
-      highlights: ["1 hour", "All denominations welcome", "Recording provided"],
+      highlights: ["1 hour", "All traditions welcome", "Recording provided"],
       tiers: [
         { name: "Free Registration", priceCents: 0, quantity: 1000 }
       ]
@@ -589,55 +588,55 @@ async function main() {
     /* ──────── Additional community events ──────── */
 
     {
-      title: "Gospel Night — Songs of Zion",
-      summary: "A night of worship bringing together South Sudanese gospel artists from across the Midwest.",
+      title: "Gospel Night — Songs of Praise",
+      summary: "A night of worship with choirs from across Lagos.",
       description: "Doors open at 6:30 PM. Worship begins at 7. Light refreshments served. Love offering.",
-      organizerId: alek.id,
+      organizerId: mary.id,
       category: "FAITH" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Mount Olivet Lutheran Church",
-      venueAddress: "5025 Knox Ave S, Minneapolis, MN",
-      city: "Minneapolis",
-      country: "United States",
+      venueName: "Muson Centre",
+      venueAddress: "8/9 Marina, Onikan, Lagos",
+      city: "Lagos",
+      country: "Nigeria",
       startsAt: dateIn(23, 19),
       endsAt: dateIn(23, 22),
-      bannerUrl: "/community/faith-sanctuary.jpg",
-      highlights: ["Midwest worship teams", "Love offering", "Refreshments"],
+      bannerUrl: "/community/faith-congregation.jpg",
+      highlights: ["Five choirs", "Love offering", "Refreshments"],
       refundPolicy: "Free event — no refunds needed.",
       tiers: [{ name: "Entry (Free)", priceCents: 0, quantity: 400 }]
     },
 
     {
-      title: "Scholarship Gala — Omaha",
-      summary: "Black-tie fundraiser supporting 12 South Sudanese students pursuing higher education.",
-      description: "Silent auction, keynote from a scholarship alum, and a shared dinner. Every ticket funds ~5% of a scholarship.",
-      organizerId: grace.id,
-      category: "FUNDRAISER" as EventCategory,
+      title: "Lunar New Year Night Market",
+      summary: "Dumplings, lion dancing, lanterns and red envelopes in Chinatown.",
+      description: "A night market for the Year's first full moon: food stalls from Chinese, Korean and Vietnamese kitchens, a lion dance at 8 PM, calligraphy and lantern-making for kids.",
+      organizerId: peter.id,
+      category: "CULTURAL" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Embassy Suites by Hilton — La Vista",
-      venueAddress: "12520 Westport Pkwy, La Vista, NE",
-      city: "Omaha",
-      country: "United States",
-      startsAt: dateIn(46, 18),
+      venueName: "Nathan Phillips Square",
+      venueAddress: "100 Queen St W, Toronto, ON",
+      city: "Toronto",
+      country: "Canada",
+      startsAt: dateIn(46, 17),
       endsAt: dateIn(46, 23),
-      bannerUrl: "/community/cultural-confetti.jpg",
+      bannerUrl: "/community/cultural-performance.jpg",
       featured: true,
-      highlights: ["Black-tie", "Silent auction", "100% of revenue to scholarships"],
+      highlights: ["Lion dance at 8 PM", "Food from three cuisines", "Lantern-making for kids"],
       refundPolicy: "50% refund up to 10 days before. No refunds after.",
       tiers: [
-        { name: "Individual", priceCents: 10000, quantity: 200 },
-        { name: "Table of 8", priceCents: 70000, quantity: 20 }
+        { name: "Entry", priceCents: 1000, quantity: 2000 },
+        { name: "Tasting Pass (10 dishes)", priceCents: 4000, quantity: 300 }
       ]
     },
 
     {
-      title: "Dinka Language Class — Level 1",
-      summary: "Six-week beginner Dinka course over Zoom. Live instruction + recordings + workbook.",
-      description: "Mondays 7–8 PM Central. Class size capped at 18 so everyone gets speaking time. Workbook mailed to US addresses.",
-      organizerId: grace.id,
+      title: "Korean Language Class — Level 1",
+      summary: "Six-week beginner Korean course over Zoom. Live instruction + recordings + workbook.",
+      description: "Mondays 7–8 PM KST. Class size capped at 18 so everyone gets speaking time. Hangul, greetings, and everyday conversation.",
+      organizerId: peter.id,
       category: "EDUCATION" as EventCategory,
       type: "ONLINE" as EventType,
-      onlineUrl: "https://meet.example/tribe-dinka-l1",
+      onlineUrl: "https://meet.example/korean-l1",
       city: "Online",
       country: "Global",
       startsAt: dateIn(15, 19),
@@ -652,21 +651,21 @@ async function main() {
     },
 
     {
-      title: "Independence Day Celebration — London",
-      summary: "Annual July 9 gathering for the UK South Sudanese community.",
-      description: "Flag ceremony at 2 PM, cultural performances 3–6 PM, shared dinner after. Family-friendly.",
-      organizerId: ayen.id,
+      title: "Día de los Muertos Celebration",
+      summary: "Ofrendas, marigolds, music and remembrance in Coyoacán.",
+      description: "A community altar you can add a photo to, a procession at dusk, mariachi and son jarocho sets, and pan de muerto for everyone. Face painting from 4 PM. Family-friendly.",
+      organizerId: grace.id,
       category: "CULTURAL" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Westminster Community Hall",
-      venueAddress: "1 Rochester Row, London SW1P 1LJ",
-      city: "London",
-      country: "United Kingdom",
+      venueName: "Jardín Centenario",
+      venueAddress: "Coyoacán, Mexico City",
+      city: "Mexico City",
+      country: "Mexico",
       startsAt: dateIn(32, 14),
       endsAt: dateIn(32, 21),
-      bannerUrl: "/community/events-new-hero.jpg",
+      bannerUrl: "/community/diaspora-hero-1.jpg",
       featured: true,
-      highlights: ["Flag ceremony", "Live performances", "Dinner included"],
+      highlights: ["Community ofrenda", "Procession at dusk", "Live mariachi"],
       refundPolicy: "Full refund up to 3 days before the event.",
       tiers: [
         { name: "Adult",           priceCents: 1500, quantity: 350 },
@@ -675,8 +674,8 @@ async function main() {
     },
 
     {
-      title: "Kids Cultural Workshop — Sydney",
-      summary: "A Saturday morning workshop for kids 6–12 — traditional dance, crafts, and storytelling.",
+      title: "Kids World Cultures Workshop",
+      summary: "A Saturday morning workshop for kids 6–12 — dances, crafts, and stories from around the world.",
       description: "Parents welcome to stay. Snacks provided. Walk away with a hand-made craft keepsake.",
       organizerId: ayen.id,
       category: "FAMILY" as EventCategory,
@@ -693,15 +692,15 @@ async function main() {
     },
 
     {
-      title: "Nashville Elders Forum — Stories & Advice",
-      summary: "Moderated conversation with community elders about identity, family, and faith in the diaspora.",
-      description: "Part of the Nashville monthly speaker series. Tea and coffee from 6:30 PM; talk 7–8:30 PM; Q&A until 9.",
-      organizerId: peter.id,
+      title: "Elders Story Circle — Across Generations",
+      summary: "A moderated conversation with elders about migration, family, and keeping traditions alive.",
+      description: "Part of our monthly speaker series. Tea and coffee from 6:30 PM; talk 7–8:30 PM; Q&A until 9.",
+      organizerId: alek.id,
       category: "COMMUNITY" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Nashville Public Library — Main Branch",
-      venueAddress: "615 Church St, Nashville, TN",
-      city: "Nashville",
+      venueName: "New York Public Library — Schomburg Center",
+      venueAddress: "515 Malcolm X Blvd, New York, NY",
+      city: "New York",
       country: "United States",
       startsAt: dateIn(10, 18),
       endsAt: dateIn(10, 21),
@@ -710,45 +709,45 @@ async function main() {
       tiers: [{ name: "Free Registration", priceCents: 0, quantity: 120 }]
     },
 
-    /* ──────────────── East Africa catalog (Nairobi, Juba, Wau, Kampala) ──────────────── */
+    /* ──────────────── Nairobi, Paris, London, Juba, Mumbai, Lagos ──────────────── */
 
     {
-      title: "South Sudanese Women's Tea — Nairobi",
-      summary: "Monthly gathering for South Sudanese women in Nairobi. Tea, conversation, and quiet support.",
+      title: "Eid al-Fitr Community Dinner",
+      summary: "Celebrate the end of Ramadan with a shared meal. Neighbours of every faith welcome.",
       description:
-        "An evening for South Sudanese women living in Nairobi to come together — tea, mandazi, and the kind of conversation you can only have with people who get it. Two short sharings then open floor. Free; donations welcome for the scholarship pot.",
+        "A community iftar-style dinner to mark Eid: biryani, pilau, samosas and sweets, a short program, and henna for the kids. Free; donations welcome for the community food bank.",
       organizerId: nyawal.id,
       category: "COMMUNITY" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Pawa254",
-      venueAddress: "State House Crescent, Nairobi",
+      venueName: "Kenyatta International Convention Centre",
+      venueAddress: "Harambee Ave, Nairobi",
       city: "Nairobi",
       country: "Kenya",
       startsAt: dateIn(7, 18),
       endsAt: dateIn(7, 21),
-      bannerUrl: "/community/business-mixer.jpg",
+      bannerUrl: "/community/family-together.jpg",
       featured: true,
-      highlights: ["Women's space", "Tea + mandazi", "Scholarship donations welcome"],
+      highlights: ["Everyone welcome", "Shared dinner", "Food-bank donations welcome"],
       tiers: [{ name: "Free Registration", priceCents: 0, quantity: 180 }]
     },
 
     {
-      title: "Karibu Nairobi — South Sudan Cultural Night",
-      summary: "A celebration of South Sudan's tribes through music, dance, and shared plates — in the heart of Nairobi.",
+      title: "Fête de la Musique Block Party",
+      summary: "Street music on every corner — open mic, DJ sets and a brass band in the Marais.",
       description:
-        "An evening of Dinka, Nuer, Bari and Shilluk dance and song from the South Sudanese diaspora in Nairobi — plus shared plates of kisra and asida. Dress: your tribe's colours if you have them, smart-casual otherwise.",
-      organizerId: nyawal.id,
-      category: "CULTURAL" as EventCategory,
+        "Our block's take on the music festival: an open-mic stage for neighbours, kora and accordion sets, a brass band parade at 9 PM, and DJs until midnight. Food from the street's own restaurants.",
+      organizerId: ayen.id,
+      category: "MUSIC" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Bomas of Kenya",
-      venueAddress: "Lang'ata Rd, Nairobi",
-      city: "Nairobi",
-      country: "Kenya",
+      venueName: "Place des Vosges",
+      venueAddress: "Place des Vosges, 75004 Paris",
+      city: "Paris",
+      country: "France",
       startsAt: dateIn(24, 17),
       endsAt: dateIn(24, 23),
-      bannerUrl: "/community/cultural-dancers-flags.jpg",
+      bannerUrl: "/community/music-concert-crowd.jpg",
       featured: true,
-      highlights: ["All tribes welcome", "Live music + dance", "Shared plates"],
+      highlights: ["Open-mic stage", "Brass band parade", "Street food"],
       refundPolicy: "Full refund up to 5 days before the event.",
       tiers: [
         { name: "Adult",           priceCents: 2500, quantity: 400 },
@@ -758,21 +757,21 @@ async function main() {
     },
 
     {
-      title: "Juba Riverside Wedding Reception — Akol & Adut",
-      summary: "A Nile-side celebration in Juba — traditional dowry program, live band, and dinner under the stars.",
+      title: "Nowruz Spring Celebration",
+      summary: "Welcome the Persian New Year with a haft-sin table, music and dance.",
       description:
-        "Public reception following the church ceremony. Dress code: white + gold, or your tribal attire. Traditional dowry program from 5 PM, live band from 7, dance floor opens at 9. Transport from Hai Cinema arranged on request.",
-      organizerId: lado.id,
-      category: "WEDDING" as EventCategory,
+        "Celebrate Nowruz with Iranian, Afghan, Kurdish and Central Asian communities. A shared haft-sin table, live tar and daf music, traditional dance, and a dinner of sabzi polo. Dress: spring colours.",
+      organizerId: ayen.id,
+      category: "CULTURAL" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Pyramid Continental Hotel",
-      venueAddress: "Ministries Rd, Juba",
-      city: "Juba",
-      country: "South Sudan",
+      venueName: "Kensington Town Hall",
+      venueAddress: "Hornton St, London W8 7NX",
+      city: "London",
+      country: "United Kingdom",
       startsAt: dateIn(42, 17),
       endsAt: dateIn(42, 23),
-      bannerUrl: "/community/wedding-celebration.jpg",
-      highlights: ["Riverside venue", "Live band", "Dowry program included"],
+      bannerUrl: "/community/cultural-celebration.jpg",
+      highlights: ["Haft-sin table", "Live music", "Dinner included"],
       refundPolicy: "No refunds — tickets may be transferred.",
       tiers: [
         { name: "Adult",           priceCents: 4000, quantity: 180 },
@@ -781,84 +780,87 @@ async function main() {
     },
 
     {
-      title: "Wau Heritage Weekend",
-      summary: "Three days of South Sudanese music, food, and storytelling in one of South Sudan's oldest cities.",
+      title: "South Sudanese Cultural Night — Juba",
+      summary: "An evening of Dinka, Nuer, Bari and Shilluk music, dance, and shared plates on the Nile.",
       description:
-        "A rolling weekend across central Wau. Live music each evening (Dinka, Luo, Fertit, Balanda traditions), shared food at midday, elders' storytelling after sunset. Friday & Saturday family-friendly until 9; Sunday 18+.",
+        "Live drumming and dance from across South Sudan's communities, shared food at sunset, and elders' storytelling after dark. Family-friendly until 9; then the dance floor opens.",
       organizerId: lado.id,
       category: "CULTURAL" as EventCategory,
       type: "IN_PERSON" as EventType,
-      venueName: "Wau Civic Centre + Freedom Square",
-      venueAddress: "Hai Salaam, Wau",
-      city: "Wau",
-      country: "South Sudan",
-      startsAt: dateIn(30, 17),
-      endsAt: dateIn(32, 23),
-      bannerUrl: "/community/cultural-celebration.jpg",
-      featured: true,
-      highlights: ["3-day weekend", "Multi-tribe program", "Elders' storytelling"],
-      tiers: [
-        { name: "Single-day pass", priceCents: 1500, quantity: 500 },
-        { name: "Weekend pass",    priceCents: 3500, quantity: 250 }
-      ]
-    },
-
-    {
-      title: "Kampala Gospel Night — South Sudanese Diaspora",
-      summary: "An evening of worship led by South Sudanese churches across Kampala.",
-      description:
-        "Six worship teams from South Sudanese congregations in Kampala — one stage, one night. Doors open 6 PM; worship starts 7. Light refreshments after. Love-offering for the speaker ministry.",
-      organizerId: taban.id,
-      category: "FAITH" as EventCategory,
-      type: "IN_PERSON" as EventType,
-      venueName: "Watoto Church Central",
-      venueAddress: "Bombo Rd, Kampala",
-      city: "Kampala",
-      country: "Uganda",
-      startsAt: dateIn(13, 18),
-      endsAt: dateIn(13, 22),
-      bannerUrl: "/community/faith-sanctuary.jpg",
-      featured: true,
-      highlights: ["6 worship teams", "Light refreshments", "Love offering"],
-      refundPolicy: "Free event — no refunds needed.",
-      tiers: [{ name: "Free Registration", priceCents: 0, quantity: 600 }]
-    },
-
-    {
-      title: "South Sudan Cultural Day — Kampala",
-      summary: "A daytime showcase of South Sudanese heritage: traditional dance, drum, and shared community dishes.",
-      description:
-        "All-ages event on the lawns of the National Theatre. Dinka and Nuer drum ensembles open at noon, dance troupes from across the tribes at 2 PM, community cook-off at 4 PM, closing program at sunset. Traditional attire encouraged.",
-      organizerId: taban.id,
-      category: "CULTURAL" as EventCategory,
-      type: "IN_PERSON" as EventType,
-      venueName: "Uganda National Cultural Centre",
-      venueAddress: "Siad Barre Ave, Kampala",
-      city: "Kampala",
-      country: "Uganda",
-      startsAt: dateIn(27, 12),
-      endsAt: dateIn(27, 19),
-      bannerUrl: "/community/cultural-dancers-flags.jpg",
-      highlights: ["All tribes", "Community cook-off", "Traditional attire encouraged"],
-      tiers: [
-        { name: "Adult",            priceCents: 1500, quantity: 500 },
-        { name: "Family (up to 4)", priceCents: 5000, quantity: 60  },
-        { name: "Child (under 12)", priceCents: 0,    quantity: 200 }
-      ]
-    },
-
-    {
-      title: "Juba Startup Pitch Night",
-      summary: "Eight South Sudanese founders pitch to diaspora investors and local angels. Networking + drinks after.",
-      description:
-        "Each founder gets 4 minutes + 2 minutes Q&A. Judged by three South Sudanese investors based between Juba and the diaspora. Winner gets free legal + accounting support for 6 months. Open networking from 8:30 PM.",
-      organizerId: lado.id,
-      category: "BUSINESS" as EventCategory,
-      type: "IN_PERSON" as EventType,
-      venueName: "iceaddis Juba",
-      venueAddress: "Tongping, Juba",
+      venueName: "Nyakuron Cultural Centre",
+      venueAddress: "Nyakuron, Juba",
       city: "Juba",
       country: "South Sudan",
+      startsAt: dateIn(30, 17),
+      endsAt: dateIn(30, 23),
+      bannerUrl: "/community/cultural-dancers-flags.jpg",
+      featured: true,
+      highlights: ["Live drumming & dance", "Shared plates", "Elders' storytelling"],
+      tiers: [
+        { name: "Single-day pass", priceCents: 1500, quantity: 500 },
+        { name: "VIP table",       priceCents: 3500, quantity: 250 }
+      ]
+    },
+
+    {
+      title: "Holi Festival of Colours",
+      summary: "Colour, music and street food to welcome spring.",
+      description:
+        "Organic colours provided, dhol drummers from noon, a Bollywood DJ, and thandai and gujiya stalls. Wear white and clothes you don't mind keeping colourful. All ages.",
+      organizerId: taban.id,
+      category: "CULTURAL" as EventCategory,
+      type: "IN_PERSON" as EventType,
+      venueName: "Shivaji Park",
+      venueAddress: "Dadar West, Mumbai",
+      city: "Mumbai",
+      country: "India",
+      startsAt: dateIn(13, 11),
+      endsAt: dateIn(13, 17),
+      bannerUrl: "/community/community-outdoors.jpg",
+      featured: true,
+      highlights: ["Organic colours provided", "Dhol drummers", "Street food"],
+      refundPolicy: "Full refund up to 2 days before the event.",
+      tiers: [
+        { name: "Entry",           priceCents: 800,  quantity: 1500 },
+        { name: "Colour Kit + Entry", priceCents: 1500, quantity: 500 }
+      ]
+    },
+
+    {
+      title: "Irish Céilí Dance Night",
+      summary: "Live trad music and a called céilí — no experience needed.",
+      description:
+        "A caller walks everyone through the dances, so beginners are welcome. Live fiddle, flute and bodhrán from a local trad session band. Soda bread and tea at the interval.",
+      organizerId: alek.id,
+      category: "CULTURAL" as EventCategory,
+      type: "IN_PERSON" as EventType,
+      venueName: "The Irish Centre",
+      venueAddress: "2390 Eglinton Ave E, Toronto, ON",
+      city: "Toronto",
+      country: "Canada",
+      startsAt: dateIn(27, 19),
+      endsAt: dateIn(27, 23),
+      bannerUrl: "/community/music-live-stage.jpg",
+      highlights: ["Beginners welcome", "Live trad band", "Dances called"],
+      tiers: [
+        { name: "Adult",            priceCents: 1500, quantity: 200 },
+        { name: "Family (up to 4)", priceCents: 5000, quantity: 30  },
+        { name: "Child (under 12)", priceCents: 0,    quantity: 60  }
+      ]
+    },
+
+    {
+      title: "Lagos Startup Pitch Night",
+      summary: "Eight founders pitch to local angels and diaspora investors. Networking + drinks after.",
+      description:
+        "Each founder gets 4 minutes + 2 minutes Q&A. Judged by three investors based between Lagos and the diaspora. Winner gets free legal + accounting support for 6 months. Open networking from 8:30 PM.",
+      organizerId: mary.id,
+      category: "BUSINESS" as EventCategory,
+      type: "IN_PERSON" as EventType,
+      venueName: "Co-Creation Hub",
+      venueAddress: "294 Herbert Macaulay Way, Yaba, Lagos",
+      city: "Lagos",
+      country: "Nigeria",
       startsAt: dateIn(20, 18),
       endsAt: dateIn(20, 22),
       bannerUrl: "/community/business-speaker.jpg",
@@ -887,16 +889,16 @@ async function main() {
 
   console.log("\nDone. Sample logins:");
   console.log(`  ${em("admin").padEnd(32)} / admin1234     (ADMIN)`);
-  console.log(`  ${em("alek").padEnd(32)} / password123   (ORGANIZER — Minneapolis)`);
-  console.log(`  ${em("peter").padEnd(32)} / password123   (ORGANIZER — Nashville)`);
-  console.log(`  ${em("grace").padEnd(32)} / password123   (ORGANIZER — Omaha)`);
-  console.log(`  ${em("mary").padEnd(32)} / password123   (ORGANIZER — Juba)`);
+  console.log(`  ${em("alek").padEnd(32)} / password123   (ORGANIZER — New York)`);
+  console.log(`  ${em("peter").padEnd(32)} / password123   (ORGANIZER — Seoul)`);
+  console.log(`  ${em("grace").padEnd(32)} / password123   (ORGANIZER — Mexico City)`);
+  console.log(`  ${em("mary").padEnd(32)} / password123   (ORGANIZER — Lagos)`);
   console.log(`  ${em("nyawal").padEnd(32)} / password123   (ORGANIZER — Nairobi)`);
   console.log(`  ${em("lado").padEnd(32)} / password123   (ORGANIZER — Juba)`);
-  console.log(`  ${em("taban").padEnd(32)} / password123   (ORGANIZER — Kampala)`);
-  console.log(`  ${em("daniel").padEnd(32)} / password123   (ATTENDEE  — Minneapolis)`);
-  console.log(`  ${em("rebecca").padEnd(32)} / password123   (ATTENDEE  — Nashville)`);
-  console.log(`  ${em("james").padEnd(32)} / password123   (ATTENDEE  — Calgary)`);
+  console.log(`  ${em("taban").padEnd(32)} / password123   (ORGANIZER — Mumbai)`);
+  console.log(`  ${em("daniel").padEnd(32)} / password123   (ATTENDEE  — São Paulo)`);
+  console.log(`  ${em("rebecca").padEnd(32)} / password123   (ATTENDEE  — Paris)`);
+  console.log(`  ${em("james").padEnd(32)} / password123   (ATTENDEE  — Toronto)`);
   console.log(`  ${em("ayen").padEnd(32)} / password123   (ATTENDEE  — London)`);
 }
 

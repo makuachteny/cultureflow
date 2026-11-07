@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="col-span-2 md:col-span-1">
           <Logo variant="horizontal" tone="white" size={52} />
           <p className="mt-3 hidden md:block text-white/75 max-w-xs text-[13px] leading-snug">
-            Events for South Sudanese, at home and across the diaspora.
+            Events for every culture and community, near you and around the world.
           </p>
         </div>
 

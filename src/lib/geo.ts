@@ -14,26 +14,29 @@ import { headers } from "next/headers";
  * We intentionally don't do IP lookups client-side — that would leak the
  * user's IP to a third party. Edge headers are already on the request.
  *
- * The mapping picks the largest South Sudanese diaspora hub in each
+ * The mapping picks the featured city (FEATURED_CITIES) for each
  * country. Attendees and organizers can always override via the city
  * filter on /browse.
  */
 
 const COUNTRY_TO_CITY: Record<string, string> = {
-  SS: "Juba",
-  US: "Omaha",
-  CA: "Calgary",
+  US: "New York",
   GB: "London",
   UK: "London",
-  AU: "Melbourne",
+  CA: "Toronto",
+  NG: "Lagos",
   KE: "Nairobi",
-  UG: "Kampala",
-  SD: "Khartoum",
-  EG: "Cairo"
+  IN: "Mumbai",
+  BR: "São Paulo",
+  MX: "Mexico City",
+  FR: "Paris",
+  KR: "Seoul",
+  AU: "Sydney",
+  SS: "Juba"
 };
 
-/** Default when no signal — Juba is home. */
-const FALLBACK_CITY = "Juba";
+/** Default when no signal. */
+const FALLBACK_CITY = "New York";
 
 /** ISO-4217 local currency for each country we support transacting in.
  *  Used by the checkout flow to charge the buyer in the currency they

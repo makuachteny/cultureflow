@@ -2,11 +2,11 @@
 /**
  * Brand SVG generator — CultureFlow identity.
  *
- * The mark is a Nilotic long-horned cow — the animal at the centre of
- * Dinka and Nuer life — reduced to flat, sharp-edged shapes: open lyre
- * horns, a long face, angled ears. The flag's gold star sits cradled
- * between the horn tips. In full colour the horns are flag blue, so
- * the star sits on blue exactly as it does on the flag's hoist.
+ * The mark is a long-horned cow — across Africa, Asia, Europe and the
+ * Americas, cattle have meant gathering, celebration and shared wealth —
+ * reduced to flat, sharp-edged shapes: open lyre horns, a long face,
+ * angled ears. A gold sun sits cradled between the horn tips: a
+ * gathering under one sky.
  *
  * The name is set as a two-line block, CULTURE / FLOW, in wide black
  * Archivo caps; FLOW takes the horn colour so the words belong to the
@@ -20,8 +20,8 @@
  * Outputs (public/):
  *   logo.svg                     master — stacked, full colour
  *   logo-mark.svg                mark, full colour
- *   logo-mark-black.svg          mark, black + gold star
- *   logo-mark-white.svg          mark, white + gold star (dark backgrounds)
+ *   logo-mark-black.svg          mark, black + gold sun
+ *   logo-mark-white.svg          mark, white + gold sun (dark backgrounds)
  *   logo-mark-mono.svg           mark, currentColor (inherits text colour)
  *   logo-horizontal.svg          mark + two-line name (header lockup)
  *   logo-horizontal-black.svg    one colour
@@ -50,7 +50,7 @@ const brand = JSON.parse(readFileSync(join(ROOT, "brand.config.json"), "utf8"));
 const glyphs = JSON.parse(readFileSync(join(__dirname, "brand", "glyphs.json"), "utf8"));
 const NAME = brand.name;
 
-/* ─── Palette (South Sudanese flag) ─── */
+/* ─── Palette ─── */
 const C = {
   black: "#000000",
   white: "#FFFFFF",
@@ -77,24 +77,17 @@ const EAR = (f) => [[f(77), 98], [f(46), 104], [f(40), 116], [f(79), 114]];
 const NOSTRILS = [[88, 184, 7, 9], [105, 184, 7, 9]];
 const pts = (a) => a.map(([x, y]) => `${x},${y}`).join(" ");
 
-function starPoints(cx, cy, r) {
-  const p = [];
-  for (let i = 0; i < 10; i++) {
-    const a = -Math.PI / 2 + (i * Math.PI) / 5;
-    const rr = i % 2 ? r * 0.4 : r;
-    p.push([+(cx + rr * Math.cos(a)).toFixed(2), +(cy + rr * Math.sin(a)).toFixed(2)]);
-  }
-  return p;
-}
-const STAR = starPoints(100, 34, 15);
+// The sun between the horn tips.
+const SUN = { cx: 100, cy: 36, r: 13 };
+const sunSvg = (fill) => `<circle cx="${SUN.cx}" cy="${SUN.cy}" r="${SUN.r}"${fill ? ` fill="${fill}"` : ""}/>`;
 
 /** Mark with explicit fills. `nose` is the nostril colour (= background). */
-function mark({ horns, head, star = C.yellow, nose }) {
+function mark({ horns, head, sun = C.yellow, nose }) {
   return `<path d="${horn(L)}" fill="${horns}"/><path d="${horn(R)}" fill="${horns}"/>` +
     `<polygon points="${pts(EAR(L))}" fill="${head}"/><polygon points="${pts(EAR(R))}" fill="${head}"/>` +
     `<polygon points="${pts(FACE)}" fill="${head}"/>` +
     NOSTRILS.map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${nose}"/>`).join("") +
-    `<polygon points="${pts(STAR)}" fill="${star}"/>`;
+    sunSvg(sun);
 }
 
 /** currentColor mark; nostrils are true holes (evenodd), so it works on any background. */
@@ -103,7 +96,7 @@ function markMono() {
   const holes = NOSTRILS.map(([x, y, w, h]) => `M${x} ${y}H${x + w}V${y + h}H${x}Z`).join("");
   return `<g fill="currentColor"><path d="${horn(L)}"/><path d="${horn(R)}"/>` +
     `<polygon points="${pts(EAR(L))}"/><polygon points="${pts(EAR(R))}"/>` +
-    `<path fill-rule="evenodd" d="${ring(FACE)}${holes}"/><polygon points="${pts(STAR)}"/></g>`;
+    `<path fill-rule="evenodd" d="${ring(FACE)}${holes}"/>${sunSvg()}</g>`;
 }
 
 /* Colourways: mark fills + the two lines of the name. */
@@ -198,7 +191,7 @@ const outputs = {
   "logo-wordmark-line.svg": wordmarkLineSvg,
   "logo-app-icon.svg": appIcon(C.blue, { horns: C.white, head: C.white, nose: C.blue }, 0.7),
   "logo-app-icon-maskable.svg": appIcon(C.blue, { horns: C.white, head: C.white, nose: C.blue }, 0.56),
-  "logo-app-icon-yellow.svg": appIcon(C.yellow, { horns: C.black, head: C.black, star: C.red, nose: C.yellow }, 0.7)
+  "logo-app-icon-yellow.svg": appIcon(C.yellow, { horns: C.black, head: C.black, sun: C.red, nose: C.yellow }, 0.7)
 };
 
 for (const [file, contents] of Object.entries(outputs)) {

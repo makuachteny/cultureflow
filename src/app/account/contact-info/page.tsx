@@ -77,13 +77,13 @@ export default async function ContactInfoPage({
             />
           </Field>
         </div>
-        <Field label="Tribe (optional)">
+        <Field label="Community or heritage (optional)">
           <input
             name="tribe"
             defaultValue={user.tribe ?? ""}
             maxLength={40}
             className="input"
-            placeholder="Dinka, Nuer, Bari…"
+            placeholder="Yoruba, Punjabi, Irish…"
           />
         </Field>
         <Field label="Short bio" hint={`${(user.bio ?? "").length}/600`} hintPosition="right">

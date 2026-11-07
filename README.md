@@ -11,7 +11,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-payments-635BFF?logo=stripe&logoColor=white)
 
-The events and community platform for South Sudanese — discover, host, and celebrate gatherings at home and across the diaspora. Modern discovery and ticketing, built for the South Sudanese community and designed to work on mobile and low-bandwidth connections.
+The events and community platform for every culture and community — discover, host, and celebrate gatherings anywhere in the world: cultural festivals, faith services, weddings, concerts, meetups, and family days. Modern discovery and ticketing, designed to work on mobile and low-bandwidth connections, with card and mobile-money payments so it works from Lagos to London.
 
 This repository contains the full web application: Next.js 14 (App Router) + Prisma + Postgres, with NextAuth authentication, Stripe payments (test mode by default), and a community layer (profiles, follows, likes, event comments, admin moderation).
 
@@ -27,7 +27,7 @@ Sign in with any of the seeded accounts, for example **`alek@cultureflow.example
 
 ## Brand
 
-The logo is a South Sudanese long-horned cow with the flag's gold star between its horns. Every variant (lockups, mark, wordmark, app icons, favicon, social card) is generated from code. See the [brand guide](docs/brand.md).
+The logo is a long-horned cow — a symbol of gathering and shared wealth across many cultures — drawn in flat colour with sharp edges. Every variant (lockups, mark, wordmark, app icons, favicon, social card) is generated from code. See the [brand guide](docs/brand.md).
 
 ## Screenshots
 
@@ -80,7 +80,7 @@ Screenshots are from the [live demo](https://cultureflow-demo.vercel.app) runnin
 - **Prisma** ORM against **PostgreSQL**
 - **NextAuth v5** (credentials + optional Google OAuth)
 - **Stripe** for payments (test-ready)
-- **Tailwind CSS** with the custom brand palette (Nile + Gold)
+- **Tailwind CSS** with a flat, bold brand palette (square corners, no gradients)
 - **Vitest** for unit tests
 - **Docker** + `docker-compose` for local development
 - Designed to deploy to **Vercel + Neon/Supabase** (or any Docker host)
@@ -124,8 +124,8 @@ cultureflow/
 
 ## Data model (high level)
 
-- `User` with `Role` (ATTENDEE / ORGANIZER / ADMIN) and `UserStatus`
-- `Event` + `TicketTier` + `Ticket`
+- `User` with `Role` (ATTENDEE / ORGANIZER / ADMIN), `UserStatus`, and an optional free-text community / heritage label
+- `Event` + `TicketTier` + `Ticket` (events can be open to everyone or limited to named communities)
 - `Order` + `Payment` + `StripeEvent` (idempotency)
 - `Comment`, `Follow`, `Like` (community graph)
 - `ContactMessage`, `OrganizerMessage` (inbound support + DMs)
@@ -194,6 +194,8 @@ npm run dev
 | Attendee  | `james@cultureflow.example`   | `password123` |
 | Attendee  | `ayen@cultureflow.example`    | `password123` |
 
+More organizers (`peter@`, `grace@`, `nyawal@`, `lado@`, `taban@`) and attendees (`daniel@`, `rebecca@`) use `password123` too. The seed covers events in New York, London, Toronto, Lagos, Nairobi, Mumbai, São Paulo, Mexico City, Paris, Seoul, Sydney, Juba and online — Diwali, Lunar New Year, Día de los Muertos, Juneteenth, Eid, Nowruz, Holi and more.
+
 ### Running in Docker locally
 
 ```bash
@@ -241,7 +243,7 @@ card brand it supports (Visa / Mastercard / Amex / Discover / Maestro
 > for every account you need (Stripe, M-Pesa Daraja, MTN MoMo, m-Gurush,
 > hosting, cron, email).
 
-CultureFlow routes each order to the right rail based on the BUYER's currency.
+CultureFlow routes each order to the right rail based on the BUYER's currency. Cards work everywhere; the mobile-money rails cover East Africa today, and new regional rails plug in behind the same interface.
 The `pickProvider()` policy in `src/lib/payments/router.ts`:
 
 | Currency       | Default rail            | Fallback     |

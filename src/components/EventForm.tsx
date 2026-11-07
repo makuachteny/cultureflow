@@ -96,7 +96,7 @@ export default function EventForm({ eventId, initial, preset }: Props = {}) {
     onlineUrl:    initial?.onlineUrl    ?? "",
     bannerUrl:    initial?.bannerUrl    ?? "",
     capacity:     initial?.capacity != null ? String(initial.capacity) : "",
-    tribeVisibility: (initial?.tribeVisibility ?? "ALL_SOUTH_SUDANESE") as Visibility
+    tribeVisibility: (initial?.tribeVisibility ?? "EVERYONE") as Visibility
   });
   const [visibleTribes, setVisibleTribes] = useState<Set<string>>(
     new Set(initial?.visibleTribes ?? [])
@@ -173,7 +173,7 @@ export default function EventForm({ eventId, initial, preset }: Props = {}) {
     try {
       // Guard: SELECTED_TRIBES requires at least one tribe.
       if (form.tribeVisibility === "SELECTED_TRIBES" && visibleTribes.size === 0) {
-        setError("Pick at least one tribe, or change the visibility.");
+        setError("Pick at least one community, or change the visibility.");
         return;
       }
 
@@ -322,10 +322,10 @@ export default function EventForm({ eventId, initial, preset }: Props = {}) {
         )}
       </Section>
 
-      {/* ═══════ Who can see this? (TRIBE VISIBILITY) ═══════ */}
+      {/* ═══════ Who can see this? (community visibility) ═══════ */}
       <Section
         title="Who can see this event?"
-        subtitle="Choose how widely your event is discoverable within the tribe."
+        subtitle="Choose who can discover your event."
       >
         <div className="grid gap-2">
           {TRIBE_VISIBILITY_OPTIONS.map((opt) => {
@@ -367,7 +367,7 @@ export default function EventForm({ eventId, initial, preset }: Props = {}) {
 
         {form.tribeVisibility === "OWN_TRIBE" && (
           <p className="mt-2 text-[13px] text-ink-600">
-            Your profile must have a tribe set for this to work. Update it in{" "}
+            Your profile must have a community set for this to work. Update it in{" "}
             <Link href="/dashboard/settings" className="text-nile font-semibold hover:underline">Settings</Link>.
           </p>
         )}
@@ -591,8 +591,8 @@ function Section({ title, subtitle, children }: { title: string; subtitle?: stri
 }
 
 /**
- * Free-text tribe/community chip input. Organizers type the name of any
- * tribe, society, club, or community — Enter (or comma) commits it as a
+ * Free-text community chip input. Organizers type the name of any
+ * heritage, diaspora, society, club, or community — Enter (or comma) commits it as a
  * chip. Suggestion chips below seed the field with common groupings but
  * aren't a whitelist; any string is accepted.
  */
@@ -618,9 +618,9 @@ function TribeChipInput({
     <div className="mt-4 rounded-md bg-cream-100 p-4">
       <div className="flex items-center justify-between">
         <div>
-          <div className="font-semibold text-ink-900">Pick tribes</div>
+          <div className="font-semibold text-ink-900">Pick communities</div>
           <div className="text-[13px] text-ink-600">
-            Type a tribe name and press Enter — Dinka, Nuer, Bari, your sub-clan, whatever fits.
+            Type a community and press Enter: a heritage, diaspora, congregation, club or neighborhood, whatever fits.
           </div>
         </div>
         <div className="text-[13px] text-nile font-semibold">
@@ -656,7 +656,7 @@ function TribeChipInput({
           type="text"
           className="input flex-1"
           value={draft}
-          placeholder="Add a tribe or community…"
+          placeholder="Add a community…"
           maxLength={40}
           onChange={(e) => setDraft(e.target.value)}
           onKeyDown={(e) => {

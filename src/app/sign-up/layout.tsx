@@ -7,7 +7,7 @@ import type { Metadata } from "next";
  */
 export const metadata: Metadata = {
   title:       "Create your account",
-  description: "Join CultureFlow — discover events for South Sudanese communities at home and across the diaspora, host your own gatherings in minutes."
+  description: "Join CultureFlow — discover events from every culture and community, and host your own gatherings in minutes."
 };
 
 export default function SignUpLayout({ children }: { children: React.ReactNode }) {

@@ -57,7 +57,7 @@ const ATTENDING: FaqGroup[] = [
       { q: "How do I change my password or email?",
         a: <>Go to <Link href="/dashboard/settings" className="text-nile hover:underline">Settings</Link>. You&rsquo;ll be asked to confirm with your current password.</> },
       { q: "Who can see my profile?",
-        a: <>Your name, tribe (if set), and events you organize are public. Your email and ticket history are private.</> },
+        a: <>Your name, community or heritage (if set), and events you organize are public. Your email and ticket history are private.</> },
       { q: "How do I delete my account?",
         a: <>Email <a className="text-nile hover:underline" href={`mailto:${brandEmail("help")}`}>{brandEmail("help")}</a> from the address on file and we&rsquo;ll remove your account within 7 days.</> }
     ]
@@ -73,9 +73,9 @@ const ORGANIZING: FaqGroup[] = [
     icon: <IconPlus />,
     items: [
       { q: "How do I create an event?",
-        a: <>Sign in, click <strong>Create event</strong> in the header or on your <Link href="/dashboard" className="text-nile hover:underline">dashboard</Link>, fill in the basics, add ticket tiers, choose tribe visibility, and publish. Drafts save automatically.</> },
-      { q: "What does \"Tribe visibility\" do?",
-        a: <>You can open your event to everyone, to specific tribes or communities you name, or to your own tribe only. Anyone outside the chosen audience won&rsquo;t see the event in search or on home.</> },
+        a: <>Sign in, click <strong>Create event</strong> in the header or on your <Link href="/dashboard" className="text-nile hover:underline">dashboard</Link>, fill in the basics, add ticket tiers, choose who can see it, and publish. Drafts save automatically.</> },
+      { q: "What does \"Community visibility\" do?",
+        a: <>You can open your event to everyone, to specific communities you name, or to your own community only. Anyone outside the chosen audience won&rsquo;t see the event in search or on home.</> },
       { q: "Can I edit an event after publishing?",
         a: <>Yes. Open the event from <Link href="/dashboard/events" className="text-nile hover:underline">Dashboard → Events</Link>. Changing date or location notifies existing attendees.</> },
       { q: "Can I sell recurring or multi-date events?",

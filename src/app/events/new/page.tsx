@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 export const metadata: Metadata = {
   title: "Create an event",
   description:
-    "Gather the tribe — publish in five minutes and handle cards + mobile money in one checkout."
+    "Gather your people — publish in five minutes and handle cards + mobile money in one checkout."
 };
 
 /**
@@ -45,7 +45,7 @@ export default function CreateEventLandingPage() {
                 For organizers
               </div>
               <h1 className="mt-4 font-display text-[40px] sm:text-[56px] md:text-[64px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em]">
-                Gather the tribe.
+                Gather your people.
                 <br />
                 <span className="text-gold-400">We&rsquo;ll do the tickets.</span>
               </h1>

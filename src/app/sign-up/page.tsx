@@ -109,11 +109,11 @@ function SignUpInner() {
             Create your account
           </div>
           <h1 className="mt-2 font-display text-[28px] sm:text-[32px] font-extrabold leading-[1.1] tracking-tight text-nile-900">
-            Join the tribe.
+            Join the community.
           </h1>
           <p className="mt-2 text-[14.5px] text-ink-600 leading-relaxed">
             Free to create an account. Host your first event in minutes —
-            from Juba to Calgary.
+            wherever your people are.
           </p>
 
           <form onSubmit={onSubmit} className="mt-7 space-y-4">
@@ -155,7 +155,7 @@ function SignUpInner() {
                 <input
                   className="input"
                   autoComplete="address-level2"
-                  placeholder="Juba"
+                  placeholder="Toronto"
                   value={form.city}
                   onChange={(e) => set("city", e.target.value)}
                 />
@@ -164,7 +164,7 @@ function SignUpInner() {
                 <input
                   className="input"
                   autoComplete="country-name"
-                  placeholder="South Sudan"
+                  placeholder="Canada"
                   value={form.country}
                   onChange={(e) => set("country", e.target.value)}
                 />

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/browse/map" },
   openGraph: {
     title: "Events near you",
-    description: "Map view of upcoming South Sudanese events across the diaspora.",
+    description: "Map view of upcoming community events around the world.",
     type: "website"
   }
 };

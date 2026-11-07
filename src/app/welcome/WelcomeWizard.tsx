@@ -232,7 +232,7 @@ function StepIntent({
           Welcome{name ? `, ${name.split(" ")[0]}` : ""}!
         </h1>
         <p className="mt-3 text-ink-600 text-[15px] sm:text-base max-w-lg">
-          Thanks for joining the tribe. What can we help you with first?
+          Thanks for joining. What can we help you with first?
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
@@ -332,21 +332,21 @@ function StepInterests({
           </label>
 
           <label className="block">
-            <span className="text-sm font-semibold text-ink">Your tribe or community (optional)</span>
+            <span className="text-sm font-semibold text-ink">Your community or heritage (optional)</span>
             <input
               type="text"
               className="input mt-1"
               value={tribe}
               onChange={(e) => setTribe(e.target.value.slice(0, 40))}
               maxLength={40}
-              placeholder="e.g. family, alumni, church, neighborhood…"
+              placeholder="e.g. Yoruba, Punjabi, alumni, church, neighborhood…"
               list="tribe-suggestions"
             />
             <datalist id="tribe-suggestions">
               {TRIBE_SUGGESTIONS.map((s) => <option key={s} value={s} />)}
             </datalist>
             <span className="mt-1 block text-[12px] text-ink-500">
-              Used only to gate events organizers mark as tribe-specific. Type anything — any group that describes your people.
+              Used only to show you events organizers open to specific communities. Type anything that describes your people.
             </span>
           </label>
         </div>

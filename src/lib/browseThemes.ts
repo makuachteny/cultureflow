@@ -83,9 +83,9 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     copy: {
       eyebrow: "HERITAGE · HOME · TOGETHER",
       heading: "Culture, {{accent}}carried forward.{{/accent}}",
-      lede: "South Sudan Independence Day, cultural nights, traditional dance — the moments that remind us who we are, wherever we are."
+      lede: "Festivals, heritage days, cultural nights and traditional dance: the moments that remind us who we are, wherever we are."
     },
-    image: "/community/cultural-dancers-flags.jpg",
+    image: "/community/cultural-performance.jpg",
     pattern: "tartan"
   },
 
@@ -100,7 +100,7 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     copy: {
       eyebrow: "// SOUND · LIVE · TOGETHER",
       heading: "{{accent}}Turn it up.{{/accent}}",
-      lede: "Concerts, DJ nights, live bands and South Sudanese music showcases across the diaspora. Find your people on the dancefloor."
+      lede: "Concerts, DJ nights, live bands and music from every tradition. Find your people on the dancefloor."
     },
     image: "/community/music-concert-crowd.jpg",
     pattern: "radial"
@@ -134,7 +134,7 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     copy: {
       eyebrow: "PROGRAMMES · WORKSHOPS · PANELS",
       heading: "Knowledge, {{accent}}passed on.{{/accent}}",
-      lede: "Scholarship workshops, panel discussions, Dinka/Nuer language classes, and seminars from voices in our community you'd otherwise have to travel to hear."
+      lede: "Workshops, panel discussions, heritage-language classes, and seminars from voices in your community you'd otherwise have to travel to hear."
     },
     image: "/community/education-books.jpg",
     pattern: "lines"
@@ -151,7 +151,7 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     copy: {
       eyebrow: "GATHER · WORSHIP · BELONG",
       heading: "Come as you are, {{accent}}leave held.{{/accent}}",
-      lede: "Sunday services, revivals, conventions and quiet prayer breakfasts across the diaspora. Every tradition, every denomination."
+      lede: "Services, festivals, retreats and prayer gatherings. Every faith, every tradition."
     },
     image: "/community/faith-sanctuary.jpg",
     pattern: "radial"
@@ -219,7 +219,7 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     copy: {
       eyebrow: "// 128 EVENTS THIS MONTH",
       heading: "Business, {{accent}}done here.{{/accent}}",
-      lede: "Launches, trade fairs, conferences and industry mixers. Where South Sudanese capital meets South Sudanese ideas."
+      lede: "Launches, trade fairs, conferences and industry mixers. Where community capital meets community ideas."
     },
     image: "/community/business-speaker.jpg",
     pattern: "lines"
@@ -268,9 +268,9 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
     },
     fonts: { heading: F.display, body: F.inter },
     copy: {
-      eyebrow: "EVERYTHING ELSE · DIASPORA",
+      eyebrow: "EVERYTHING ELSE",
       heading: "Things to do, {{accent}}wherever you are.{{/accent}}",
-      lede: "The unsortable, the one-off, the surprising. Events that don't fit a label but bring South Sudanese together."
+      lede: "The unsortable, the one-off, the surprising. Events that don't fit a label but bring people together."
     },
     image: "/community/cultural-confetti.jpg",
     pattern: null
@@ -278,11 +278,185 @@ export const CATEGORY_THEMES: Record<CategorySlug, BrowseTheme> = {
 };
 
 /* ────────── CITY THEMES ──────────
- * Keyed by the slugs we ship in FEATURED_CITIES. Each city is a major
- * South Sudanese hub at home or in the diaspora — copy speaks to that
- * audience directly.
- */
+ * One per FEATURED_CITIES entry, keyed by normalised city name (see
+ * `cityKey`). Cities without a theme fall back to the default hero. */
 export const CITY_THEMES: Record<string, BrowseTheme> = {
+  newyork: {
+    key: "newyork",
+    variant: "monumental",
+    palette: {
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "USA · FIVE BOROUGHS",
+      heading: "Things to do in {{accent}}New York.{{/accent}}",
+      lede: "From Queens night markets to Harlem jazz and Brooklyn block parties. Every culture in the city, on one calendar."
+    },
+    image: "/community/aux-1496442226666.jpg",
+    pattern: "radial"
+  },
+  london: {
+    key: "london",
+    variant: "monumental",
+    palette: {
+      bg: "#000000", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#000000"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "UK · ZONE 1–6",
+      heading: "Things to do in {{accent}}London.{{/accent}}",
+      lede: "Diwali on Trafalgar Square, Notting Hill rehearsals, supper clubs and church halls across Greater London."
+    },
+    image: "/community/aux-1513635269975.jpg",
+    pattern: "lines"
+  },
+  toronto: {
+    key: "toronto",
+    variant: "monumental",
+    palette: {
+      bg: "#DA121A", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#DA121A"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "CANADA · THE 6IX",
+      heading: "Things to do in {{accent}}Toronto.{{/accent}}",
+      lede: "One of the most diverse cities on earth. Lunar New Year, Caribana warm-ups, Eid dinners and community halls from Scarborough to Etobicoke."
+    },
+    image: "/community/aux-1517090504586.jpg",
+    pattern: "radial"
+  },
+  lagos: {
+    key: "lagos",
+    variant: "monumental",
+    palette: {
+      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#078930"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "NIGERIA · LAGOS STATE",
+      heading: "Things to do in {{accent}}Lagos.{{/accent}}",
+      lede: "Afrobeats nights, owambe parties, art fairs and tech meetups from Ikeja to Victoria Island."
+    },
+    image: "/community/music-live-stage.jpg",
+    pattern: "stripe"
+  },
+  nairobi: {
+    key: "nairobi",
+    variant: "monumental",
+    palette: {
+      bg: "#000000", fg: "#FFFFFF", accent: "#DA121A",
+      accent2: "#DA121A", muted: "#C9D8F7", surface: "#000000"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "KENYA · GREEN CITY IN THE SUN",
+      heading: "Things to do in {{accent}}Nairobi.{{/accent}}",
+      lede: "Tech meetups, gospel nights, food festivals and community fundraisers across Nairobi."
+    },
+    image: "/community/theme-banner-2.jpg",
+    pattern: "lines"
+  },
+  mumbai: {
+    key: "mumbai",
+    variant: "monumental",
+    palette: {
+      bg: "#DA121A", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#DA121A"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "INDIA · MAHARASHTRA",
+      heading: "Things to do in {{accent}}Mumbai.{{/accent}}",
+      lede: "Ganesh Chaturthi processions, Bollywood nights, comedy, food walks and gatherings across the city."
+    },
+    image: "/community/theme-banner-1.jpg",
+    pattern: "radial"
+  },
+  saopaulo: {
+    key: "saopaulo",
+    variant: "monumental",
+    palette: {
+      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#078930"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "BRAZIL · SAMPA",
+      heading: "Things to do in {{accent}}São Paulo.{{/accent}}",
+      lede: "Samba rehearsals, festas juninas, Japanese-Brazilian festivals in Liberdade and concerts every night."
+    },
+    image: "/community/events-new-hero.jpg",
+    pattern: "stripe"
+  },
+  mexicocity: {
+    key: "mexicocity",
+    variant: "monumental",
+    palette: {
+      bg: "#DA121A", fg: "#FFFFFF", accent: "#078930",
+      accent2: "#078930", muted: "#C9D8F7", surface: "#DA121A"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "MEXICO · CDMX",
+      heading: "Things to do in {{accent}}Mexico City.{{/accent}}",
+      lede: "Día de Muertos altars, lucha libre, mariachi in Garibaldi and markets in every colonia."
+    },
+    image: "/community/music-concert-crowd.jpg",
+    pattern: "radial"
+  },
+  paris: {
+    key: "paris",
+    variant: "monumental",
+    palette: {
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#DA121A",
+      accent2: "#DA121A", muted: "#C9D8F7", surface: "#0F47AF"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "FRANCE · ÎLE-DE-FRANCE",
+      heading: "Things to do in {{accent}}Paris.{{/accent}}",
+      lede: "Fête de la Musique, African and Caribbean diaspora nights, supper clubs and gallery openings."
+    },
+    image: "/community/theme-banner-2.jpg",
+    pattern: "lines"
+  },
+  seoul: {
+    key: "seoul",
+    variant: "monumental",
+    palette: {
+      bg: "#000000", fg: "#FFFFFF", accent: "#DA121A",
+      accent2: "#DA121A", muted: "#C9D8F7", surface: "#000000"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "SOUTH KOREA",
+      heading: "Things to do in {{accent}}Seoul.{{/accent}}",
+      lede: "K-food fairs, temple stays, hanbok days and concerts from Hongdae to Gangnam."
+    },
+    image: "/community/events-new-hero.jpg",
+    pattern: "dots"
+  },
+  sydney: {
+    key: "sydney",
+    variant: "monumental",
+    palette: {
+      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
+      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
+    },
+    fonts: { heading: F.bebas, body: F.inter },
+    copy: {
+      eyebrow: "AUSTRALIA · NSW",
+      heading: "Things to do in {{accent}}Sydney.{{/accent}}",
+      lede: "Lunar New Year on the harbour, Diwali in Parramatta, community fundraisers and festivals all year."
+    },
+    image: "/community/aux-1506973035872.jpg",
+    pattern: "radial"
+  },
   juba: {
     key: "juba",
     variant: "monumental",
@@ -292,196 +466,24 @@ export const CITY_THEMES: Record<string, BrowseTheme> = {
     },
     fonts: { heading: F.bebas, body: F.inter },
     copy: {
-      eyebrow: "CENTRAL EQUATORIA · ON THE NILE",
+      eyebrow: "SOUTH SUDAN · ON THE NILE",
       heading: "Things to do in {{accent}}Juba.{{/accent}}",
-      lede: "From Konyo Konyo to Hai Cinema — weddings, church, conferences and cultural nights. The capital's calendar, in one place."
+      lede: "Weddings, church, conferences and cultural nights in the capital, from Konyo Konyo to Hai Cinema."
     },
     image: "/community/diaspora-hero-2.jpg",
     pattern: "radial"
-  },
-  wau: {
-    key: "wau",
-    variant: "monumental",
-    palette: {
-      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#078930", muted: "#C9D8F7", surface: "#3F7077"
-    },
-    fonts: { heading: F.serif, body: F.inter },
-    copy: {
-      eyebrow: "WESTERN BAHR EL GHAZAL",
-      heading: "Things to do in {{accent}}Wau.{{/accent}}",
-      lede: "Cultural nights, weddings, church gatherings and community meets across one of South Sudan's oldest cities."
-    },
-    image: "/community/diaspora-hero-1.jpg",
-    pattern: "lines"
-  },
-  khartoum: {
-    key: "khartoum",
-    variant: "monumental",
-    palette: {
-      bg: "#DA121A", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#DA121A", muted: "#E4C8A8", surface: "#DA121A"
-    },
-    fonts: { heading: F.serif, body: F.inter },
-    copy: {
-      eyebrow: "WHERE THE BLUE & WHITE NILE MEET",
-      heading: "Things to do in {{accent}}Khartoum.{{/accent}}",
-      lede: "Diaspora weddings, community gatherings, and cultural events for South Sudanese living in and around Khartoum."
-    },
-    image: "/community/theme-banner-1.jpg",
-    pattern: "radial"
-  },
-  nairobi: {
-    key: "nairobi",
-    variant: "monumental",
-    palette: {
-      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#078930", muted: "#C9D8F7", surface: "#3F7077"
-    },
-    fonts: { heading: F.serif, body: F.inter },
-    copy: {
-      eyebrow: "CENTRAL KENYA · HIGHLANDS",
-      heading: "Things to do in {{accent}}Nairobi.{{/accent}}",
-      lede: "From Kileleshwa to Kasarani — weddings, church conventions, community fundraisers, and cultural nights for the South Sudanese in Nairobi."
-    },
-    image: "/community/diaspora-hero-2.jpg",
-    pattern: "lines"
-  },
-  kampala: {
-    key: "kampala",
-    variant: "monumental",
-    palette: {
-      bg: "#DA121A", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#DA121A", muted: "#E4C8A8", surface: "#DA121A"
-    },
-    fonts: { heading: F.serif, body: F.inter },
-    copy: {
-      eyebrow: "CENTRAL UGANDA · SEVEN HILLS",
-      heading: "Things to do in {{accent}}Kampala.{{/accent}}",
-      lede: "From Kololo to Ntinda — weddings, church services, networking evenings, and cultural nights for the South Sudanese diaspora in Kampala."
-    },
-    image: "/community/theme-banner-2.jpg",
-    pattern: "lines"
-  },
-  cairo: {
-    key: "cairo",
-    variant: "monumental",
-    palette: {
-      bg: "#000000", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#FCDD09", muted: "#FCDD09", surface: "#000000"
-    },
-    fonts: { heading: F.serif, body: F.inter },
-    copy: {
-      eyebrow: "GREATER CAIRO · ON THE NILE",
-      heading: "Things to do in {{accent}}Cairo.{{/accent}}",
-      lede: "Community halls and church gatherings across Maadi, Ain Shams, and 6th of October. The South Sudanese Cairo calendar."
-    },
-    image: "/community/diaspora-hero-1.jpg",
-    pattern: "radial"
-  },
-  london: {
-    key: "london",
-    variant: "monumental",
-    palette: {
-      bg: "#FFFFFF", fg: "#000000", accent: "#DA121A",
-      accent2: "#0F47AF", muted: "#666666", surface: "#FFFFFF"
-    },
-    fonts: { heading: F.bebas, body: F.inter },
-    copy: {
-      eyebrow: "UK · ZONE 1–6 · DIASPORA HUB",
-      heading: "Things to do in {{accent}}London.{{/accent}}",
-      lede: "From Newham to Croydon — South Sudanese weddings, church, cultural nights and community meets across Greater London."
-    },
-    image: "/community/aux-1513635269975.jpg",
-    pattern: "stripe"
-  },
-  toronto: {
-    key: "toronto",
-    variant: "monumental",
-    palette: {
-      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#0F47AF", muted: "#C9D8F7", surface: "#078930"
-    },
-    fonts: { heading: F.bebas, body: F.inter },
-    copy: {
-      eyebrow: "ONTARIO · THE SIX",
-      heading: "Things to do in {{accent}}Toronto.{{/accent}}",
-      lede: "Community halls from Scarborough to Etobicoke. Chapter meetings, weddings, cultural nights — Toronto's South Sudanese calendar."
-    },
-    image: "/community/aux-1517090504586.jpg",
-    pattern: "lines"
-  },
-  calgary: {
-    key: "calgary",
-    variant: "monumental",
-    palette: {
-      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
-    },
-    fonts: { heading: F.bebas, body: F.inter },
-    copy: {
-      eyebrow: "ALBERTA · ROCKIES · YYC",
-      heading: "Things to do in {{accent}}Calgary.{{/accent}}",
-      lede: "One of North America's largest South Sudanese hubs. Weddings, fundraisers, church gatherings, and youth events from the NE to the SW."
-    },
-    image: "/community/aux-1517090504586.jpg",
-    pattern: "radial"
-  },
-  melbourne: {
-    key: "melbourne",
-    variant: "monumental",
-    palette: {
-      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#078930"
-    },
-    fonts: { heading: F.bebas, body: F.inter },
-    copy: {
-      eyebrow: "VICTORIA · GREATER MELBOURNE",
-      heading: "Things to do in {{accent}}Melbourne.{{/accent}}",
-      lede: "From Sunshine to Dandenong — weddings, cultural nights, basketball games and church gatherings for the South Sudanese-Australian community."
-    },
-    image: "/community/aux-1506973035872.jpg",
-    pattern: "radial"
-  },
-  sydney: {
-    key: "sydney",
-    variant: "monumental",
-    palette: {
-      bg: "#078930", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#078930"
-    },
-    fonts: { heading: F.bebas, body: F.inter },
-    copy: {
-      eyebrow: "HARBOURSIDE · NSW",
-      heading: "Things to do in {{accent}}Sydney.{{/accent}}",
-      lede: "Blacktown weddings, western-suburb meets, church services and community fundraisers for the South Sudanese in Sydney."
-    },
-    image: "/community/aux-1506973035872.jpg",
-    pattern: "radial"
-  },
-  omaha: {
-    key: "omaha",
-    variant: "monumental",
-    palette: {
-      bg: "#0F47AF", fg: "#FFFFFF", accent: "#FCDD09",
-      accent2: "#FCDD09", muted: "#C9D8F7", surface: "#0F47AF"
-    },
-    fonts: { heading: F.bebas, body: F.inter },
-    copy: {
-      eyebrow: "NEBRASKA · MIDWEST · OMA",
-      heading: "Things to do in {{accent}}Omaha.{{/accent}}",
-      lede: "Home to one of America's largest South Sudanese communities. Weddings, church, basketball, fundraisers — the Omaha calendar."
-    },
-    image: "/community/aux-1496442226666.jpg",
-    pattern: "stripe"
   }
 };
 
 /* ────────── Resolver ──────────
  * Accepts either the lowercase slug ("cultural") or the uppercase enum
- * key ("CULTURAL") that the Prisma/browse layer uses. City is matched
- * by lowercased name so "London" and "london" both work.
+ * key ("CULTURAL") that the Prisma/browse layer uses. Cities match on a
+ * normalised key, so "São Paulo", "sao-paulo" and "SAO PAULO" all work.
  */
+export function cityKey(city: string): string {
+  return city.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z]/g, "");
+}
+
 export function resolveTheme(opts: {
   category?: CategorySlug | string;
   city?: CitySlug | string;
@@ -491,8 +493,8 @@ export function resolveTheme(opts: {
     if (slug in CATEGORY_THEMES) return CATEGORY_THEMES[slug as CategorySlug];
   }
   if (opts.city) {
-    const slug = String(opts.city).toLowerCase().replace(/\s+/g, "");
-    if (slug in CITY_THEMES) return CITY_THEMES[slug];
+    const key = cityKey(String(opts.city));
+    if (key in CITY_THEMES) return CITY_THEMES[key];
   }
   return null;
 }

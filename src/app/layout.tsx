@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   authors: [{ name: BRAND_NAME }],
   generator: "Next.js",
   keywords: [
-    "South Sudan", "South Sudanese", "diaspora", "events", "tickets",
-    "Dinka", "Nuer", "Bari", "Juba", "community",
-    "weddings", "church", "fundraiser", "conference", "cultural"
+    "events", "tickets", "culture", "community", "heritage", "diaspora",
+    "festivals", "cultural events", "weddings", "faith", "music",
+    "food", "fundraiser", "conference", "local events"
   ],
   openGraph: {
     title: BRAND_NAME,

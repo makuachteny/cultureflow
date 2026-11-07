@@ -44,7 +44,7 @@ export default async function EditEventPage({ params }: Props) {
     onlineUrl:    event.onlineUrl,
     bannerUrl:    event.bannerUrl,
     capacity:     event.capacity,
-    tribeVisibility: (event as unknown as { tribeVisibility?: EventFormInitial["tribeVisibility"] }).tribeVisibility ?? "ALL_SOUTH_SUDANESE",
+    tribeVisibility: (event as unknown as { tribeVisibility?: EventFormInitial["tribeVisibility"] }).tribeVisibility ?? "EVERYONE",
     visibleTribes:   (event as unknown as { visibleTribes?: string[] }).visibleTribes ?? [],
     status:       event.status,
     tiers: event.ticketTiers.map((t) => ({

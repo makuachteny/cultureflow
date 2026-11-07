@@ -3,7 +3,7 @@
  *
  * Body: {
  *   interests:  string[]   // EventCategory keys
- *   tribe?:     string     // user's self-reported tribe (slug)
+ *   tribe?:     string     // user's self-reported community / heritage (free text)
  *   city?:      string
  *   follow?:    string[]   // organizer ids to follow
  * }

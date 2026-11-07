@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────────────
-   DESIGN TOKENS — "Flag & beadwork".
+   DESIGN TOKENS — "Colour blocks & beadwork".
    • Flat colour only. No gradients, no blur, no rounded corners.
      The only `linear-gradient()`s below use hard colour stops to draw
      stripes / bead patterns — never a blend between two colours.
-   • Palette: the South Sudanese flag — black, white, red, green,
-     blue, star yellow — plus a pale yellow paper for alternate
-     sections.
+   • Palette: six saturated primaries — black, white, red, green,
+     blue, gold — plus a pale gold paper for alternate sections.
    • Type: Archivo everywhere; headlines widen via font-stretch.
    • Depth: solid offset shadows, like a screen-printed poster.
    ───────────────────────────────────────────────────────────── */
@@ -21,7 +20,7 @@
   --font-display: var(--font-sans);
   --font-mono:    var(--font-sans);
 
-  /* ————— Flag colours ————— */
+  /* ————— Palette ————— */
   --black:  #000000;
   --white:  #FFFFFF;
   --red:    #DA121A;
@@ -89,9 +88,9 @@
 
   --focus-ring: 0 0 0 3px var(--yellow), 0 0 0 5px var(--black);
 
-  /* Bead strip — the signature band. Square "beads" in flag colours
-     with a black thread line between each, like a Dinka bead corset.
-     Hard stops only. */
+  /* Bead strip — the signature band. Square "beads" in the palette
+     with a black thread line between each — beadwork is one of the
+     oldest crafts shared by cultures everywhere. Hard stops only. */
   --beads: repeating-linear-gradient(90deg,
     var(--red)    0 14px, var(--black) 14px 16px,
     var(--yellow) 16px 30px, var(--black) 30px 32px,
@@ -305,11 +304,10 @@ a { color: inherit; }
 }
 .beads-lg { height: 16px; }
 
-/* Flag band divider: black / white / red / white / green, hard stops. */
-.flag-bands {
-  background: linear-gradient(180deg,
-    var(--black) 0 31%, var(--white) 31% 34%, var(--red) 34% 66%,
-    var(--white) 66% 69%, var(--green) 69% 100%);
+/* Colour-block field: uneven vertical panels, hard stops. Used behind
+   the auth cards. (`.flag-bands` is the legacy name, kept as an alias.) */
+.color-blocks, .flag-bands {
+  background: linear-gradient(90deg, #DA121A 0 13%, #FCDD09 13% 24%, #0F47AF 24% 41%, #078930 41% 50%, #000 50% 63%, #DA121A 63% 72%, #FCDD09 72% 86%, #0F47AF 86% 100%);
 }
 
 /* Section rules — were faded gold hairlines; now a solid black bar. */
@@ -340,7 +338,7 @@ a { color: inherit; }
 
 .bg-parchment-warm { background: var(--paper); }
 
-/* Ornament — the flag's five-point star, as a small solid mark. */
+/* Ornament — a small five-point star, as a solid mark. */
 .ornament {
   display: inline-block;
   width: 10px;

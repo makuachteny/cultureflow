@@ -108,7 +108,7 @@ export default function PromoForm({
             className="input font-tabular tracking-wider uppercase"
             value={code}
             onChange={(e) => setCode(e.target.value.toUpperCase().replace(/[^A-Z0-9_-]/g, ""))}
-            placeholder="DIASPORA10"
+            placeholder="WELCOME10"
             required
             maxLength={40}
           />
@@ -133,7 +133,7 @@ export default function PromoForm({
           className="input"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Diaspora group launch promo"
+          placeholder="Community group launch promo"
           maxLength={160}
         />
       </Field>

@@ -38,7 +38,7 @@ export default function CategoryCircles() {
           </h2>
         </div>
         <p className="max-w-sm text-[14px] text-ink-700">
-          Twelve ways the tribe gathers. Pick a thread.
+          Twelve ways people gather. Pick a thread.
         </p>
       </div>
 

@@ -812,7 +812,7 @@ function PromoField({ value, onChange }: { value: string; onChange: (v: string) 
   return (
     <input
       className="input"
-      placeholder="DIASPORA10"
+      placeholder="WELCOME10"
       value={value}
       onChange={(e) => onChange(e.target.value.toUpperCase())}
       autoCapitalize="characters"

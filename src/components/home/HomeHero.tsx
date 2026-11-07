@@ -4,9 +4,8 @@ import Image from "next/image";
 /**
  * HomeHero — marketing hero used on "/" (home).
  *
- * A square white panel (copy + photo) on the flag: black / red / green
- * bands with the blue hoist triangle and gold star. Stacks on mobile,
- * side by side from sm: up.
+ * A square white panel (copy + photo) on a field of uneven colour
+ * blocks. Stacks on mobile, side by side from sm: up.
  */
 type CTA = {
   label: string;
@@ -27,10 +26,6 @@ type Props = {
   imageAlt?: string;
 };
 
-/** The flag's five-point star, as a clip-path so it stays a flat shape. */
-const STAR =
-  "polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)";
-
 export default function HomeHero({
   eyebrow,
   title,
@@ -40,31 +35,14 @@ export default function HomeHero({
   imageAlt = ""
 }: Props) {
   return (
-    // Backdrop = the South Sudanese flag: black / red / green bands with
-    // white fimbriation (`bg-hero-sunrise`, hard stops), and the blue
-    // hoist triangle carrying the gold star cutting in from the left.
+    // Backdrop = uneven vertical colour blocks (`bg-hero-sunrise`, hard
+    // stops) — many colours side by side, for many communities.
     <div className="relative overflow-hidden bg-hero-sunrise border-b-2 border-ink">
-      <div
-        aria-hidden
-        className="absolute inset-y-0 left-0 w-[46%] sm:w-[34%] bg-white"
-        style={{ clipPath: "polygon(0 0, 100% 50%, 0 100%)" }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-y-0 left-0 w-[44%] sm:w-[32.5%] bg-nile"
-        style={{ clipPath: "polygon(0 0, 100% 50%, 0 100%)" }}
-      />
-      <div
-        aria-hidden
-        className="absolute left-[3%] sm:left-[6%] top-1/2 -translate-y-1/2 h-14 w-14 sm:h-24 sm:w-24 bg-gold"
-        style={{ clipPath: STAR }}
-      />
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 lg:py-16">
         <div
           className={
             "relative bg-white border-[3px] border-ink shadow-[10px_10px_0_0_#000] grid items-stretch " +
-            "sm:ml-[10%] lg:ml-[14%] " +
+            "lg:mx-[4%] " +
             (imageSrc ? "sm:grid-cols-[6fr_5fr]" : "")
           }
         >

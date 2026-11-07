@@ -89,7 +89,7 @@ export type RawSearchParams = {
  * Filters carry both array shapes (used by multi-select UIs like the map
  * view sidebar) and single-string convenience accessors that pick the
  * first element (used by the dropdown-style controls on /browse). URLs
- * remain CSV: `?category=CULTURAL,MUSIC&city=Juba,Wau`.
+ * remain CSV: `?category=CULTURAL,MUSIC&city=Lagos,Nairobi`.
  */
 export type BrowseFilters = {
   q:          string;
@@ -171,7 +171,7 @@ export function buildEventWhere(f: BrowseFilters): Prisma.EventWhereInput {
   const realCities     = f.cities.filter((c) => c.toLowerCase() !== "online");
 
   /* City filter — combine real city OR clauses with an Online-type OR
-     clause so "Juba + Online" returns events in Juba AND every online
+     clause so "Lagos + Online" returns events in Lagos AND every online
      event. Built up here and only spliced into `where` when non-empty. */
   const cityClauses: Prisma.EventWhereInput[] = [];
   for (const name of realCities) {
