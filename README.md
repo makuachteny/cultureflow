@@ -37,7 +37,7 @@ Screenshots are from the [live demo](https://cultureflow-demo.vercel.app) runnin
 
 | Browse events | Map view |
 |---|---|
-| ![Browse events in Juba with category, format and price filters](docs/screenshots/browse.png) | ![Map view with a filterable event list beside the map](docs/screenshots/browse-map.png) |
+| ![Browse events in New York with category, format and price filters](docs/screenshots/browse.png) | ![Map view with a filterable event list beside the map](docs/screenshots/browse-map.png) |
 
 | Event detail | Organizer profile |
 |---|---|
