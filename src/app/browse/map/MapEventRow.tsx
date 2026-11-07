@@ -58,7 +58,7 @@ export default function MapEventRow({ event }: Props) {
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center bg-event-placeholder">
-            <Image src="/logo-mark.svg" alt="" width={41} height={28} className="opacity-90" />
+            <Image src="/logo-mark.svg" alt="" width={26} height={28} className="opacity-90" />
           </div>
         )}
       </div>

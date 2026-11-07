@@ -648,7 +648,7 @@ function EventRow({
           />
         ) : (
           <div className="absolute inset-0 grid place-items-center bg-event-placeholder">
-            <Image src="/logo-mark.svg" alt="" width={29} height={20} className="opacity-90" />
+            <Image src="/logo-mark.svg" alt="" width={19} height={20} className="opacity-90" />
           </div>
         )}
       </div>

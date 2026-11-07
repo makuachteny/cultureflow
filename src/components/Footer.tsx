@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import { FEATURED_CITIES, CATEGORIES } from "@/lib/taxonomy";
-import { BRAND_HOME_LABEL, BRAND_NAME, copyrightLine } from "@/lib/brand";
+import { copyrightLine } from "@/lib/brand";
 
 /**
  * Site footer.
  *
- * Wordmark only — no buffalo mark — to keep the chrome quiet. The link
+ * Reversed (white) logo lockup on black. The link
  * directory is a 2-column grid on mobile (so Cities/Categories sit on
  * one row and Platform/Support sit on the next), then a 5-column row at
  * md+. This collapses ~30 stacked rows on mobile down to a 4-row block.
@@ -16,14 +17,8 @@ export default function Footer() {
       <div aria-hidden className="beads beads-lg" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-12 grid gap-x-6 gap-y-5 grid-cols-2 md:grid-cols-5 text-[13px]">
         <div className="col-span-2 md:col-span-1">
-          <Link
-            href="/"
-            aria-label={BRAND_HOME_LABEL}
-            className="inline-block font-display text-[24px] font-black text-gold leading-none hover:text-white transition-colors"
-          >
-            {BRAND_NAME}
-          </Link>
-          <p className="mt-1.5 hidden md:block text-white/75 max-w-xs text-[13px] leading-snug">
+          <Logo variant="horizontal" tone="white" size={52} />
+          <p className="mt-3 hidden md:block text-white/75 max-w-xs text-[13px] leading-snug">
             Events for South Sudanese, at home and across the diaspora.
           </p>
         </div>

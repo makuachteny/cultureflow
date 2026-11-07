@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BRAND_HOME_LABEL, BRAND_LOGOS, BRAND_NAME } from "@/lib/brand";
+import { BRAND_ASPECTS, BRAND_HOME_LABEL, BRAND_LOGOS, BRAND_NAME } from "@/lib/brand";
 import BrandMark from "./brand/BrandMark";
 
 /**
@@ -10,40 +10,42 @@ import BrandMark from "./brand/BrandMark";
  *   <Logo />                       horizontal lockup (mark + wordmark)
  *   <Logo variant="stacked" />     mark above wordmark
  *   <Logo variant="mark" />        just the mark
+ *   <Logo tone="white" />          reversed, for dark surfaces
  */
 
 type Variant = "horizontal" | "stacked" | "mark";
 
-const ASPECTS: Record<Variant, number> = {
-  // width / height ratios from /scripts/build-brand-svgs.mjs viewBoxes.
-  // Keep these in sync with HORIZ_W/HORIZ_H, STACKED_W/STACKED_H,
-  // MARK_BOX in the build script — drift here causes the rendered
-  // width to mismatch the SVG aspect and crop or letterbox the image.
-  horizontal: 1130 / 200,
-  stacked:    720 / 480,
-  mark:       410 / 280
+type Tone = "color" | "black" | "white";
+
+const SRC: Record<Variant, Record<Tone, string>> = {
+  horizontal: { color: BRAND_LOGOS.horizontal, black: BRAND_LOGOS.horizontalBlack, white: BRAND_LOGOS.horizontalWhite },
+  stacked:    { color: BRAND_LOGOS.stacked,    black: BRAND_LOGOS.stackedBlack,    white: BRAND_LOGOS.stackedWhite },
+  mark:       { color: BRAND_LOGOS.mark,       black: BRAND_LOGOS.markBlack,       white: BRAND_LOGOS.markWhite }
 };
 
 export default function Logo({
   variant = "horizontal",
+  tone = "color",
   size = 48,
   href = "/" as string | null,
   className = ""
 }: {
   variant?: Variant;
+  /** Colourway — full colour, one-colour black, or reversed white. */
+  tone?: Tone;
   /** Rendered height in pixels. Width derives from the variant's aspect. */
   size?: number;
   href?: string | null;
   className?: string;
 }) {
-  if (variant === "mark") {
+  if (variant === "mark" && tone === "color") {
     const inner = <BrandMark size={size} className={className} title={BRAND_NAME} />;
     return wrap(inner, href);
   }
 
-  const src    = variant === "stacked" ? BRAND_LOGOS.stacked : BRAND_LOGOS.horizontal;
+  const src    = SRC[variant][tone];
   const height = size;
-  const width  = Math.round(size * ASPECTS[variant]);
+  const width  = Math.round(size * BRAND_ASPECTS[variant]);
 
   const inner = (
     /* eslint-disable-next-line @next/next/no-img-element */

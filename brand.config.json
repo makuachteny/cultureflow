@@ -1,27 +1,23 @@
 {
   "_meta": {
-    "description": "Single source of truth for brand identity. The visual mark + wordmark live as a hand-designed master at /logo.svg; `npm run brand:build` derives the seven public variants (mark, mark-mono, horizontal, stacked, wordmark, app-icon, plus the full master copied through). EDIT this file to change the app name, tagline, colors, or email domain — and EDIT /logo.svg to change the actual logo artwork. Variant SVGs in /public are regenerated automatically on dev/build via the predev/prebuild hook.",
-    "lastEdited": "2026-04-29"
+    "description": "Single source of truth for brand identity. Name, tagline and colours live here. The cow mark's geometry lives in scripts/build-brand-svgs.mjs; `npm run brand:build` writes every SVG variant to /public and `npm run brand:png` renders the PNG/ICO icons and the social card.",
+    "lastEdited": "2026-11-06"
   },
-
-  "name":        "CultureFlow",
-  "nameFirst":   "Culture",
-  "nameSecond":  "Flow",
-  "tagline":     "For South Sudanese, everywhere",
-  "shortTag":    "Events for the South Sudanese community",
+  "name": "CultureFlow",
+  "nameFirst": "Culture",
+  "nameSecond": "Flow",
+  "tagline": "For South Sudanese, everywhere",
+  "shortTag": "Events for the South Sudanese community",
   "description": "Discover and host events for South Sudanese — at home and across the diaspora. Tickets, discovery, and connection in one place for our tribes, clans, churches, and communities.",
-
   "emailDomain": "cultureflow.example",
   "statementDescriptor": "CULTUREFLOW",
-
   "colors": {
-    "mark":     "#D9930F",
-    "accent":   "#F5B800",
-    "ink":      "#1E0A3C",
-    "nile":     "#1B3A85",
-    "cream":    "#FFFBF2",
-    "muted":    "#39364F"
+    "black": "#000000",
+    "white": "#FFFFFF",
+    "red": "#DA121A",
+    "green": "#078930",
+    "blue": "#0F47AF",
+    "yellow": "#FCDD09"
   },
-
-  "_markNote": "Mark = warm savanna amber (#D9930F) horns from the hand-drawn /logo.svg. Wordmark = 'CultureFlow' rendered as live SVG text in Nile blue (#1B3A85), Inter weight 500. Compact lockup: the mark visually leads, the wordmark sits centred beside it. The savanna amber #F5B800 stays available as a brighter accent for buttons / highlights / pill badges. /scripts/build-brand-svgs.mjs derives every public SVG variant from /logo.svg + these colours."
+  "_markNote": "Mark = a Nilotic long-horned cow: open lyre horns in flag blue, black head, the flag's gold star cradled between the horn tips. Name = CULTURE / FLOW in wide Archivo Black caps; FLOW takes the horn colour. Flat colour, sharp edges, no gradients. See docs/brand.md."
 }

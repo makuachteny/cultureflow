@@ -41,12 +41,14 @@ export const metadata: Metadata = {
     url: APP_URL,
     siteName: BRAND_NAME,
     type: "website",
-    locale: "en_US"
+    locale: "en_US",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: `${BRAND_NAME} — ${BRAND_SHORT_TAG}` }]
   },
   twitter: {
     card: "summary_large_image",
     title: BRAND_NAME,
-    description: `${BRAND_SHORT_TAG}.`
+    description: `${BRAND_SHORT_TAG}.`,
+    images: ["/og-image.png"]
   },
   robots: {
     index: true,
@@ -63,16 +65,15 @@ export const metadata: Metadata = {
     canonical: APP_URL
   },
   icons: {
-    /* Favicon strategy:
-     *  – Primary: /logo-app-icon.svg — gold horns on a Nile-blue rounded
-     *    square. The blue background gives the icon presence in light or
-     *    dark browser chrome (the standalone mark on transparent washes
-     *    out in tab bars).
-     *  – `sizes: "any"` tells the browser to use the SVG at every tile
-     *    size instead of looking for sized PNG fallbacks.   */
-    icon:     [{ url: "/logo-app-icon.svg", type: "image/svg+xml", sizes: "any" }],
-    apple:    [{ url: "/logo-app-icon.svg", type: "image/svg+xml" }],
-    shortcut: [{ url: "/logo-app-icon.svg", type: "image/svg+xml" }]
+    /* White cow + gold star on a flag-blue square (logo-app-icon.svg).
+     * SVG for modern browsers, ICO fallback (16/32/48), and a 180px PNG
+     * for iOS home screens. Rasters: `npm run brand:png`. */
+    icon: [
+      { url: "/logo-app-icon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/favicon.ico", sizes: "48x48" }
+    ],
+    apple:    [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: [{ url: "/favicon.ico" }]
   }
 };
 

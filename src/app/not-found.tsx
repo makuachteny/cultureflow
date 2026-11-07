@@ -15,7 +15,7 @@ export default function NotFound() {
           aria-hidden
           className="flex h-24 w-24 items-center justify-center rounded-full bg-gold-50 ring-1 ring-gold-100"
         >
-          <Image src="/logo-mark.svg" alt="" width={70} height={48} />
+          <Image src="/logo-mark.svg" alt="" width={45} height={48} />
         </span>
 
         <div className="mt-8 text-[11px] font-bold uppercase tracking-[0.14em] text-gold-700">

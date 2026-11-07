@@ -1,4 +1,4 @@
-import { BRAND_LOGOS, BRAND_NAME } from "@/lib/brand";
+import { BRAND_ASPECTS, BRAND_LOGOS, BRAND_NAME } from "@/lib/brand";
 
 /**
  * BrandMark — renders the mark-only logo from the public asset
@@ -20,9 +20,9 @@ export default function BrandMark({
   className?: string;
   title?: string;
 }) {
-  // Mark is wider than tall (~410×280). Match that aspect so the icon
-  // doesn't get squashed when callers pass a single `size`.
-  const aspect = 410 / 280;
+  // The cow mark is slightly taller than wide; keep its aspect so it
+  // never gets squashed when callers pass a single `size`.
+  const aspect = BRAND_ASPECTS.mark;
   const height = size;
   const width  = Math.round(size * aspect);
   return (

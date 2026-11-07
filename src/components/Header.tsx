@@ -39,8 +39,8 @@ export default async function Header() {
             className="flex shrink-0 items-center"
             aria-label={BRAND_HOME_LABEL}
           >
-            <span className="md:hidden"><Logo variant="mark" size={32} href={null} /></span>
-            <span className="hidden md:inline-flex"><Logo variant="horizontal" size={40} href={null} /></span>
+            <span className="md:hidden"><Logo variant="mark" size={40} href={null} /></span>
+            <span className="hidden md:inline-flex"><Logo variant="horizontal" size={48} href={null} /></span>
           </Link>
 
           {/* ───── Search pill ─────

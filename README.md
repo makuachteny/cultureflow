@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/logo-horizontal.svg" alt="CultureFlow" height="56">
+  <img src="public/logo-horizontal.svg" alt="CultureFlow" height="72">
 </p>
 
 # CultureFlow
@@ -24,6 +24,10 @@ Sign in with any of the seeded accounts, for example **`alek@cultureflow.example
 ![CultureFlow home page](docs/screenshots/home.png)
 
 ---
+
+## Brand
+
+The logo is a South Sudanese long-horned cow with the flag's gold star between its horns. Every variant (lockups, mark, wordmark, app icons, favicon, social card) is generated from code. See the [brand guide](docs/brand.md).
 
 ## Screenshots
 
